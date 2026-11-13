@@ -1,0 +1,1963 @@
+fileFormatVersion: 2
+guid: e47be2032b7d72646a4c04fce3aa981b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1924641666586249468
+    second: Awards_Text_0
+  - first:
+      213: 6802092556321546223
+    second: Awards_Text_1
+  - first:
+      213: 2948420545218272572
+    second: Awards_Text_2
+  - first:
+      213: 176864153968516000
+    second: Awards_Text_3
+  - first:
+      213: 5836224150445621465
+    second: Awards_Text_4
+  - first:
+      213: 3872389903229908478
+    second: Awards_Text_5
+  - first:
+      213: 3146012067421467971
+    second: Awards_Text_6
+  - first:
+      213: 5668282731751215914
+    second: Awards_Text_7
+  - first:
+      213: 5731181880263164556
+    second: Awards_Text_8
+  - first:
+      213: 7277360488894603703
+    second: Awards_Text_9
+  - first:
+      213: -5111095817728380979
+    second: Awards_Text_10
+  - first:
+      213: -5307697820258803150
+    second: Awards_Text_11
+  - first:
+      213: 2844260142551314950
+    second: Awards_Text_12
+  - first:
+      213: -4700025982628215297
+    second: Awards_Text_13
+  - first:
+      213: -4597689370049704777
+    second: Awards_Text_14
+  - first:
+      213: -5505917561236068460
+    second: Awards_Text_15
+  - first:
+      213: 5563829883350962880
+    second: Awards_Text_16
+  - first:
+      213: 3097948387329846235
+    second: Awards_Text_17
+  - first:
+      213: -8216065205031086661
+    second: Awards_Text_18
+  - first:
+      213: 296481811635633770
+    second: Awards_Text_19
+  - first:
+      213: -7046175008940381944
+    second: Awards_Text_20
+  - first:
+      213: -4149423727470623509
+    second: Awards_Text_21
+  - first:
+      213: -1542258601832189301
+    second: Awards_Text_22
+  - first:
+      213: 1734755867533494394
+    second: Awards_Text_23
+  - first:
+      213: 7073221672207878394
+    second: Awards_Text_24
+  - first:
+      213: 1124988933396962015
+    second: Awards_Text_25
+  - first:
+      213: 6378121248333308873
+    second: Awards_Text_26
+  - first:
+      213: 3837819525187569444
+    second: Awards_Text_27
+  - first:
+      213: -3297352309432891474
+    second: Awards_Text_28
+  - first:
+      213: 2608453924183044501
+    second: Awards_Text_29
+  - first:
+      213: 5441964264738707971
+    second: Awards_Text_30
+  - first:
+      213: 8746545458371854573
+    second: Awards_Text_31
+  - first:
+      213: -8500225883725623737
+    second: Awards_Text_32
+  - first:
+      213: 4054827242657363068
+    second: Awards_Text_33
+  - first:
+      213: -4589430225900617237
+    second: Awards_Text_34
+  - first:
+      213: -1794524279371171137
+    second: Awards_Text_35
+  - first:
+      213: -2026428167000777361
+    second: Awards_Text_36
+  - first:
+      213: 3349204133363323672
+    second: Awards_Text_37
+  - first:
+      213: 1704525721455828023
+    second: Awards_Text_38
+  - first:
+      213: 5739992735176848038
+    second: Awards_Text_39
+  - first:
+      213: -8596346204871697837
+    second: Awards_Text_40
+  - first:
+      213: 1169135298622100777
+    second: Awards_Text_41
+  - first:
+      213: 6613957253263385469
+    second: Awards_Text_42
+  - first:
+      213: -848969583806180250
+    second: Awards_Text_43
+  - first:
+      213: 7825951596098423185
+    second: Awards_Text_44
+  - first:
+      213: -5178802250714109847
+    second: Awards_Text_45
+  - first:
+      213: 1995395477026214922
+    second: Awards_Text_46
+  - first:
+      213: 7878293381030518896
+    second: Awards_Text_47
+  - first:
+      213: 7061837089063152978
+    second: Awards_Text_48
+  - first:
+      213: -7993324514541058505
+    second: Awards_Text_49
+  - first:
+      213: 2018412751208669293
+    second: Awards_Text_50
+  - first:
+      213: 1494716383587901300
+    second: Awards_Text_51
+  - first:
+      213: 7905257483318482088
+    second: Awards_Text_52
+  - first:
+      213: -1105547905273301590
+    second: Awards_Text_53
+  - first:
+      213: 9178341969372603241
+    second: Awards_Text_54
+  - first:
+      213: -1081494407267112947
+    second: Awards_Text_55
+  - first:
+      213: -5422390855852711417
+    second: Awards_Text_56
+  - first:
+      213: 5266170725379977664
+    second: Awards_Text_57
+  - first:
+      213: 5706727915852544023
+    second: Awards_Text_58
+  - first:
+      213: 4740013082947716567
+    second: Awards_Text_59
+  - first:
+      213: -8848885996725215829
+    second: Awards_Text_60
+  - first:
+      213: -5126441384278908216
+    second: Awards_Text_61
+  - first:
+      213: -8757668443175277270
+    second: Awards_Text_62
+  - first:
+      213: 5929491664974166643
+    second: Awards_Text_63
+  - first:
+      213: 7942910399266860387
+    second: Awards_Text_64
+  - first:
+      213: -2077140897831679850
+    second: Awards_Text_65
+  - first:
+      213: -7404351076516120403
+    second: Awards_Text_66
+  - first:
+      213: -3733379993104788681
+    second: Awards_Text_67
+  - first:
+      213: -9146435839928134316
+    second: Awards_Text_68
+  - first:
+      213: 1798515923335781353
+    second: Awards_Text_69
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Awards_Text_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 334
+        width: 1007
+        height: 356
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 407f537f99c4a45e0800000000000000
+      internalID: -1924641666586249468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_1
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 669
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fefdfd41423e56e50800000000000000
+      internalID: 6802092556321546223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_2
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 669
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3dd23e4dd4eae820800000000000000
+      internalID: 2948420545218272572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_3
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 671
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ab1bcec209547200800000000000000
+      internalID: 176864153968516000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_4
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 674
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d00ed471fe6ef050800000000000000
+      internalID: 5836224150445621465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_5
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 677
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef5f3d5a91e7db530800000000000000
+      internalID: 3872389903229908478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_6
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 656
+        width: 25
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 345bfb99e41e8ab20800000000000000
+      internalID: 3146012067421467971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_7
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 648
+        width: 45
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a231388dc19c9ae40800000000000000
+      internalID: 5668282731751215914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_8
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 660
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c82cd341e8f398f40800000000000000
+      internalID: 5731181880263164556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_9
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 665
+        width: 22
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b1a60bbec06ef460800000000000000
+      internalID: 7277360488894603703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_10
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 667
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcfa05bfe6db119b0800000000000000
+      internalID: -5111095817728380979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_11
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 620
+        width: 124
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 232eb5034f44756b0800000000000000
+      internalID: -5307697820258803150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_12
+      rect:
+        serializedVersion: 2
+        x: 797
+        y: 671
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 602b295b787d87720800000000000000
+      internalID: 2844260142551314950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_13
+      rect:
+        serializedVersion: 2
+        x: 811
+        y: 671
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff5c656454726ceb0800000000000000
+      internalID: -4700025982628215297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_14
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 649
+        width: 115
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bc0996a0e9b130c0800000000000000
+      internalID: -4597689370049704777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_15
+      rect:
+        serializedVersion: 2
+        x: 947
+        y: 666
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49760ff462d0793b0800000000000000
+      internalID: -5505917561236068460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_16
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 669
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c256dbecc1b63d40800000000000000
+      internalID: 5563829883350962880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_17
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 663
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdb2a4705af1efa20800000000000000
+      internalID: 3097948387329846235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_18
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 634
+        width: 79
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb5dca20a3caafd80800000000000000
+      internalID: -8216065205031086661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_19
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 654
+        width: 23
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6ef7e803a05d1400800000000000000
+      internalID: 296481811635633770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_20
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 665
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 809afde5925f63e90800000000000000
+      internalID: -7046175008940381944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_21
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 663
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be4498dba194a66c0800000000000000
+      internalID: -4149423727470623509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_22
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 665
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b82700e09fbc89ae0800000000000000
+      internalID: -1542258601832189301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_23
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 666
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a78cb583547131810800000000000000
+      internalID: 1734755867533494394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_24
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 664
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af88b85a2a1292260800000000000000
+      internalID: 7073221672207878394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_25
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 641
+        width: 29
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fda1f577973cc9f00800000000000000
+      internalID: 1124988933396962015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_26
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 643
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c3274d8b73a38850800000000000000
+      internalID: 6378121248333308873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_27
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 645
+        width: 37
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4270dd6468ca24530800000000000000
+      internalID: 3837819525187569444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_28
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 649
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea740f07b837d32d0800000000000000
+      internalID: -3297352309432891474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_29
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 641
+        width: 32
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59177eb1607133420800000000000000
+      internalID: 2608453924183044501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_30
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 619
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30ade108aadb58b40800000000000000
+      internalID: 5441964264738707971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_31
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 634
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de08f02d0c8f16970800000000000000
+      internalID: 8746545458371854573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_32
+      rect:
+        serializedVersion: 2
+        x: 964
+        y: 542
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74e04f94891290a80800000000000000
+      internalID: -8500225883725623737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_33
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 545
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c743b20d4e3a54830800000000000000
+      internalID: 4054827242657363068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_34
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 540
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be1c0cf76811f40c0800000000000000
+      internalID: -4589430225900617237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_35
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 523
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fba744bfca19817e0800000000000000
+      internalID: -1794524279371171137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_36
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 515
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6d921f815ea0e3e0800000000000000
+      internalID: -2026428167000777361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_37
+      rect:
+        serializedVersion: 2
+        x: 964
+        y: 445
+        width: 9
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81314691a63ca7e20800000000000000
+      internalID: 3349204133363323672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_38
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 491
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73c14e9dc11b7a710800000000000000
+      internalID: 1704525721455828023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_39
+      rect:
+        serializedVersion: 2
+        x: 987
+        y: 431
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a2f9891bfc88af40800000000000000
+      internalID: 5739992735176848038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_40
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 416
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35a585c0ca4a3b880800000000000000
+      internalID: -8596346204871697837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_41
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 401
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9259db81c5a993010800000000000000
+      internalID: 1169135298622100777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_42
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 375
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d73e160641f79cb50800000000000000
+      internalID: 6613957253263385469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_43
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 372
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6641f1c59aad734f0800000000000000
+      internalID: -848969583806180250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_44
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 372
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19909d2538d5b9c60800000000000000
+      internalID: 7825951596098423185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_45
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 370
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 968213c9ac23128b0800000000000000
+      internalID: -5178802250714109847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_46
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 379
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0491924d9111bb10800000000000000
+      internalID: 1995395477026214922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_47
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 350
+        width: 20
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 070a2acc612555d60800000000000000
+      internalID: 7878293381030518896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_48
+      rect:
+        serializedVersion: 2
+        x: 954
+        y: 374
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25da943da6fa00260800000000000000
+      internalID: 7061837089063152978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_49
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 361
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 736cb5854b1021190800000000000000
+      internalID: -7993324514541058505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_50
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 356
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6069e504b7d20c10800000000000000
+      internalID: 2018412751208669293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_51
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 364
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47f96bba1ac4eb410800000000000000
+      internalID: 1494716383587901300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_52
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 365
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a452371ccd15bd60800000000000000
+      internalID: 7905257483318482088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_53
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 353
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa5f100a90e48a0f0800000000000000
+      internalID: -1105547905273301590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_54
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 357
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96363876465006f70800000000000000
+      internalID: 9178341969372603241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_55
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 343
+        width: 16
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d08a54c0192cdf0f0800000000000000
+      internalID: -1081494407267112947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_56
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 351
+        width: 22
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 702a293ee3ccfb4b0800000000000000
+      internalID: -5422390855852711417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_57
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 363
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c1b5d49f52351940800000000000000
+      internalID: 5266170725379977664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_58
+      rect:
+        serializedVersion: 2
+        x: 757
+        y: 356
+        width: 15
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 718323ecdce523f40800000000000000
+      internalID: 5706727915852544023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_59
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 347
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d58dc709c8e7c140800000000000000
+      internalID: 4740013082947716567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_60
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 352
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: badd343c111723580800000000000000
+      internalID: -8848885996725215829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_61
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 334
+        width: 35
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c2a138d8b83bd8b0800000000000000
+      internalID: -5126441384278908216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_62
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 348
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2da3e773f2867680800000000000000
+      internalID: -8757668443175277270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_63
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 343
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37abc65e049c94250800000000000000
+      internalID: 5929491664974166643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_64
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 341
+        width: 6
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36dae0fbce2ea3e60800000000000000
+      internalID: 7942910399266860387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_65
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 349
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6988e4ccb538c23e0800000000000000
+      internalID: -2077140897831679850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_66
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 352
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da8b9f30de57e3990800000000000000
+      internalID: -7404351076516120403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_67
+      rect:
+        serializedVersion: 2
+        x: 730
+        y: 348
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73350733dae503cc0800000000000000
+      internalID: -3733379993104788681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_68
+      rect:
+        serializedVersion: 2
+        x: 950
+        y: 346
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4559e204015511180800000000000000
+      internalID: -9146435839928134316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Awards_Text_69
+      rect:
+        serializedVersion: 2
+        x: 813
+        y: 334
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9eb105d04bc95f810800000000000000
+      internalID: 1798515923335781353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Awards_Text_0: -1924641666586249468
+      Awards_Text_1: 6802092556321546223
+      Awards_Text_10: -5111095817728380979
+      Awards_Text_11: -5307697820258803150
+      Awards_Text_12: 2844260142551314950
+      Awards_Text_13: -4700025982628215297
+      Awards_Text_14: -4597689370049704777
+      Awards_Text_15: -5505917561236068460
+      Awards_Text_16: 5563829883350962880
+      Awards_Text_17: 3097948387329846235
+      Awards_Text_18: -8216065205031086661
+      Awards_Text_19: 296481811635633770
+      Awards_Text_2: 2948420545218272572
+      Awards_Text_20: -7046175008940381944
+      Awards_Text_21: -4149423727470623509
+      Awards_Text_22: -1542258601832189301
+      Awards_Text_23: 1734755867533494394
+      Awards_Text_24: 7073221672207878394
+      Awards_Text_25: 1124988933396962015
+      Awards_Text_26: 6378121248333308873
+      Awards_Text_27: 3837819525187569444
+      Awards_Text_28: -3297352309432891474
+      Awards_Text_29: 2608453924183044501
+      Awards_Text_3: 176864153968516000
+      Awards_Text_30: 5441964264738707971
+      Awards_Text_31: 8746545458371854573
+      Awards_Text_32: -8500225883725623737
+      Awards_Text_33: 4054827242657363068
+      Awards_Text_34: -4589430225900617237
+      Awards_Text_35: -1794524279371171137
+      Awards_Text_36: -2026428167000777361
+      Awards_Text_37: 3349204133363323672
+      Awards_Text_38: 1704525721455828023
+      Awards_Text_39: 5739992735176848038
+      Awards_Text_4: 5836224150445621465
+      Awards_Text_40: -8596346204871697837
+      Awards_Text_41: 1169135298622100777
+      Awards_Text_42: 6613957253263385469
+      Awards_Text_43: -848969583806180250
+      Awards_Text_44: 7825951596098423185
+      Awards_Text_45: -5178802250714109847
+      Awards_Text_46: 1995395477026214922
+      Awards_Text_47: 7878293381030518896
+      Awards_Text_48: 7061837089063152978
+      Awards_Text_49: -7993324514541058505
+      Awards_Text_5: 3872389903229908478
+      Awards_Text_50: 2018412751208669293
+      Awards_Text_51: 1494716383587901300
+      Awards_Text_52: 7905257483318482088
+      Awards_Text_53: -1105547905273301590
+      Awards_Text_54: 9178341969372603241
+      Awards_Text_55: -1081494407267112947
+      Awards_Text_56: -5422390855852711417
+      Awards_Text_57: 5266170725379977664
+      Awards_Text_58: 5706727915852544023
+      Awards_Text_59: 4740013082947716567
+      Awards_Text_6: 3146012067421467971
+      Awards_Text_60: -8848885996725215829
+      Awards_Text_61: -5126441384278908216
+      Awards_Text_62: -8757668443175277270
+      Awards_Text_63: 5929491664974166643
+      Awards_Text_64: 7942910399266860387
+      Awards_Text_65: -2077140897831679850
+      Awards_Text_66: -7404351076516120403
+      Awards_Text_67: -3733379993104788681
+      Awards_Text_68: -9146435839928134316
+      Awards_Text_69: 1798515923335781353
+      Awards_Text_7: 5668282731751215914
+      Awards_Text_8: 5731181880263164556
+      Awards_Text_9: 7277360488894603703
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

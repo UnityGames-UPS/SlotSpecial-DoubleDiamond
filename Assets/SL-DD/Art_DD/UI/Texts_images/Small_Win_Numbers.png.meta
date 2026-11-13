@@ -1,0 +1,450 @@
+fileFormatVersion: 2
+guid: 780082b2e09b24f468fcdf79017e204d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -425218656995528862
+    second: Small_Win_Numbers_0
+  - first:
+      213: -2891429828557135194
+    second: Small_Win_Numbers_1
+  - first:
+      213: 852442326612135764
+    second: Small_Win_Numbers_2
+  - first:
+      213: 5663604933382017525
+    second: Small_Win_Numbers_3
+  - first:
+      213: -7881915006814521139
+    second: Small_Win_Numbers_4
+  - first:
+      213: -2598232803700419248
+    second: Small_Win_Numbers_5
+  - first:
+      213: -9028560214875448487
+    second: Small_Win_Numbers_6
+  - first:
+      213: 4111013094861979424
+    second: Small_Win_Numbers_7
+  - first:
+      213: 3346946785519854819
+    second: Small_Win_Numbers_8
+  - first:
+      213: -3564995951592187267
+    second: Small_Win_Numbers_9
+  - first:
+      213: -1943144531784150818
+    second: Small_Win_Numbers_10
+  - first:
+      213: -972343169475434728
+    second: Small_Win_Numbers_11
+  - first:
+      213: 4358483476920602662
+    second: Small_Win_Numbers_12
+  - first:
+      213: 6845140169059057118
+    second: Small_Win_Numbers_13
+  - first:
+      213: 4893198777928672268
+    second: Small_Win_Numbers_14
+  - first:
+      213: 8702691208626339686
+    second: Small_Win_Numbers_15
+  - first:
+      213: -7315636248304622171
+    second: Small_Win_Numbers_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Small_Win_Numbers_0
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 671
+        width: 132
+        height: 247
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26fa9e562e1591af0800000000000000
+      internalID: -425218656995528862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Small_Win_Numbers_1
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 680
+        width: 184
+        height: 246
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a222efe3e39fd7d0800000000000000
+      internalID: -2891429828557135194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Small_Win_Numbers_2
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 671
+        width: 181
+        height: 246
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45f493597cb74db00800000000000000
+      internalID: 852442326612135764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Small_Win_Numbers_3
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 676
+        width: 190
+        height: 255
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f1926a0eaa299e40800000000000000
+      internalID: 5663604933382017525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Small_Win_Numbers_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 388
+        width: 177
+        height: 245
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc8fffcbf00dd9290800000000000000
+      internalID: -7881915006814521139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Small_Win_Numbers_5
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 388
+        width: 193
+        height: 244
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95bdf17e15c14b280800000000000000
+      internalID: -9028560214875448487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Small_Win_Numbers_6
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 388
+        width: 191
+        height: 247
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02f3a32f0a04d0930800000000000000
+      internalID: 4111013094861979424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Small_Win_Numbers_7
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 378
+        width: 176
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e4eb095e5eb27e20800000000000000
+      internalID: 3346946785519854819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Small_Win_Numbers_8
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 105
+        width: 181
+        height: 245
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 620134941a17c7c30800000000000000
+      internalID: 4358483476920602662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Small_Win_Numbers_9
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 94
+        width: 169
+        height: 246
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eddb58677b2defe50800000000000000
+      internalID: 6845140169059057118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Small_Win_Numbers_10
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 136
+        width: 71
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a5e4d19793a97a90800000000000000
+      internalID: -7315636248304622171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 55b148f7a347de44ba4503ec5fce0df9
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Small_Win_Numbers_0: -425218656995528862
+      Small_Win_Numbers_1: -2891429828557135194
+      Small_Win_Numbers_10: -7315636248304622171
+      Small_Win_Numbers_11: -972343169475434728
+      Small_Win_Numbers_14: 4893198777928672268
+      Small_Win_Numbers_15: 8702691208626339686
+      Small_Win_Numbers_2: 852442326612135764
+      Small_Win_Numbers_3: 5663604933382017525
+      Small_Win_Numbers_4: -7881915006814521139
+      Small_Win_Numbers_5: -9028560214875448487
+      Small_Win_Numbers_6: 4111013094861979424
+      Small_Win_Numbers_7: 3346946785519854819
+      Small_Win_Numbers_8: 4358483476920602662
+      Small_Win_Numbers_9: 6845140169059057118
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

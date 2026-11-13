@@ -1,0 +1,485 @@
+fileFormatVersion: 2
+guid: f4beb1281ad3ca147944c2787dfd908a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4269126300034602919
+    second: Jackpot_Inferno_Numbers_0
+  - first:
+      213: 811420040914704130
+    second: Jackpot_Inferno_Numbers_1
+  - first:
+      213: -5872261199922470448
+    second: Jackpot_Inferno_Numbers_2
+  - first:
+      213: -7459765224068754444
+    second: Jackpot_Inferno_Numbers_3
+  - first:
+      213: -5570610299364933082
+    second: Jackpot_Inferno_Numbers_4
+  - first:
+      213: 6234517341449989147
+    second: Jackpot_Inferno_Numbers_5
+  - first:
+      213: 3315303892701423026
+    second: Jackpot_Inferno_Numbers_6
+  - first:
+      213: 4084877911708178711
+    second: Jackpot_Inferno_Numbers_7
+  - first:
+      213: -493972580403021888
+    second: Jackpot_Inferno_Numbers_8
+  - first:
+      213: -4576341973162963390
+    second: Jackpot_Inferno_Numbers_9
+  - first:
+      213: -6160483001127455724
+    second: Jackpot_Inferno_Numbers_10
+  - first:
+      213: -642118840621572276
+    second: Jackpot_Inferno_Numbers_11
+  - first:
+      213: 8164399878800239396
+    second: Jackpot_Inferno_Numbers_12
+  - first:
+      213: -2839084418131462996
+    second: Jackpot_Inferno_Numbers_13
+  - first:
+      213: -1665918877224639994
+    second: Jackpot_Inferno_Numbers_14
+  - first:
+      213: -8948719177958848680
+    second: Jackpot_Inferno_Numbers_15
+  - first:
+      213: -4699442889432889366
+    second: Jackpot_Inferno_Numbers_16
+  - first:
+      213: 4390175946461300037
+    second: Jackpot_Inferno_Numbers_17
+  - first:
+      213: 7705648314245624946
+    second: Jackpot_Inferno_Numbers_18
+  - first:
+      213: 6104560292876353328
+    second: Jackpot_Inferno_Numbers_19
+  - first:
+      213: -7566869592954428158
+    second: Jackpot_Inferno_Numbers_20
+  - first:
+      213: -3766681907675047182
+    second: Jackpot_Inferno_Numbers_21
+  - first:
+      213: 3637612953768794161
+    second: Jackpot_Inferno_Numbers_22
+  - first:
+      213: 4343512843557978746
+    second: Jackpot_Inferno_Numbers_23
+  - first:
+      213: -6996893118612107048
+    second: Jackpot_Inferno_Numbers_24
+  - first:
+      213: -4853211251860832383
+    second: Jackpot_Inferno_Numbers_25
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Jackpot_Inferno_Numbers_1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 628
+        width: 127
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2079a566a3eb24b00800000000000000
+      internalID: 811420040914704130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jackpot_Inferno_Numbers_2
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 620
+        width: 169
+        height: 212
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f3d19f5d07997890800000000000000
+      internalID: -7459765224068754444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jackpot_Inferno_Numbers_3
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 614
+        width: 173
+        height: 224
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6228834727731b2b0800000000000000
+      internalID: -5570610299364933082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jackpot_Inferno_Numbers_4
+      rect:
+        serializedVersion: 2
+        x: 730
+        y: 635
+        width: 170
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1ca32b7d74758650800000000000000
+      internalID: 6234517341449989147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jackpot_Inferno_Numbers_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 375
+        width: 172
+        height: 226
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c77b482e8e0529f0800000000000000
+      internalID: -493972580403021888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jackpot_Inferno_Numbers_16
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 365
+        width: 190
+        height: 220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41437f0a951918aa0800000000000000
+      internalID: -6160483001127455724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jackpot_Inferno_Numbers_7
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 373
+        width: 177
+        height: 220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4f5a29015cb617f0800000000000000
+      internalID: -642118840621572276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jackpot_Inferno_Numbers_8
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 373
+        width: 176
+        height: 243
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42b6124de66cd4170800000000000000
+      internalID: 8164399878800239396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jackpot_Inferno_Numbers_9
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 131
+        width: 168
+        height: 212
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1389fb365b56b7230800000000000000
+      internalID: 3637612953768794161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jackpot_Inferno_Numbers_0
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 130
+        width: 164
+        height: 220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d010cd97ca06ee90800000000000000
+      internalID: -6996893118612107048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jackpot_Inferno_Numbers_.
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 151
+        width: 78
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18ff7e0741ee5acb0800000000000000
+      internalID: -4853211251860832383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 612e3bc6e7156f34b92f6017dcdb2d04
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Jackpot_Inferno_Numbers_.: -4853211251860832383
+      Jackpot_Inferno_Numbers_0: -6996893118612107048
+      Jackpot_Inferno_Numbers_1: 811420040914704130
+      Jackpot_Inferno_Numbers_13: -2839084418131462996
+      Jackpot_Inferno_Numbers_14: -1665918877224639994
+      Jackpot_Inferno_Numbers_15: -8948719177958848680
+      Jackpot_Inferno_Numbers_16: -6160483001127455724
+      Jackpot_Inferno_Numbers_18: 7705648314245624946
+      Jackpot_Inferno_Numbers_19: 6104560292876353328
+      Jackpot_Inferno_Numbers_2: -7459765224068754444
+      Jackpot_Inferno_Numbers_20: -7566869592954428158
+      Jackpot_Inferno_Numbers_21: -3766681907675047182
+      Jackpot_Inferno_Numbers_23: 4343512843557978746
+      Jackpot_Inferno_Numbers_3: -5570610299364933082
+      Jackpot_Inferno_Numbers_4: 6234517341449989147
+      Jackpot_Inferno_Numbers_5: -493972580403021888
+      Jackpot_Inferno_Numbers_6: 3315303892701423026
+      Jackpot_Inferno_Numbers_7: -642118840621572276
+      Jackpot_Inferno_Numbers_8: 8164399878800239396
+      Jackpot_Inferno_Numbers_9: 3637612953768794161
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

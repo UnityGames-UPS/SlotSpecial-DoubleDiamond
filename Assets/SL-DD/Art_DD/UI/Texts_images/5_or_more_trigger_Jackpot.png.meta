@@ -1,0 +1,585 @@
+fileFormatVersion: 2
+guid: 1912271d9624373409388f5a5b970030
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6081182443850266485
+    second: 5_or_more_trigger_Jackpot_0
+  - first:
+      213: 337288444964852495
+    second: 5_or_more_trigger_Jackpot_1
+  - first:
+      213: 3149338722111636875
+    second: 5_or_more_trigger_Jackpot_2
+  - first:
+      213: -2316290460417587848
+    second: 5_or_more_trigger_Jackpot_3
+  - first:
+      213: 289228429790843585
+    second: 5_or_more_trigger_Jackpot_4
+  - first:
+      213: 8669551878250024889
+    second: 5_or_more_trigger_Jackpot_5
+  - first:
+      213: -8488476533829280187
+    second: 5_or_more_trigger_Jackpot_6
+  - first:
+      213: -848837124428024235
+    second: 5_or_more_trigger_Jackpot_7
+  - first:
+      213: 2500974618513856212
+    second: 5_or_more_trigger_Jackpot_8
+  - first:
+      213: -1475254330864696974
+    second: 5_or_more_trigger_Jackpot_9
+  - first:
+      213: -8473989429531614682
+    second: 5_or_more_trigger_Jackpot_10
+  - first:
+      213: 2580421373898107895
+    second: 5_or_more_trigger_Jackpot_11
+  - first:
+      213: 3546789494866857737
+    second: 5_or_more_trigger_Jackpot_12
+  - first:
+      213: -8609767240802917244
+    second: 5_or_more_trigger_Jackpot_13
+  - first:
+      213: -1667480908472116397
+    second: 5_or_more_trigger_Jackpot_14
+  - first:
+      213: 3620139936092577014
+    second: 5_or_more_trigger_Jackpot_15
+  - first:
+      213: 4343214818268981893
+    second: 5_or_more_trigger_Jackpot_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 5_or_more_trigger_Jackpot_0
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 277
+        width: 38
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8886fb69cc4b9ba0800000000000000
+      internalID: -6081182443850266485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_or_more_trigger_Jackpot_1
+      rect:
+        serializedVersion: 2
+        x: 818
+        y: 244
+        width: 99
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0359fcbd0a4ea400800000000000000
+      internalID: 337288444964852495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_or_more_trigger_Jackpot_2
+      rect:
+        serializedVersion: 2
+        x: 998
+        y: 219
+        width: 202
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b85c8d0c1e2b4bb20800000000000000
+      internalID: 3149338722111636875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_or_more_trigger_Jackpot_3
+      rect:
+        serializedVersion: 2
+        x: 1222
+        y: 238
+        width: 122
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8750f263912eadfd0800000000000000
+      internalID: -2316290460417587848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_or_more_trigger_Jackpot_4
+      rect:
+        serializedVersion: 2
+        x: 1384
+        y: 16
+        width: 471
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c290a879bb830400800000000000000
+      internalID: 289228429790843585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_or_more_trigger_Jackpot_5
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 244
+        width: 38
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bfc9e0008f605870800000000000000
+      internalID: 8669551878250024889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_or_more_trigger_Jackpot_6
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 119
+        width: 73
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54edddcf09fd23a80800000000000000
+      internalID: -8488476533829280187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_or_more_trigger_Jackpot_7
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 118
+        width: 124
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 556bd46f1235834f0800000000000000
+      internalID: -848837124428024235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_or_more_trigger_Jackpot_8
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 45
+        width: 445
+        height: 197
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d659c03a2f35b220800000000000000
+      internalID: 2500974618513856212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_or_more_trigger_Jackpot_9
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 6
+        width: 587
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27104779008d68be0800000000000000
+      internalID: -1475254330864696974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_or_more_trigger_Jackpot_10
+      rect:
+        serializedVersion: 2
+        x: 1402
+        y: 127
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6226a5ec287566a80800000000000000
+      internalID: -8473989429531614682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_or_more_trigger_Jackpot_11
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 58
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fba502619f7fc320800000000000000
+      internalID: 2580421373898107895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_or_more_trigger_Jackpot_12
+      rect:
+        serializedVersion: 2
+        x: 1154
+        y: 60
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90f40aef04ab83130800000000000000
+      internalID: 3546789494866857737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_or_more_trigger_Jackpot_13
+      rect:
+        serializedVersion: 2
+        x: 1689
+        y: 53
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 484a52d9f46f38880800000000000000
+      internalID: -8609767240802917244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_or_more_trigger_Jackpot_14
+      rect:
+        serializedVersion: 2
+        x: 1717
+        y: 45
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35b16ccc2faebd8e0800000000000000
+      internalID: -1667480908472116397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_or_more_trigger_Jackpot_15
+      rect:
+        serializedVersion: 2
+        x: 941
+        y: 22
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fcd00077125d3230800000000000000
+      internalID: 3620139936092577014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_or_more_trigger_Jackpot_16
+      rect:
+        serializedVersion: 2
+        x: 945
+        y: 16
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58aa22aadd2364c30800000000000000
+      internalID: 4343214818268981893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      5_or_more_trigger_Jackpot_0: -6081182443850266485
+      5_or_more_trigger_Jackpot_1: 337288444964852495
+      5_or_more_trigger_Jackpot_10: -8473989429531614682
+      5_or_more_trigger_Jackpot_11: 2580421373898107895
+      5_or_more_trigger_Jackpot_12: 3546789494866857737
+      5_or_more_trigger_Jackpot_13: -8609767240802917244
+      5_or_more_trigger_Jackpot_14: -1667480908472116397
+      5_or_more_trigger_Jackpot_15: 3620139936092577014
+      5_or_more_trigger_Jackpot_16: 4343214818268981893
+      5_or_more_trigger_Jackpot_2: 3149338722111636875
+      5_or_more_trigger_Jackpot_3: -2316290460417587848
+      5_or_more_trigger_Jackpot_4: 289228429790843585
+      5_or_more_trigger_Jackpot_5: 8669551878250024889
+      5_or_more_trigger_Jackpot_6: -8488476533829280187
+      5_or_more_trigger_Jackpot_7: -848837124428024235
+      5_or_more_trigger_Jackpot_8: 2500974618513856212
+      5_or_more_trigger_Jackpot_9: -1475254330864696974
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

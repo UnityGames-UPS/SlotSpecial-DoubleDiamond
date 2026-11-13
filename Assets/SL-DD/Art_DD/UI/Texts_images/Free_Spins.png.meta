@@ -1,0 +1,6149 @@
+fileFormatVersion: 2
+guid: db3471dff9272d0409362536eb726f99
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3116730365370765614
+    second: Free_Spins_0
+  - first:
+      213: 6105841434955247523
+    second: Free_Spins_1
+  - first:
+      213: -5850605042626344176
+    second: Free_Spins_2
+  - first:
+      213: 8942796050669215120
+    second: Free_Spins_3
+  - first:
+      213: -8079502283833718686
+    second: Free_Spins_4
+  - first:
+      213: 3132607243622304747
+    second: Free_Spins_5
+  - first:
+      213: 1316155283979852325
+    second: Free_Spins_6
+  - first:
+      213: -587008867223671380
+    second: Free_Spins_7
+  - first:
+      213: -5017862178462161076
+    second: Free_Spins_8
+  - first:
+      213: 3970683090131697933
+    second: Free_Spins_9
+  - first:
+      213: 3033897901427540484
+    second: Free_Spins_10
+  - first:
+      213: 1642204352310967619
+    second: Free_Spins_11
+  - first:
+      213: 3715001937113430148
+    second: Free_Spins_12
+  - first:
+      213: 5818747514748006343
+    second: Free_Spins_13
+  - first:
+      213: 4841918828824954617
+    second: Free_Spins_14
+  - first:
+      213: 8807768997754595871
+    second: Free_Spins_15
+  - first:
+      213: 3471989346568149307
+    second: Free_Spins_16
+  - first:
+      213: 3085519928452097627
+    second: Free_Spins_17
+  - first:
+      213: -6581785245326661843
+    second: Free_Spins_18
+  - first:
+      213: -3894764883529613188
+    second: Free_Spins_19
+  - first:
+      213: -7864149807947644817
+    second: Free_Spins_20
+  - first:
+      213: -2264120044326341243
+    second: Free_Spins_21
+  - first:
+      213: 2662560350432723318
+    second: Free_Spins_22
+  - first:
+      213: 6587590614453979817
+    second: Free_Spins_23
+  - first:
+      213: 6679227964445291318
+    second: Free_Spins_24
+  - first:
+      213: -8175035262633079468
+    second: Free_Spins_25
+  - first:
+      213: -5030994211613654920
+    second: Free_Spins_26
+  - first:
+      213: 6076913315550627078
+    second: Free_Spins_27
+  - first:
+      213: 2334390702890843039
+    second: Free_Spins_28
+  - first:
+      213: -1444606333673519483
+    second: Free_Spins_29
+  - first:
+      213: 8303671510830044493
+    second: Free_Spins_30
+  - first:
+      213: -289698177986812776
+    second: Free_Spins_31
+  - first:
+      213: 394787111837227588
+    second: Free_Spins_32
+  - first:
+      213: 100981450112062967
+    second: Free_Spins_33
+  - first:
+      213: 355653090919262039
+    second: Free_Spins_34
+  - first:
+      213: 8459122395536532136
+    second: Free_Spins_35
+  - first:
+      213: -1397169615042794593
+    second: Free_Spins_36
+  - first:
+      213: 8338729185586435960
+    second: Free_Spins_37
+  - first:
+      213: -6391758395532390751
+    second: Free_Spins_38
+  - first:
+      213: 532821850294407346
+    second: Free_Spins_39
+  - first:
+      213: -9036270138634230110
+    second: Free_Spins_40
+  - first:
+      213: 7646912801310279774
+    second: Free_Spins_41
+  - first:
+      213: -7087463863691558106
+    second: Free_Spins_42
+  - first:
+      213: 9129875272189250064
+    second: Free_Spins_43
+  - first:
+      213: 4864748857723995850
+    second: Free_Spins_44
+  - first:
+      213: -2757478939792763587
+    second: Free_Spins_45
+  - first:
+      213: -7044655104327957814
+    second: Free_Spins_46
+  - first:
+      213: -1218423873856516019
+    second: Free_Spins_47
+  - first:
+      213: 8608263360931745917
+    second: Free_Spins_48
+  - first:
+      213: 4611084342560396293
+    second: Free_Spins_49
+  - first:
+      213: 7155991283004291546
+    second: Free_Spins_50
+  - first:
+      213: 6645346703612838764
+    second: Free_Spins_51
+  - first:
+      213: 8019326204999374617
+    second: Free_Spins_52
+  - first:
+      213: 5737463263785310605
+    second: Free_Spins_53
+  - first:
+      213: -1634526998114793135
+    second: Free_Spins_54
+  - first:
+      213: -1834004302061024882
+    second: Free_Spins_55
+  - first:
+      213: -4373136140626052057
+    second: Free_Spins_56
+  - first:
+      213: -6123767977086286807
+    second: Free_Spins_57
+  - first:
+      213: -6446982039710229626
+    second: Free_Spins_58
+  - first:
+      213: -5835676098626266389
+    second: Free_Spins_59
+  - first:
+      213: -4161553587528415456
+    second: Free_Spins_60
+  - first:
+      213: 8050903631527465416
+    second: Free_Spins_61
+  - first:
+      213: -2598614775663412562
+    second: Free_Spins_62
+  - first:
+      213: 6295769628234088893
+    second: Free_Spins_63
+  - first:
+      213: 5130304179080224630
+    second: Free_Spins_64
+  - first:
+      213: -6743261976384947647
+    second: Free_Spins_65
+  - first:
+      213: -3343988784421969105
+    second: Free_Spins_66
+  - first:
+      213: -637527310944034571
+    second: Free_Spins_67
+  - first:
+      213: 4299260120682779745
+    second: Free_Spins_68
+  - first:
+      213: -7897039201699864095
+    second: Free_Spins_69
+  - first:
+      213: -2971058529174001617
+    second: Free_Spins_70
+  - first:
+      213: 5637164803396074871
+    second: Free_Spins_71
+  - first:
+      213: 7199724420642143945
+    second: Free_Spins_72
+  - first:
+      213: -6647711223628369188
+    second: Free_Spins_73
+  - first:
+      213: 6094159543050850288
+    second: Free_Spins_74
+  - first:
+      213: -2125988971728887428
+    second: Free_Spins_75
+  - first:
+      213: 255963252791853193
+    second: Free_Spins_76
+  - first:
+      213: 5647794041142526254
+    second: Free_Spins_77
+  - first:
+      213: -1326755789158450150
+    second: Free_Spins_78
+  - first:
+      213: -7641969993416430401
+    second: Free_Spins_79
+  - first:
+      213: -6809090686734306441
+    second: Free_Spins_80
+  - first:
+      213: -4674907160144919362
+    second: Free_Spins_81
+  - first:
+      213: -9011306008276222870
+    second: Free_Spins_82
+  - first:
+      213: 3146018589341903530
+    second: Free_Spins_83
+  - first:
+      213: 685622633125727500
+    second: Free_Spins_84
+  - first:
+      213: 4434790223788796437
+    second: Free_Spins_85
+  - first:
+      213: -8079514552442096996
+    second: Free_Spins_86
+  - first:
+      213: -6868840270122095901
+    second: Free_Spins_87
+  - first:
+      213: 8727329124929664840
+    second: Free_Spins_88
+  - first:
+      213: -2100063982524504801
+    second: Free_Spins_89
+  - first:
+      213: 705906118546530574
+    second: Free_Spins_90
+  - first:
+      213: -6611839143477413392
+    second: Free_Spins_91
+  - first:
+      213: -2436196586056826929
+    second: Free_Spins_92
+  - first:
+      213: -5445909067484244883
+    second: Free_Spins_93
+  - first:
+      213: -5808363888025213201
+    second: Free_Spins_94
+  - first:
+      213: 2617497057941421285
+    second: Free_Spins_95
+  - first:
+      213: 4920899871083990066
+    second: Free_Spins_96
+  - first:
+      213: -5345100261555509086
+    second: Free_Spins_97
+  - first:
+      213: -4898046500490223460
+    second: Free_Spins_98
+  - first:
+      213: 4521272757760601354
+    second: Free_Spins_99
+  - first:
+      213: 6763020920462467656
+    second: Free_Spins_100
+  - first:
+      213: 1277255296016765726
+    second: Free_Spins_101
+  - first:
+      213: 7813946524088038029
+    second: Free_Spins_102
+  - first:
+      213: 5945779864615618858
+    second: Free_Spins_103
+  - first:
+      213: 2479144441777295625
+    second: Free_Spins_104
+  - first:
+      213: -1398411544469432542
+    second: Free_Spins_105
+  - first:
+      213: 4232725629005355618
+    second: Free_Spins_106
+  - first:
+      213: -7469181573325114442
+    second: Free_Spins_107
+  - first:
+      213: 1899167929042139241
+    second: Free_Spins_108
+  - first:
+      213: 7642777735119307378
+    second: Free_Spins_109
+  - first:
+      213: 7036697732332943419
+    second: Free_Spins_110
+  - first:
+      213: 3536590777648114821
+    second: Free_Spins_111
+  - first:
+      213: -1172536175847521005
+    second: Free_Spins_112
+  - first:
+      213: -5361708589512238730
+    second: Free_Spins_113
+  - first:
+      213: 5896540284357996227
+    second: Free_Spins_114
+  - first:
+      213: -3735865683411133257
+    second: Free_Spins_115
+  - first:
+      213: 1175177156812027864
+    second: Free_Spins_116
+  - first:
+      213: -7167123039294822731
+    second: Free_Spins_117
+  - first:
+      213: 5461485597323412569
+    second: Free_Spins_118
+  - first:
+      213: 6510823644437417995
+    second: Free_Spins_119
+  - first:
+      213: 6116446794926186744
+    second: Free_Spins_120
+  - first:
+      213: 9192621612038731536
+    second: Free_Spins_121
+  - first:
+      213: -8589268619764185289
+    second: Free_Spins_122
+  - first:
+      213: 6972986906893686891
+    second: Free_Spins_123
+  - first:
+      213: -9218980754292823832
+    second: Free_Spins_124
+  - first:
+      213: -5435306397509889
+    second: Free_Spins_125
+  - first:
+      213: 1701339682422696162
+    second: Free_Spins_126
+  - first:
+      213: -2101773238431116739
+    second: Free_Spins_127
+  - first:
+      213: -7916139718601959272
+    second: Free_Spins_128
+  - first:
+      213: 9181363076952196533
+    second: Free_Spins_129
+  - first:
+      213: 4485246424932324867
+    second: Free_Spins_130
+  - first:
+      213: 14228346169660332
+    second: Free_Spins_131
+  - first:
+      213: -2766779577413584003
+    second: Free_Spins_132
+  - first:
+      213: 2521580646041605579
+    second: Free_Spins_133
+  - first:
+      213: 3907220545504295750
+    second: Free_Spins_134
+  - first:
+      213: 49798498700678523
+    second: Free_Spins_135
+  - first:
+      213: 6068724637787746826
+    second: Free_Spins_136
+  - first:
+      213: 6698254457334627213
+    second: Free_Spins_137
+  - first:
+      213: -520151632157199408
+    second: Free_Spins_138
+  - first:
+      213: -6730342639746769269
+    second: Free_Spins_139
+  - first:
+      213: -3996245699870923436
+    second: Free_Spins_140
+  - first:
+      213: 550821723015042945
+    second: Free_Spins_141
+  - first:
+      213: 5160352443978217027
+    second: Free_Spins_142
+  - first:
+      213: 4543742822688124114
+    second: Free_Spins_143
+  - first:
+      213: 5458071362441428914
+    second: Free_Spins_144
+  - first:
+      213: -7468018674482476809
+    second: Free_Spins_145
+  - first:
+      213: -3038237290721076733
+    second: Free_Spins_146
+  - first:
+      213: 7342700584128939588
+    second: Free_Spins_147
+  - first:
+      213: -8027622104494001736
+    second: Free_Spins_148
+  - first:
+      213: -4538349518221385369
+    second: Free_Spins_149
+  - first:
+      213: -7045735804360109751
+    second: Free_Spins_150
+  - first:
+      213: 8471114867462271143
+    second: Free_Spins_151
+  - first:
+      213: 7789946776067569151
+    second: Free_Spins_152
+  - first:
+      213: 2762792956645846858
+    second: Free_Spins_153
+  - first:
+      213: 4682797660650055874
+    second: Free_Spins_154
+  - first:
+      213: -3986920933381177332
+    second: Free_Spins_155
+  - first:
+      213: 5016987922772719733
+    second: Free_Spins_156
+  - first:
+      213: -8596091627246007650
+    second: Free_Spins_157
+  - first:
+      213: 117438437794767650
+    second: Free_Spins_158
+  - first:
+      213: 6572655279023507832
+    second: Free_Spins_159
+  - first:
+      213: -5073338703984251653
+    second: Free_Spins_160
+  - first:
+      213: -7907152079600308256
+    second: Free_Spins_161
+  - first:
+      213: 3093400866507794613
+    second: Free_Spins_162
+  - first:
+      213: -8045329684906546473
+    second: Free_Spins_163
+  - first:
+      213: -5990909015680269412
+    second: Free_Spins_164
+  - first:
+      213: 5039831645991406183
+    second: Free_Spins_165
+  - first:
+      213: 9057238756283361318
+    second: Free_Spins_166
+  - first:
+      213: -6877825736875539863
+    second: Free_Spins_167
+  - first:
+      213: 4156247742373603632
+    second: Free_Spins_168
+  - first:
+      213: 3016976961117097588
+    second: Free_Spins_169
+  - first:
+      213: -3941405233119206814
+    second: Free_Spins_170
+  - first:
+      213: 439190487313852064
+    second: Free_Spins_171
+  - first:
+      213: -5283925924813794412
+    second: Free_Spins_172
+  - first:
+      213: 5675764939970401933
+    second: Free_Spins_173
+  - first:
+      213: 1969961860436947138
+    second: Free_Spins_174
+  - first:
+      213: -7801520115381130301
+    second: Free_Spins_175
+  - first:
+      213: -8664737794756789977
+    second: Free_Spins_176
+  - first:
+      213: 2651323978237348448
+    second: Free_Spins_177
+  - first:
+      213: 6770624873457891233
+    second: Free_Spins_178
+  - first:
+      213: -7802690604638307013
+    second: Free_Spins_179
+  - first:
+      213: -5476573036349972251
+    second: Free_Spins_180
+  - first:
+      213: 8699394555155012362
+    second: Free_Spins_181
+  - first:
+      213: 7725034954343955556
+    second: Free_Spins_182
+  - first:
+      213: -203785737731544799
+    second: Free_Spins_183
+  - first:
+      213: 5589870092131531791
+    second: Free_Spins_184
+  - first:
+      213: 7616624639450466974
+    second: Free_Spins_185
+  - first:
+      213: -1063367443911625933
+    second: Free_Spins_186
+  - first:
+      213: 1940626791030016933
+    second: Free_Spins_187
+  - first:
+      213: -7836441926068966427
+    second: Free_Spins_188
+  - first:
+      213: 5349301154094618451
+    second: Free_Spins_189
+  - first:
+      213: -5185496321760182929
+    second: Free_Spins_190
+  - first:
+      213: 6908667285755727380
+    second: Free_Spins_191
+  - first:
+      213: 4804164746629071102
+    second: Free_Spins_192
+  - first:
+      213: 2259141743851042391
+    second: Free_Spins_193
+  - first:
+      213: -4239199886041845410
+    second: Free_Spins_194
+  - first:
+      213: -5967471269566470353
+    second: Free_Spins_195
+  - first:
+      213: 4598734628776354749
+    second: Free_Spins_196
+  - first:
+      213: 3866271235162938432
+    second: Free_Spins_197
+  - first:
+      213: -2622158438305187895
+    second: Free_Spins_198
+  - first:
+      213: -56040219371140791
+    second: Free_Spins_199
+  - first:
+      213: -71589867044451625
+    second: Free_Spins_200
+  - first:
+      213: 5217869246720732917
+    second: Free_Spins_201
+  - first:
+      213: -3509496480717601110
+    second: Free_Spins_202
+  - first:
+      213: 7755977911728596811
+    second: Free_Spins_203
+  - first:
+      213: -2909256856024455496
+    second: Free_Spins_204
+  - first:
+      213: -1920753767452181945
+    second: Free_Spins_205
+  - first:
+      213: -6253386175399015107
+    second: Free_Spins_206
+  - first:
+      213: 7260254490651480394
+    second: Free_Spins_207
+  - first:
+      213: 6140392111803319179
+    second: Free_Spins_208
+  - first:
+      213: -2778724212740212146
+    second: Free_Spins_209
+  - first:
+      213: -7871701435807954424
+    second: Free_Spins_210
+  - first:
+      213: -5119943838773220169
+    second: Free_Spins_211
+  - first:
+      213: 8264029790599155310
+    second: Free_Spins_212
+  - first:
+      213: 6173884703193289440
+    second: Free_Spins_213
+  - first:
+      213: -534660425035489059
+    second: Free_Spins_214
+  - first:
+      213: -7180682463415125078
+    second: Free_Spins_215
+  - first:
+      213: 7336855186454546009
+    second: Free_Spins_216
+  - first:
+      213: 3358235565915558237
+    second: Free_Spins_217
+  - first:
+      213: 8643981458688992067
+    second: Free_Spins_218
+  - first:
+      213: -4056523747796034409
+    second: Free_Spins_219
+  - first:
+      213: 3173668773487722515
+    second: Free_Spins_220
+  - first:
+      213: -3583198876294507750
+    second: Free_Spins_221
+  - first:
+      213: 2456671794697106267
+    second: Free_Spins_222
+  - first:
+      213: -4784525891236462141
+    second: Free_Spins_223
+  - first:
+      213: -5560107869861595189
+    second: Free_Spins_224
+  - first:
+      213: -5124728085716875517
+    second: Free_Spins_225
+  - first:
+      213: -920238215385389167
+    second: Free_Spins_226
+  - first:
+      213: 6952240303900975086
+    second: Free_Spins_227
+  - first:
+      213: -2819955373260848035
+    second: Free_Spins_228
+  - first:
+      213: -3651019371384749881
+    second: Free_Spins_229
+  - first:
+      213: 5542737888393644898
+    second: Free_Spins_230
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Free_Spins_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 219
+        width: 917
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dee66fee362fb4d0800000000000000
+      internalID: -3116730365370765614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_1
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 829
+        width: 24
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3af6e595f6e4cb450800000000000000
+      internalID: 6105841434955247523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_2
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 843
+        width: 31
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01bc52926b97ecea0800000000000000
+      internalID: -5850605042626344176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_3
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 843
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09d97ea80a13b1c70800000000000000
+      internalID: 8942796050669215120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_4
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 845
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 268422ada77dfdf80800000000000000
+      internalID: -8079502283833718686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_5
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 838
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: beb4ce8d0b1497b20800000000000000
+      internalID: 3132607243622304747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_6
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 829
+        width: 57
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52a5fdae14ce34210800000000000000
+      internalID: 1316155283979852325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_7
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 219
+        width: 1003
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cade02d9b868ad7f0800000000000000
+      internalID: -587008867223671380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_8
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 852
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4725e83fe8fc5ab0800000000000000
+      internalID: -5017862178462161076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_9
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 727
+        width: 112
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0143fe9b33ba1730800000000000000
+      internalID: 3970683090131697933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_10
+      rect:
+        serializedVersion: 2
+        x: 1323
+        y: 854
+        width: 15
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 402446b21129a1a20800000000000000
+      internalID: 3033897901427540484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_11
+      rect:
+        serializedVersion: 2
+        x: 1688
+        y: 837
+        width: 25
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34d781c58284ac610800000000000000
+      internalID: 1642204352310967619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_12
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 829
+        width: 29
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 488b88134965e8330800000000000000
+      internalID: 3715001937113430148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_13
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 829
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cfed3e190850c050800000000000000
+      internalID: 5818747514748006343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_14
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 845
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f6036f6583f13340800000000000000
+      internalID: 4841918828824954617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_15
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 822
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1a6cd6ec3b7b3a70800000000000000
+      internalID: 8807768997754595871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_16
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 826
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3992225aebfe2030800000000000000
+      internalID: 3471989346568149307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_17
+      rect:
+        serializedVersion: 2
+        x: 931
+        y: 826
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b56a6c2f608f1da20800000000000000
+      internalID: 3085519928452097627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_18
+      rect:
+        serializedVersion: 2
+        x: 1881
+        y: 784
+        width: 37
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d27a560f03dc8a4a0800000000000000
+      internalID: -6581785245326661843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_19
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 813
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c704d8949f303f9c0800000000000000
+      internalID: -3894764883529613188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_20
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 778
+        width: 44
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6003dc6a6decd290800000000000000
+      internalID: -7864149807947644817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_21
+      rect:
+        serializedVersion: 2
+        x: 1867
+        y: 801
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5853615c0da3490e0800000000000000
+      internalID: -2264120044326341243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_22
+      rect:
+        serializedVersion: 2
+        x: 872
+        y: 741
+        width: 45
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6710598288053f420800000000000000
+      internalID: 2662560350432723318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_23
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 771
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9aa0a34e2c2db6b50800000000000000
+      internalID: 6587590614453979817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_24
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 743
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 633fd92127261bc50800000000000000
+      internalID: 6679227964445291318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_25
+      rect:
+        serializedVersion: 2
+        x: 931
+        y: 761
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45d8678edb07c8e80800000000000000
+      internalID: -8175035262633079468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_26
+      rect:
+        serializedVersion: 2
+        x: 1860
+        y: 737
+        width: 33
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 870c8bd7b615e2ab0800000000000000
+      internalID: -5030994211613654920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_27
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 738
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6058c30b678855450800000000000000
+      internalID: 6076913315550627078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_28
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 709
+        width: 13
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9b78c4e9fb656020800000000000000
+      internalID: 2334390702890843039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_29
+      rect:
+        serializedVersion: 2
+        x: 1858
+        y: 715
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5864c11813ab3fbe0800000000000000
+      internalID: -1444606333673519483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_30
+      rect:
+        serializedVersion: 2
+        x: 1874
+        y: 720
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d455e8e8e319c3370800000000000000
+      internalID: 8303671510830044493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_31
+      rect:
+        serializedVersion: 2
+        x: 1881
+        y: 701
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 894a401ca09cafbf0800000000000000
+      internalID: -289698177986812776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_32
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 706
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44ad5fa59c09a7500800000000000000
+      internalID: 394787111837227588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_33
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 710
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f555d60812c66100800000000000000
+      internalID: 100981450112062967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_34
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 702
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75723831a988fe400800000000000000
+      internalID: 355653090919262039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_35
+      rect:
+        serializedVersion: 2
+        x: 1899
+        y: 702
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a2a1891007d46570800000000000000
+      internalID: 8459122395536532136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_36
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 685
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9ba76c33a14c9ce0800000000000000
+      internalID: -1397169615042794593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_37
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 671
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 877df09830e19b370800000000000000
+      internalID: 8338729185586435960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_38
+      rect:
+        serializedVersion: 2
+        x: 1869
+        y: 643
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1aecb20ba99eb47a0800000000000000
+      internalID: -6391758395532390751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_39
+      rect:
+        serializedVersion: 2
+        x: 884
+        y: 605
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b05d5b56a6f46700800000000000000
+      internalID: 532821850294407346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_40
+      rect:
+        serializedVersion: 2
+        x: 867
+        y: 541
+        width: 53
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a6ac346f28b89280800000000000000
+      internalID: -9036270138634230110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_41
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 532
+        width: 19
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e588c7e7daa4f1a60800000000000000
+      internalID: 7646912801310279774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_42
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 488
+        width: 26
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6234f3eba2544ad90800000000000000
+      internalID: -7087463863691558106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_43
+      rect:
+        serializedVersion: 2
+        x: 1871
+        y: 488
+        width: 8
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01a867a1035d3be70800000000000000
+      internalID: 9129875272189250064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_44
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 459
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac64022cf4f038340800000000000000
+      internalID: 4864748857723995850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_45
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 416
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d35180693877bb9d0800000000000000
+      internalID: -2757478939792763587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_46
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 406
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac2c36db18b5c3e90800000000000000
+      internalID: -7044655104327957814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_47
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 372
+        width: 24
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d405de431f9471fe0800000000000000
+      internalID: -1218423873856516019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_48
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 370
+        width: 39
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d70d8511be1b67770800000000000000
+      internalID: 8608263360931745917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_49
+      rect:
+        serializedVersion: 2
+        x: 886
+        y: 388
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5049dab67ccddff30800000000000000
+      internalID: 4611084342560396293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_50
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 377
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad9334768203f4360800000000000000
+      internalID: 7155991283004291546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_51
+      rect:
+        serializedVersion: 2
+        x: 1166
+        y: 383
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c63082e4e93093c50800000000000000
+      internalID: 6645346703612838764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_52
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 382
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91718faf1be5a4f60800000000000000
+      internalID: 8019326204999374617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_53
+      rect:
+        serializedVersion: 2
+        x: 1434
+        y: 377
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d89d6c5a0709f9f40800000000000000
+      internalID: 5737463263785310605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_54
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 374
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1590595fa5ef059e0800000000000000
+      internalID: -1634526998114793135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_55
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 381
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e894d13edce4c86e0800000000000000
+      internalID: -1834004302061024882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_56
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 379
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72cbf8799df7f43c0800000000000000
+      internalID: -4373136140626052057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_57
+      rect:
+        serializedVersion: 2
+        x: 1122
+        y: 374
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9240cde4871040ba0800000000000000
+      internalID: -6123767977086286807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_58
+      rect:
+        serializedVersion: 2
+        x: 1129
+        y: 377
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68b9fb11ef7b786a0800000000000000
+      internalID: -6446982039710229626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_59
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 366
+        width: 10
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bead42dc183830fa0800000000000000
+      internalID: -5835676098626266389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_60
+      rect:
+        serializedVersion: 2
+        x: 1540
+        y: 233
+        width: 223
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 027cd9d9f013f36c0800000000000000
+      internalID: -4161553587528415456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_61
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 365
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c1d816823e8abf60800000000000000
+      internalID: 8050903631527465416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_62
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 361
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaa308c21addfebd0800000000000000
+      internalID: -2598614775663412562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_63
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 363
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db10696de111f5750800000000000000
+      internalID: 6295769628234088893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_64
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 260
+        width: 129
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67f57c72870823740800000000000000
+      internalID: 5130304179080224630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_65
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 249
+        width: 246
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14a3d26b5fe1b62a0800000000000000
+      internalID: -6743261976384947647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_66
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 367
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2363a3fae3c791d0800000000000000
+      internalID: -3343988784421969105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_67
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 370
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f02298d94c0727f0800000000000000
+      internalID: -637527310944034571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_68
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 359
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 164dc422d4a0aab30800000000000000
+      internalID: 4299260120682779745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_69
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 370
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e16855bfa4186290800000000000000
+      internalID: -7897039201699864095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_70
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 365
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2860b1520ea4c6d0800000000000000
+      internalID: -2971058529174001617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_71
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 368
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77df1ce858b3b3e40800000000000000
+      internalID: 5637164803396074871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_72
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 370
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ce741df63f8ae360800000000000000
+      internalID: 7199724420642143945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_73
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 365
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd2f04afcd59eb3a0800000000000000
+      internalID: -6647711223628369188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_74
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 235
+        width: 264
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ff4a10f0ddc29450800000000000000
+      internalID: 6094159543050850288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_75
+      rect:
+        serializedVersion: 2
+        x: 997
+        y: 363
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c71a3bf4b48fe72e0800000000000000
+      internalID: -2125988971728887428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_76
+      rect:
+        serializedVersion: 2
+        x: 999
+        y: 370
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9804636e83d5d8300800000000000000
+      internalID: 255963252791853193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_77
+      rect:
+        serializedVersion: 2
+        x: 1116
+        y: 357
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e214ed2d1cef06e40800000000000000
+      internalID: 5647794041142526254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_78
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 283
+        width: 104
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1c7483a3aa669de0800000000000000
+      internalID: -1326755789158450150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_79
+      rect:
+        serializedVersion: 2
+        x: 1417
+        y: 367
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbc2836a7c442f590800000000000000
+      internalID: -7641969993416430401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_80
+      rect:
+        serializedVersion: 2
+        x: 1433
+        y: 365
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 773f7c5b8104181a0800000000000000
+      internalID: -6809090686734306441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_81
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 365
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb4c1a1e4b46f1fb0800000000000000
+      internalID: -4674907160144919362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_82
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 358
+        width: 8
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6c3a5eede861f280800000000000000
+      internalID: -9011306008276222870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_83
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 290
+        width: 51
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaaef7a1d37e8ab20800000000000000
+      internalID: 3146018589341903530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_84
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 351
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0d4d69f622d38900800000000000000
+      internalID: 685622633125727500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_85
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 357
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51a6e46463a8b8d30800000000000000
+      internalID: 4434790223788796437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_86
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 299
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c92f618525ccfdf80800000000000000
+      internalID: -8079514552442096996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_87
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 360
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ea6970ca2afca0a0800000000000000
+      internalID: -6868840270122095901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_88
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 358
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8477a598993bd1970800000000000000
+      internalID: 8727329124929664840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_89
+      rect:
+        serializedVersion: 2
+        x: 1278
+        y: 343
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f15e80c3fe21bd2e0800000000000000
+      internalID: -2100063982524504801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_90
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 351
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e01adb0ffd1ebc900800000000000000
+      internalID: 705906118546530574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_91
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 342
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f9710d74570e34a0800000000000000
+      internalID: -6611839143477413392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_92
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 351
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcf301dcc14e03ed0800000000000000
+      internalID: -2436196586056826929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_93
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 349
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d64d5898e8e3c64b0800000000000000
+      internalID: -5445909067484244883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_94
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 350
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe6ec0061db846fa0800000000000000
+      internalID: -5808363888025213201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_95
+      rect:
+        serializedVersion: 2
+        x: 874
+        y: 317
+        width: 23
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ec7a33c4b7335420800000000000000
+      internalID: 2617497057941421285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_96
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 349
+        width: 26
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23c0a375c5c8a4440800000000000000
+      internalID: 4920899871083990066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_97
+      rect:
+        serializedVersion: 2
+        x: 1507
+        y: 351
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a8e225b1a362d5b0800000000000000
+      internalID: -5345100261555509086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_98
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 333
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c906fe4a8a4a60cb0800000000000000
+      internalID: -4898046500490223460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_99
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 342
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0da8f25e99cebe30800000000000000
+      internalID: 4521272757760601354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_100
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 236
+        width: 145
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84263b4f1b31bdd50800000000000000
+      internalID: 6763020920462467656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_101
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 342
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e13d09eace8b9b110800000000000000
+      internalID: 1277255296016765726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_102
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 342
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d827a2ea6f6b07c60800000000000000
+      internalID: 7813946524088038029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_103
+      rect:
+        serializedVersion: 2
+        x: 1266
+        y: 342
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a298517e847a38250800000000000000
+      internalID: 5945779864615618858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_104
+      rect:
+        serializedVersion: 2
+        x: 1285
+        y: 324
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90115071cb0b76220800000000000000
+      internalID: 2479144441777295625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_105
+      rect:
+        serializedVersion: 2
+        x: 1455
+        y: 310
+        width: 16
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22718120c18d79ce0800000000000000
+      internalID: -1398411544469432542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_106
+      rect:
+        serializedVersion: 2
+        x: 1751
+        y: 328
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26a5e8c9889adba30800000000000000
+      internalID: 4232725629005355618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_107
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 335
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b33017bee2285890800000000000000
+      internalID: -7469181573325114442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_108
+      rect:
+        serializedVersion: 2
+        x: 1783
+        y: 335
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 968fe535b233b5a10800000000000000
+      internalID: 1899167929042139241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_109
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 335
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2720d0f5bd9901a60800000000000000
+      internalID: 7642777735119307378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_110
+      rect:
+        serializedVersion: 2
+        x: 1498
+        y: 319
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3870873e4f57a160800000000000000
+      internalID: 7036697732332943419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_111
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 305
+        width: 6
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58c63a9139e741130800000000000000
+      internalID: 3536590777648114821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_112
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 300
+        width: 19
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31540587f805abfe0800000000000000
+      internalID: -1172536175847521005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_113
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 319
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67956f402726795b0800000000000000
+      internalID: -5361708589512238730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_114
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 292
+        width: 24
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ce60fcb528b4d150800000000000000
+      internalID: 5896540284357996227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_115
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 302
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bc15b354f9872cc0800000000000000
+      internalID: -3735865683411133257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_116
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 315
+        width: 6
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d73fe3d5611f4010800000000000000
+      internalID: 1175177156812027864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_117
+      rect:
+        serializedVersion: 2
+        x: 1456
+        y: 249
+        width: 36
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b6605d9193498c90800000000000000
+      internalID: -7167123039294822731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_118
+      rect:
+        serializedVersion: 2
+        x: 1468
+        y: 317
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 954cf5ee6381bcb40800000000000000
+      internalID: 5461485597323412569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_119
+      rect:
+        serializedVersion: 2
+        x: 1512
+        y: 304
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0018e9db971b5a50800000000000000
+      internalID: 6510823644437417995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_120
+      rect:
+        serializedVersion: 2
+        x: 1514
+        y: 321
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f0e62324fbf1e450800000000000000
+      internalID: 6116446794926186744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_121
+      rect:
+        serializedVersion: 2
+        x: 1524
+        y: 315
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 017b52cc6a0c29f70800000000000000
+      internalID: 9192621612038731536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_122
+      rect:
+        serializedVersion: 2
+        x: 1737
+        y: 263
+        width: 56
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 737cb8eb2b9ccc880800000000000000
+      internalID: -8589268619764185289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_123
+      rect:
+        serializedVersion: 2
+        x: 1827
+        y: 321
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6819d8b5a605c060800000000000000
+      internalID: 6972986906893686891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_124
+      rect:
+        serializedVersion: 2
+        x: 1839
+        y: 304
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e8a63529d99f0080800000000000000
+      internalID: -9218980754292823832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_125
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 302
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff65eec1e90bceff0800000000000000
+      internalID: -5435306397509889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_126
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 306
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e8a4155d6f5c9710800000000000000
+      internalID: 1701339682422696162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_127
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 307
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3214e4106005d2e0800000000000000
+      internalID: -2101773238431116739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_128
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 305
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8989e501ed8342290800000000000000
+      internalID: -7916139718601959272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_129
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 304
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b58f93d211ca6f70800000000000000
+      internalID: 9181363076952196533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_130
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 302
+        width: 6
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3069e201cdbce3e30800000000000000
+      internalID: 4485246424932324867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_131
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 302
+        width: 6
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca31f2ffa9c823000800000000000000
+      internalID: 14228346169660332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_132
+      rect:
+        serializedVersion: 2
+        x: 946
+        y: 300
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7b357422ac6a99d0800000000000000
+      internalID: -2766779577413584003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_133
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 297
+        width: 8
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc55fc7dc347ef220800000000000000
+      internalID: 2521580646041605579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_134
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 301
+        width: 6
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64b34e1826c393630800000000000000
+      internalID: 3907220545504295750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_135
+      rect:
+        serializedVersion: 2
+        x: 1486
+        y: 304
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b75d661887be0b000800000000000000
+      internalID: 49798498700678523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_136
+      rect:
+        serializedVersion: 2
+        x: 1502
+        y: 300
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a02fff297e0783450800000000000000
+      internalID: 6068724637787746826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_137
+      rect:
+        serializedVersion: 2
+        x: 1505
+        y: 312
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8b7b98a0faf4fc50800000000000000
+      internalID: 6698254457334627213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_138
+      rect:
+        serializedVersion: 2
+        x: 1526
+        y: 309
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d33eefa8dc08c8f0800000000000000
+      internalID: -520151632157199408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_139
+      rect:
+        serializedVersion: 2
+        x: 1832
+        y: 311
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8e9a3d27050992a0800000000000000
+      internalID: -6730342639746769269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_140
+      rect:
+        serializedVersion: 2
+        x: 1897
+        y: 292
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 455e20085bb7a88c0800000000000000
+      internalID: -3996245699870923436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_141
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 281
+        width: 44
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18751ee4079e4a700800000000000000
+      internalID: 550821723015042945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_142
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 286
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 346f32305314d9740800000000000000
+      internalID: 5160352443978217027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_143
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 286
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dc6e01060e9e0f30800000000000000
+      internalID: 4543742822688124114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_144
+      rect:
+        serializedVersion: 2
+        x: 872
+        y: 303
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bfbd0d6cf6febb40800000000000000
+      internalID: 5458071362441428914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_145
+      rect:
+        serializedVersion: 2
+        x: 872
+        y: 291
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f80d7335944c5890800000000000000
+      internalID: -7468018674482476809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_146
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 291
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30a9937084306d5d0800000000000000
+      internalID: -3038237290721076733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_147
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 290
+        width: 22
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4460f09274386e560800000000000000
+      internalID: 7342700584128939588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_148
+      rect:
+        serializedVersion: 2
+        x: 1813
+        y: 290
+        width: 8
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b1bf866a38289090800000000000000
+      internalID: -8027622104494001736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_149
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 290
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76169db882b8401c0800000000000000
+      internalID: -4538349518221385369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_150
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 283
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9415dd7ad94883e90800000000000000
+      internalID: -7045735804360109751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_151
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 286
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a07e9e07127f8570800000000000000
+      internalID: 8471114867462271143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_152
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 291
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff5f4b6e1537b1c60800000000000000
+      internalID: 7789946776067569151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_153
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 287
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4fa3d06e89675620800000000000000
+      internalID: 2762792956645846858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_154
+      rect:
+        serializedVersion: 2
+        x: 846
+        y: 293
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c8a31e69a3acf040800000000000000
+      internalID: 4682797660650055874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_155
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 284
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c000f32e88c9ba8c0800000000000000
+      internalID: -3986920933381177332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_156
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 288
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 578fa434febef9540800000000000000
+      internalID: 5016987922772719733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_157
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 290
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9aca45853c84b880800000000000000
+      internalID: -8596091627246007650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_158
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 283
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 223ebbf03a931a100800000000000000
+      internalID: 117438437794767650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_159
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 275
+        width: 22
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 879ca412723c63b50800000000000000
+      internalID: 6572655279023507832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_160
+      rect:
+        serializedVersion: 2
+        x: 946
+        y: 290
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfc27c31451e799b0800000000000000
+      internalID: -5073338703984251653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_161
+      rect:
+        serializedVersion: 2
+        x: 1236
+        y: 289
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0efae66d317244290800000000000000
+      internalID: -7907152079600308256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_162
+      rect:
+        serializedVersion: 2
+        x: 1243
+        y: 290
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b82514d2b7fdea20800000000000000
+      internalID: 3093400866507794613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_163
+      rect:
+        serializedVersion: 2
+        x: 1829
+        y: 286
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7da6d3e074f395090800000000000000
+      internalID: -8045329684906546473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_164
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 277
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9341becdf30cdca0800000000000000
+      internalID: -5990909015680269412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_165
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 275
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76a071b0e2411f540800000000000000
+      internalID: 5039831645991406183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_166
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 286
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 628ab2a59a6c1bd70800000000000000
+      internalID: 9057238756283361318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_167
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 272
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9628e7ebeed0d80a0800000000000000
+      internalID: -6877825736875539863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_168
+      rect:
+        serializedVersion: 2
+        x: 849
+        y: 260
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 039a2ba0d45fda930800000000000000
+      internalID: 4156247742373603632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_169
+      rect:
+        serializedVersion: 2
+        x: 886
+        y: 281
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47e0ceebf847ed920800000000000000
+      internalID: 3016976961117097588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_170
+      rect:
+        serializedVersion: 2
+        x: 1788
+        y: 265
+        width: 16
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 262601ca2d05d49c0800000000000000
+      internalID: -3941405233119206814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_171
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 263
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a6a219db61581600800000000000000
+      internalID: 439190487313852064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_172
+      rect:
+        serializedVersion: 2
+        x: 1413
+        y: 274
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4931ff7ed59bba6b0800000000000000
+      internalID: -5283925924813794412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_173
+      rect:
+        serializedVersion: 2
+        x: 1433
+        y: 261
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d865d83342e54ce40800000000000000
+      internalID: 5675764939970401933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_174
+      rect:
+        serializedVersion: 2
+        x: 1456
+        y: 274
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c07960ffd5b65b10800000000000000
+      internalID: 1969961860436947138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_175
+      rect:
+        serializedVersion: 2
+        x: 1797
+        y: 270
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cba4ae0ace6bb390800000000000000
+      internalID: -7801520115381130301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_176
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 274
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 729be9722eaa0c780800000000000000
+      internalID: -8664737794756789977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_177
+      rect:
+        serializedVersion: 2
+        x: 1820
+        y: 276
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06a00536c156bc420800000000000000
+      internalID: 2651323978237348448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_178
+      rect:
+        serializedVersion: 2
+        x: 1822
+        y: 270
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a7b1e9337716fd50800000000000000
+      internalID: 6770624873457891233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_179
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 256
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3d714a4c3647b390800000000000000
+      internalID: -7802690604638307013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_180
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 256
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e0a0ede6dd4ff3b0800000000000000
+      internalID: -5476573036349972251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_181
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 249
+        width: 24
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0b5bfca1457ab870800000000000000
+      internalID: 8699394555155012362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_182
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 233
+        width: 38
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46cb52bac56d43b60800000000000000
+      internalID: 7725034954343955556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_183
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 256
+        width: 8
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 129683483f10c2df0800000000000000
+      internalID: -203785737731544799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_184
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 258
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0c741e7b35339d40800000000000000
+      internalID: 5589870092131531791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_185
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 254
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9acee541cfa3b960800000000000000
+      internalID: 7616624639450466974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_186
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 247
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 333bee791f82e31f0800000000000000
+      internalID: -1063367443911625933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_187
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 252
+        width: 6
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ab43f8d8cd7eea10800000000000000
+      internalID: 1940626791030016933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_188
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 245
+        width: 25
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5eb6ea5669d5f3390800000000000000
+      internalID: -7836441926068966427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_189
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 252
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 357956ece098c3a40800000000000000
+      internalID: 5349301154094618451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_190
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 244
+        width: 29
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6db36db19a6908b0800000000000000
+      internalID: -5185496321760182929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_191
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 258
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41e05deea4480ef50800000000000000
+      internalID: 6908667285755727380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_192
+      rect:
+        serializedVersion: 2
+        x: 1223
+        y: 261
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef0c74d2262dba240800000000000000
+      internalID: 4804164746629071102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_193
+      rect:
+        serializedVersion: 2
+        x: 1287
+        y: 258
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7567f7352751a5f10800000000000000
+      internalID: 2259141743851042391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_194
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 233
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e517994f9265b25c0800000000000000
+      internalID: -4239199886041845410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_195
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 247
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2724225f784f2da0800000000000000
+      internalID: -5967471269566470353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_196
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 247
+        width: 19
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db3a08c97ccf1df30800000000000000
+      internalID: 4598734628776354749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_197
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 245
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04c92393431c7a530800000000000000
+      internalID: 3866271235162938432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_198
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 237
+        width: 10
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c7b60c0bc83c9bd0800000000000000
+      internalID: -2622158438305187895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_199
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 235
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9498f37a7b7e83ff0800000000000000
+      internalID: -56040219371140791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_200
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 250
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7da4c4d2569a10ff0800000000000000
+      internalID: -71589867044451625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_201
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 244
+        width: 6
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fe69373f68996840800000000000000
+      internalID: 5217869246720732917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_202
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 247
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa6085e7b83cb4fc0800000000000000
+      internalID: -3509496480717601110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_203
+      rect:
+        serializedVersion: 2
+        x: 979
+        y: 245
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b47eb5a51d4c2ab60800000000000000
+      internalID: 7755977911728596811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_204
+      rect:
+        serializedVersion: 2
+        x: 983
+        y: 245
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b6ea48ad4e30a7d0800000000000000
+      internalID: -2909256856024455496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_205
+      rect:
+        serializedVersion: 2
+        x: 1294
+        y: 251
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74af40600ac1855e0800000000000000
+      internalID: -1920753767452181945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_206
+      rect:
+        serializedVersion: 2
+        x: 1299
+        y: 251
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3dc004c7628739a0800000000000000
+      internalID: -6253386175399015107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_207
+      rect:
+        serializedVersion: 2
+        x: 1363
+        y: 246
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4157362efa91c460800000000000000
+      internalID: 7260254490651480394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_208
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 231
+        width: 22
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b83c5ada71e073550800000000000000
+      internalID: 6140392111803319179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_209
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 244
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4ab7d20d0dff69d0800000000000000
+      internalID: -2778724212740212146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_210
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 226
+        width: 13
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80a0cbc004912c290800000000000000
+      internalID: -7871701435807954424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_211
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 234
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bce8fb843e42f8b0800000000000000
+      internalID: -5119943838773220169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_212
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 235
+        width: 23
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6e88e15f4bbfa270800000000000000
+      internalID: 8264029790599155310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_213
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 237
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e2dd0a4d6b0ea550800000000000000
+      internalID: 6173884703193289440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_214
+      rect:
+        serializedVersion: 2
+        x: 706
+        y: 231
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd0ec4a1d218498f0800000000000000
+      internalID: -534660425035489059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_215
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 236
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aabb34b2857195c90800000000000000
+      internalID: -7180682463415125078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_216
+      rect:
+        serializedVersion: 2
+        x: 805
+        y: 232
+        width: 24
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9560b157beeb1d560800000000000000
+      internalID: 7336855186454546009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_217
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 237
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d51da7a5479da9e20800000000000000
+      internalID: 3358235565915558237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_218
+      rect:
+        serializedVersion: 2
+        x: 1150
+        y: 233
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3436832c65795f770800000000000000
+      internalID: 8643981458688992067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_219
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 242
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79c5eadc42554b7c0800000000000000
+      internalID: -4056523747796034409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_220
+      rect:
+        serializedVersion: 2
+        x: 1403
+        y: 235
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3104c764fe22b0c20800000000000000
+      internalID: 3173668773487722515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_221
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 233
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1313ea4b9be54ec0800000000000000
+      internalID: -3583198876294507750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_222
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 235
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5374a43bf9d71220800000000000000
+      internalID: 2456671794697106267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_223
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 235
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c1013a2d03f99db0800000000000000
+      internalID: -4784525891236462141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_224
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 235
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc7bb00e95786d2b0800000000000000
+      internalID: -5560107869861595189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_225
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 235
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 307c06045fe41e8b0800000000000000
+      internalID: -5124728085716875517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_226
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 233
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 197e63ff738aa33f0800000000000000
+      internalID: -920238215385389167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_227
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 232
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eefdb2bc8b15b7060800000000000000
+      internalID: 6952240303900975086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_228
+      rect:
+        serializedVersion: 2
+        x: 1166
+        y: 235
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d54455e57818dd8d0800000000000000
+      internalID: -2819955373260848035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_229
+      rect:
+        serializedVersion: 2
+        x: 1671
+        y: 235
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c0ca84c939f45dc0800000000000000
+      internalID: -3651019371384749881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free_Spins_230
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 219
+        width: 35
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26b4dc82eb2cbec40800000000000000
+      internalID: 5542737888393644898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Free_Spins_0: -3116730365370765614
+      Free_Spins_1: 6105841434955247523
+      Free_Spins_10: 3033897901427540484
+      Free_Spins_100: 6763020920462467656
+      Free_Spins_101: 1277255296016765726
+      Free_Spins_102: 7813946524088038029
+      Free_Spins_103: 5945779864615618858
+      Free_Spins_104: 2479144441777295625
+      Free_Spins_105: -1398411544469432542
+      Free_Spins_106: 4232725629005355618
+      Free_Spins_107: -7469181573325114442
+      Free_Spins_108: 1899167929042139241
+      Free_Spins_109: 7642777735119307378
+      Free_Spins_11: 1642204352310967619
+      Free_Spins_110: 7036697732332943419
+      Free_Spins_111: 3536590777648114821
+      Free_Spins_112: -1172536175847521005
+      Free_Spins_113: -5361708589512238730
+      Free_Spins_114: 5896540284357996227
+      Free_Spins_115: -3735865683411133257
+      Free_Spins_116: 1175177156812027864
+      Free_Spins_117: -7167123039294822731
+      Free_Spins_118: 5461485597323412569
+      Free_Spins_119: 6510823644437417995
+      Free_Spins_12: 3715001937113430148
+      Free_Spins_120: 6116446794926186744
+      Free_Spins_121: 9192621612038731536
+      Free_Spins_122: -8589268619764185289
+      Free_Spins_123: 6972986906893686891
+      Free_Spins_124: -9218980754292823832
+      Free_Spins_125: -5435306397509889
+      Free_Spins_126: 1701339682422696162
+      Free_Spins_127: -2101773238431116739
+      Free_Spins_128: -7916139718601959272
+      Free_Spins_129: 9181363076952196533
+      Free_Spins_13: 5818747514748006343
+      Free_Spins_130: 4485246424932324867
+      Free_Spins_131: 14228346169660332
+      Free_Spins_132: -2766779577413584003
+      Free_Spins_133: 2521580646041605579
+      Free_Spins_134: 3907220545504295750
+      Free_Spins_135: 49798498700678523
+      Free_Spins_136: 6068724637787746826
+      Free_Spins_137: 6698254457334627213
+      Free_Spins_138: -520151632157199408
+      Free_Spins_139: -6730342639746769269
+      Free_Spins_14: 4841918828824954617
+      Free_Spins_140: -3996245699870923436
+      Free_Spins_141: 550821723015042945
+      Free_Spins_142: 5160352443978217027
+      Free_Spins_143: 4543742822688124114
+      Free_Spins_144: 5458071362441428914
+      Free_Spins_145: -7468018674482476809
+      Free_Spins_146: -3038237290721076733
+      Free_Spins_147: 7342700584128939588
+      Free_Spins_148: -8027622104494001736
+      Free_Spins_149: -4538349518221385369
+      Free_Spins_15: 8807768997754595871
+      Free_Spins_150: -7045735804360109751
+      Free_Spins_151: 8471114867462271143
+      Free_Spins_152: 7789946776067569151
+      Free_Spins_153: 2762792956645846858
+      Free_Spins_154: 4682797660650055874
+      Free_Spins_155: -3986920933381177332
+      Free_Spins_156: 5016987922772719733
+      Free_Spins_157: -8596091627246007650
+      Free_Spins_158: 117438437794767650
+      Free_Spins_159: 6572655279023507832
+      Free_Spins_16: 3471989346568149307
+      Free_Spins_160: -5073338703984251653
+      Free_Spins_161: -7907152079600308256
+      Free_Spins_162: 3093400866507794613
+      Free_Spins_163: -8045329684906546473
+      Free_Spins_164: -5990909015680269412
+      Free_Spins_165: 5039831645991406183
+      Free_Spins_166: 9057238756283361318
+      Free_Spins_167: -6877825736875539863
+      Free_Spins_168: 4156247742373603632
+      Free_Spins_169: 3016976961117097588
+      Free_Spins_17: 3085519928452097627
+      Free_Spins_170: -3941405233119206814
+      Free_Spins_171: 439190487313852064
+      Free_Spins_172: -5283925924813794412
+      Free_Spins_173: 5675764939970401933
+      Free_Spins_174: 1969961860436947138
+      Free_Spins_175: -7801520115381130301
+      Free_Spins_176: -8664737794756789977
+      Free_Spins_177: 2651323978237348448
+      Free_Spins_178: 6770624873457891233
+      Free_Spins_179: -7802690604638307013
+      Free_Spins_18: -6581785245326661843
+      Free_Spins_180: -5476573036349972251
+      Free_Spins_181: 8699394555155012362
+      Free_Spins_182: 7725034954343955556
+      Free_Spins_183: -203785737731544799
+      Free_Spins_184: 5589870092131531791
+      Free_Spins_185: 7616624639450466974
+      Free_Spins_186: -1063367443911625933
+      Free_Spins_187: 1940626791030016933
+      Free_Spins_188: -7836441926068966427
+      Free_Spins_189: 5349301154094618451
+      Free_Spins_19: -3894764883529613188
+      Free_Spins_190: -5185496321760182929
+      Free_Spins_191: 6908667285755727380
+      Free_Spins_192: 4804164746629071102
+      Free_Spins_193: 2259141743851042391
+      Free_Spins_194: -4239199886041845410
+      Free_Spins_195: -5967471269566470353
+      Free_Spins_196: 4598734628776354749
+      Free_Spins_197: 3866271235162938432
+      Free_Spins_198: -2622158438305187895
+      Free_Spins_199: -56040219371140791
+      Free_Spins_2: -5850605042626344176
+      Free_Spins_20: -7864149807947644817
+      Free_Spins_200: -71589867044451625
+      Free_Spins_201: 5217869246720732917
+      Free_Spins_202: -3509496480717601110
+      Free_Spins_203: 7755977911728596811
+      Free_Spins_204: -2909256856024455496
+      Free_Spins_205: -1920753767452181945
+      Free_Spins_206: -6253386175399015107
+      Free_Spins_207: 7260254490651480394
+      Free_Spins_208: 6140392111803319179
+      Free_Spins_209: -2778724212740212146
+      Free_Spins_21: -2264120044326341243
+      Free_Spins_210: -7871701435807954424
+      Free_Spins_211: -5119943838773220169
+      Free_Spins_212: 8264029790599155310
+      Free_Spins_213: 6173884703193289440
+      Free_Spins_214: -534660425035489059
+      Free_Spins_215: -7180682463415125078
+      Free_Spins_216: 7336855186454546009
+      Free_Spins_217: 3358235565915558237
+      Free_Spins_218: 8643981458688992067
+      Free_Spins_219: -4056523747796034409
+      Free_Spins_22: 2662560350432723318
+      Free_Spins_220: 3173668773487722515
+      Free_Spins_221: -3583198876294507750
+      Free_Spins_222: 2456671794697106267
+      Free_Spins_223: -4784525891236462141
+      Free_Spins_224: -5560107869861595189
+      Free_Spins_225: -5124728085716875517
+      Free_Spins_226: -920238215385389167
+      Free_Spins_227: 6952240303900975086
+      Free_Spins_228: -2819955373260848035
+      Free_Spins_229: -3651019371384749881
+      Free_Spins_23: 6587590614453979817
+      Free_Spins_230: 5542737888393644898
+      Free_Spins_24: 6679227964445291318
+      Free_Spins_25: -8175035262633079468
+      Free_Spins_26: -5030994211613654920
+      Free_Spins_27: 6076913315550627078
+      Free_Spins_28: 2334390702890843039
+      Free_Spins_29: -1444606333673519483
+      Free_Spins_3: 8942796050669215120
+      Free_Spins_30: 8303671510830044493
+      Free_Spins_31: -289698177986812776
+      Free_Spins_32: 394787111837227588
+      Free_Spins_33: 100981450112062967
+      Free_Spins_34: 355653090919262039
+      Free_Spins_35: 8459122395536532136
+      Free_Spins_36: -1397169615042794593
+      Free_Spins_37: 8338729185586435960
+      Free_Spins_38: -6391758395532390751
+      Free_Spins_39: 532821850294407346
+      Free_Spins_4: -8079502283833718686
+      Free_Spins_40: -9036270138634230110
+      Free_Spins_41: 7646912801310279774
+      Free_Spins_42: -7087463863691558106
+      Free_Spins_43: 9129875272189250064
+      Free_Spins_44: 4864748857723995850
+      Free_Spins_45: -2757478939792763587
+      Free_Spins_46: -7044655104327957814
+      Free_Spins_47: -1218423873856516019
+      Free_Spins_48: 8608263360931745917
+      Free_Spins_49: 4611084342560396293
+      Free_Spins_5: 3132607243622304747
+      Free_Spins_50: 7155991283004291546
+      Free_Spins_51: 6645346703612838764
+      Free_Spins_52: 8019326204999374617
+      Free_Spins_53: 5737463263785310605
+      Free_Spins_54: -1634526998114793135
+      Free_Spins_55: -1834004302061024882
+      Free_Spins_56: -4373136140626052057
+      Free_Spins_57: -6123767977086286807
+      Free_Spins_58: -6446982039710229626
+      Free_Spins_59: -5835676098626266389
+      Free_Spins_6: 1316155283979852325
+      Free_Spins_60: -4161553587528415456
+      Free_Spins_61: 8050903631527465416
+      Free_Spins_62: -2598614775663412562
+      Free_Spins_63: 6295769628234088893
+      Free_Spins_64: 5130304179080224630
+      Free_Spins_65: -6743261976384947647
+      Free_Spins_66: -3343988784421969105
+      Free_Spins_67: -637527310944034571
+      Free_Spins_68: 4299260120682779745
+      Free_Spins_69: -7897039201699864095
+      Free_Spins_7: -587008867223671380
+      Free_Spins_70: -2971058529174001617
+      Free_Spins_71: 5637164803396074871
+      Free_Spins_72: 7199724420642143945
+      Free_Spins_73: -6647711223628369188
+      Free_Spins_74: 6094159543050850288
+      Free_Spins_75: -2125988971728887428
+      Free_Spins_76: 255963252791853193
+      Free_Spins_77: 5647794041142526254
+      Free_Spins_78: -1326755789158450150
+      Free_Spins_79: -7641969993416430401
+      Free_Spins_8: -5017862178462161076
+      Free_Spins_80: -6809090686734306441
+      Free_Spins_81: -4674907160144919362
+      Free_Spins_82: -9011306008276222870
+      Free_Spins_83: 3146018589341903530
+      Free_Spins_84: 685622633125727500
+      Free_Spins_85: 4434790223788796437
+      Free_Spins_86: -8079514552442096996
+      Free_Spins_87: -6868840270122095901
+      Free_Spins_88: 8727329124929664840
+      Free_Spins_89: -2100063982524504801
+      Free_Spins_9: 3970683090131697933
+      Free_Spins_90: 705906118546530574
+      Free_Spins_91: -6611839143477413392
+      Free_Spins_92: -2436196586056826929
+      Free_Spins_93: -5445909067484244883
+      Free_Spins_94: -5808363888025213201
+      Free_Spins_95: 2617497057941421285
+      Free_Spins_96: 4920899871083990066
+      Free_Spins_97: -5345100261555509086
+      Free_Spins_98: -4898046500490223460
+      Free_Spins_99: 4521272757760601354
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

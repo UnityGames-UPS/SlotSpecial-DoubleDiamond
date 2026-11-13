@@ -1,0 +1,1833 @@
+fileFormatVersion: 2
+guid: 240a38042caa84049abc071f9290c3ac
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2217169637459116012
+    second: Total_Bonus_Won_0
+  - first:
+      213: 1242252420802256852
+    second: Total_Bonus_Won_1
+  - first:
+      213: -4318046524881944507
+    second: Total_Bonus_Won_2
+  - first:
+      213: 822575128340576639
+    second: Total_Bonus_Won_3
+  - first:
+      213: -3641943439914239762
+    second: Total_Bonus_Won_4
+  - first:
+      213: 8117603187707700205
+    second: Total_Bonus_Won_5
+  - first:
+      213: 5535293097691184908
+    second: Total_Bonus_Won_6
+  - first:
+      213: -6686678782354888882
+    second: Total_Bonus_Won_7
+  - first:
+      213: 630544111817124259
+    second: Total_Bonus_Won_8
+  - first:
+      213: 5528050181100569988
+    second: Total_Bonus_Won_9
+  - first:
+      213: -5274316868220667897
+    second: Total_Bonus_Won_10
+  - first:
+      213: 5011554277960590586
+    second: Total_Bonus_Won_11
+  - first:
+      213: -5993033807356558503
+    second: Total_Bonus_Won_12
+  - first:
+      213: 8769996662334641604
+    second: Total_Bonus_Won_13
+  - first:
+      213: 1701488358119197504
+    second: Total_Bonus_Won_14
+  - first:
+      213: -1078830001851708440
+    second: Total_Bonus_Won_15
+  - first:
+      213: 2034405419877108447
+    second: Total_Bonus_Won_16
+  - first:
+      213: 5743389226502773242
+    second: Total_Bonus_Won_17
+  - first:
+      213: -7073038051911109513
+    second: Total_Bonus_Won_18
+  - first:
+      213: -3999280403184465377
+    second: Total_Bonus_Won_19
+  - first:
+      213: 2618822119754212734
+    second: Total_Bonus_Won_20
+  - first:
+      213: 4444003949945471985
+    second: Total_Bonus_Won_21
+  - first:
+      213: 949018313212671092
+    second: Total_Bonus_Won_22
+  - first:
+      213: -7383578638751300623
+    second: Total_Bonus_Won_23
+  - first:
+      213: 6046425556301358223
+    second: Total_Bonus_Won_24
+  - first:
+      213: 1206624556771545065
+    second: Total_Bonus_Won_25
+  - first:
+      213: -2783183963512388886
+    second: Total_Bonus_Won_26
+  - first:
+      213: 7085448730216638711
+    second: Total_Bonus_Won_27
+  - first:
+      213: 6077923007081989353
+    second: Total_Bonus_Won_28
+  - first:
+      213: -4306576624754262315
+    second: Total_Bonus_Won_29
+  - first:
+      213: -149009386445016502
+    second: Total_Bonus_Won_30
+  - first:
+      213: 1792750825990917881
+    second: Total_Bonus_Won_31
+  - first:
+      213: -713184424473120999
+    second: Total_Bonus_Won_32
+  - first:
+      213: -3181559084655749435
+    second: Total_Bonus_Won_33
+  - first:
+      213: 3667590795711354006
+    second: Total_Bonus_Won_34
+  - first:
+      213: 4087985754330342800
+    second: Total_Bonus_Won_35
+  - first:
+      213: 7519908853563298635
+    second: Total_Bonus_Won_36
+  - first:
+      213: 1490712006134648654
+    second: Total_Bonus_Won_37
+  - first:
+      213: -2263083581638745937
+    second: Total_Bonus_Won_38
+  - first:
+      213: -828131686392136730
+    second: Total_Bonus_Won_39
+  - first:
+      213: 2438108092427530927
+    second: Total_Bonus_Won_40
+  - first:
+      213: 3724465884286991275
+    second: Total_Bonus_Won_41
+  - first:
+      213: 2182894318200244693
+    second: Total_Bonus_Won_42
+  - first:
+      213: 4808017907559186969
+    second: Total_Bonus_Won_43
+  - first:
+      213: -6078684256045039781
+    second: Total_Bonus_Won_44
+  - first:
+      213: 5396783113232385614
+    second: Total_Bonus_Won_45
+  - first:
+      213: 5919137469831218077
+    second: Total_Bonus_Won_46
+  - first:
+      213: 6346499911257986185
+    second: Total_Bonus_Won_47
+  - first:
+      213: 2668800477156234767
+    second: Total_Bonus_Won_48
+  - first:
+      213: 5830856937299424670
+    second: Total_Bonus_Won_49
+  - first:
+      213: -697973368858343421
+    second: Total_Bonus_Won_50
+  - first:
+      213: 3341603342864443720
+    second: Total_Bonus_Won_51
+  - first:
+      213: -7479933483334799088
+    second: Total_Bonus_Won_52
+  - first:
+      213: 2275415245004300649
+    second: Total_Bonus_Won_53
+  - first:
+      213: 3436014435732771214
+    second: Total_Bonus_Won_54
+  - first:
+      213: 4952363211895852508
+    second: Total_Bonus_Won_55
+  - first:
+      213: 2461553927448692884
+    second: Total_Bonus_Won_56
+  - first:
+      213: -3890285030904126613
+    second: Total_Bonus_Won_57
+  - first:
+      213: -3190919407596826742
+    second: Total_Bonus_Won_58
+  - first:
+      213: -1333471653468372993
+    second: Total_Bonus_Won_59
+  - first:
+      213: 5250931006610243412
+    second: Total_Bonus_Won_60
+  - first:
+      213: -1088045669829735431
+    second: Total_Bonus_Won_61
+  - first:
+      213: -1775177557007877646
+    second: Total_Bonus_Won_62
+  - first:
+      213: -8781978293930314179
+    second: Total_Bonus_Won_63
+  - first:
+      213: -3760506420948823636
+    second: Total_Bonus_Won_64
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Total_Bonus_Won_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 219
+        width: 1880
+        height: 624
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cef3887c908f4ce10800000000000000
+      internalID: 2217169637459116012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_1
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 833
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4df9947befd5d3110800000000000000
+      internalID: 1242252420802256852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_2
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 747
+        width: 86
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5404dc840973314c0800000000000000
+      internalID: -4318046524881944507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_3
+      rect:
+        serializedVersion: 2
+        x: 1514
+        y: 349
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f79bfc598bf5a6b00800000000000000
+      internalID: 822575128340576639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_4
+      rect:
+        serializedVersion: 2
+        x: 1567
+        y: 333
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee8f8dbbcb7357dc0800000000000000
+      internalID: -3641943439914239762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_5
+      rect:
+        serializedVersion: 2
+        x: 1790
+        y: 340
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de365ee171587a070800000000000000
+      internalID: 8117603187707700205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_6
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 309
+        width: 17
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0ffd8fbebf41dc40800000000000000
+      internalID: 5535293097691184908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_7
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 335
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e47689233152433a0800000000000000
+      internalID: -6686678782354888882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_8
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 319
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a9e218678420c800800000000000000
+      internalID: 630544111817124259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_9
+      rect:
+        serializedVersion: 2
+        x: 1183
+        y: 328
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4858801d95497bc40800000000000000
+      internalID: 5528050181100569988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_10
+      rect:
+        serializedVersion: 2
+        x: 1363
+        y: 326
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7083bdcb0ccddc6b0800000000000000
+      internalID: -5274316868220667897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_11
+      rect:
+        serializedVersion: 2
+        x: 1563
+        y: 333
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af42e6e301e9c8540800000000000000
+      internalID: 5011554277960590586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_12
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 314
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9530b91318774dca0800000000000000
+      internalID: -5993033807356558503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_13
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 317
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c551dbbf7945b970800000000000000
+      internalID: 8769996662334641604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_14
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 315
+        width: 6
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04b482795a6ec9710800000000000000
+      internalID: 1701488358119197504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_15
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 321
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8eb489644d93701f0800000000000000
+      internalID: -1078830001851708440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_16
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 319
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fda87ec53f8ab3c10800000000000000
+      internalID: 2034405419877108447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_17
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 319
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af9d08c521e94bf40800000000000000
+      internalID: 5743389226502773242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_18
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 326
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7747409cd5587dd90800000000000000
+      internalID: -7073038051911109513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_19
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 321
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1a420399a3bf78c0800000000000000
+      internalID: -3999280403184465377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_20
+      rect:
+        serializedVersion: 2
+        x: 1004
+        y: 321
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e75a2e1c7dce75420800000000000000
+      internalID: 2618822119754212734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_21
+      rect:
+        serializedVersion: 2
+        x: 1187
+        y: 321
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f3cee01c064cad30800000000000000
+      internalID: 4444003949945471985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_22
+      rect:
+        serializedVersion: 2
+        x: 1836
+        y: 321
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 474b164b0279b2d00800000000000000
+      internalID: 949018313212671092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_23
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 317
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f301121952488990800000000000000
+      internalID: -7383578638751300623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_24
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 307
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f84af24120839e350800000000000000
+      internalID: 6046425556301358223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_25
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 319
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ef81a334aaceb010800000000000000
+      internalID: 1206624556771545065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_26
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 307
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae2c74e5ee42069d0800000000000000
+      internalID: -2783183963512388886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_27
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 292
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f82ece6412945260800000000000000
+      internalID: 7085448730216638711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_28
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 292
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e4cb41d5ce195450800000000000000
+      internalID: 6077923007081989353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_29
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 291
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5de75838067fb34c0800000000000000
+      internalID: -4306576624754262315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_30
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 304
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a42feb4a0cc9eedf0800000000000000
+      internalID: -149009386445016502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_31
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 306
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fe0af9b06121e810800000000000000
+      internalID: 1792750825990917881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_32
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 307
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91f20f76b824a16f0800000000000000
+      internalID: -713184424473120999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_33
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 306
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c65d2f7ed4d8d3d0800000000000000
+      internalID: -3181559084655749435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_34
+      rect:
+        serializedVersion: 2
+        x: 1356
+        y: 291
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6941edf9566e5e230800000000000000
+      internalID: 3667590795711354006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_35
+      rect:
+        serializedVersion: 2
+        x: 1442
+        y: 298
+        width: 8
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 095a7bd62617bb830800000000000000
+      internalID: 4087985754330342800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_36
+      rect:
+        serializedVersion: 2
+        x: 1477
+        y: 295
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4394f792451c5860800000000000000
+      internalID: 7519908853563298635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_37
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 306
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4fc014eba210b410800000000000000
+      internalID: 1490712006134648654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_38
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 295
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa0676b0979e790e0800000000000000
+      internalID: -2263083581638745937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_39
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 290
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ebf95d6e92e184f0800000000000000
+      internalID: -828131686392136730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_40
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 299
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa2f5257466e5d120800000000000000
+      internalID: 2438108092427530927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_41
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 289
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: babbcfa1df5ffa330800000000000000
+      internalID: 3724465884286991275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_42
+      rect:
+        serializedVersion: 2
+        x: 1470
+        y: 290
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d94b8221d23b4e10800000000000000
+      internalID: 2182894318200244693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_43
+      rect:
+        serializedVersion: 2
+        x: 1577
+        y: 290
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91248cd10d289b240800000000000000
+      internalID: 4808017907559186969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_44
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 290
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5ffca810ec24aba0800000000000000
+      internalID: -6078684256045039781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_45
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 290
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e460b0ae5a935ea40800000000000000
+      internalID: 5396783113232385614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_46
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 291
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d938ef9fa20052250800000000000000
+      internalID: 5919137469831218077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_47
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 283
+        width: 6
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98494994b0c431850800000000000000
+      internalID: 6346499911257986185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_48
+      rect:
+        serializedVersion: 2
+        x: 942
+        y: 278
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f065a41e4eb790520800000000000000
+      internalID: 2668800477156234767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_49
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 288
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e95bad3cd7d5be050800000000000000
+      internalID: 5830856937299424670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_50
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 289
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30804864bec4056f0800000000000000
+      internalID: -697973368858343421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_51
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 275
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84961b72982cf5e20800000000000000
+      internalID: 3341603342864443720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_52
+      rect:
+        serializedVersion: 2
+        x: 1570
+        y: 291
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01177469020f13890800000000000000
+      internalID: -7479933483334799088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_53
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 279
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9616df21c16e39f10800000000000000
+      internalID: 2275415245004300649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_54
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 279
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8157fcacec2faf20800000000000000
+      internalID: 3436014435732771214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_55
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 281
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cddc3cb3a145ab440800000000000000
+      internalID: 4952363211895852508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_56
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 281
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4980c015142392220800000000000000
+      internalID: 2461553927448692884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_57
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 276
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b63a0f1406ee20ac0800000000000000
+      internalID: -3890285030904126613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_58
+      rect:
+        serializedVersion: 2
+        x: 997
+        y: 267
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8f8a4b74b397b3d0800000000000000
+      internalID: -3190919407596826742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_59
+      rect:
+        serializedVersion: 2
+        x: 1006
+        y: 272
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffff6f0a89e8e7de0800000000000000
+      internalID: -1333471653468372993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_60
+      rect:
+        serializedVersion: 2
+        x: 1013
+        y: 281
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45f761d0eed0fd840800000000000000
+      internalID: 5250931006610243412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_61
+      rect:
+        serializedVersion: 2
+        x: 1065
+        y: 275
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fb856e5a3c76e0f0800000000000000
+      internalID: -1088045669829735431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_62
+      rect:
+        serializedVersion: 2
+        x: 1624
+        y: 281
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f9bc4dca6d4d57e0800000000000000
+      internalID: -1775177557007877646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_63
+      rect:
+        serializedVersion: 2
+        x: 1623
+        y: 272
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d36b7154545202680800000000000000
+      internalID: -8781978293930314179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Total_Bonus_Won_64
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 254
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca115cb855fffcbc0800000000000000
+      internalID: -3760506420948823636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Total_Bonus_Won_0: 2217169637459116012
+      Total_Bonus_Won_1: 1242252420802256852
+      Total_Bonus_Won_10: -5274316868220667897
+      Total_Bonus_Won_11: 5011554277960590586
+      Total_Bonus_Won_12: -5993033807356558503
+      Total_Bonus_Won_13: 8769996662334641604
+      Total_Bonus_Won_14: 1701488358119197504
+      Total_Bonus_Won_15: -1078830001851708440
+      Total_Bonus_Won_16: 2034405419877108447
+      Total_Bonus_Won_17: 5743389226502773242
+      Total_Bonus_Won_18: -7073038051911109513
+      Total_Bonus_Won_19: -3999280403184465377
+      Total_Bonus_Won_2: -4318046524881944507
+      Total_Bonus_Won_20: 2618822119754212734
+      Total_Bonus_Won_21: 4444003949945471985
+      Total_Bonus_Won_22: 949018313212671092
+      Total_Bonus_Won_23: -7383578638751300623
+      Total_Bonus_Won_24: 6046425556301358223
+      Total_Bonus_Won_25: 1206624556771545065
+      Total_Bonus_Won_26: -2783183963512388886
+      Total_Bonus_Won_27: 7085448730216638711
+      Total_Bonus_Won_28: 6077923007081989353
+      Total_Bonus_Won_29: -4306576624754262315
+      Total_Bonus_Won_3: 822575128340576639
+      Total_Bonus_Won_30: -149009386445016502
+      Total_Bonus_Won_31: 1792750825990917881
+      Total_Bonus_Won_32: -713184424473120999
+      Total_Bonus_Won_33: -3181559084655749435
+      Total_Bonus_Won_34: 3667590795711354006
+      Total_Bonus_Won_35: 4087985754330342800
+      Total_Bonus_Won_36: 7519908853563298635
+      Total_Bonus_Won_37: 1490712006134648654
+      Total_Bonus_Won_38: -2263083581638745937
+      Total_Bonus_Won_39: -828131686392136730
+      Total_Bonus_Won_4: -3641943439914239762
+      Total_Bonus_Won_40: 2438108092427530927
+      Total_Bonus_Won_41: 3724465884286991275
+      Total_Bonus_Won_42: 2182894318200244693
+      Total_Bonus_Won_43: 4808017907559186969
+      Total_Bonus_Won_44: -6078684256045039781
+      Total_Bonus_Won_45: 5396783113232385614
+      Total_Bonus_Won_46: 5919137469831218077
+      Total_Bonus_Won_47: 6346499911257986185
+      Total_Bonus_Won_48: 2668800477156234767
+      Total_Bonus_Won_49: 5830856937299424670
+      Total_Bonus_Won_5: 8117603187707700205
+      Total_Bonus_Won_50: -697973368858343421
+      Total_Bonus_Won_51: 3341603342864443720
+      Total_Bonus_Won_52: -7479933483334799088
+      Total_Bonus_Won_53: 2275415245004300649
+      Total_Bonus_Won_54: 3436014435732771214
+      Total_Bonus_Won_55: 4952363211895852508
+      Total_Bonus_Won_56: 2461553927448692884
+      Total_Bonus_Won_57: -3890285030904126613
+      Total_Bonus_Won_58: -3190919407596826742
+      Total_Bonus_Won_59: -1333471653468372993
+      Total_Bonus_Won_6: 5535293097691184908
+      Total_Bonus_Won_60: 5250931006610243412
+      Total_Bonus_Won_61: -1088045669829735431
+      Total_Bonus_Won_62: -1775177557007877646
+      Total_Bonus_Won_63: -8781978293930314179
+      Total_Bonus_Won_64: -3760506420948823636
+      Total_Bonus_Won_7: -6686678782354888882
+      Total_Bonus_Won_8: 630544111817124259
+      Total_Bonus_Won_9: 5528050181100569988
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
