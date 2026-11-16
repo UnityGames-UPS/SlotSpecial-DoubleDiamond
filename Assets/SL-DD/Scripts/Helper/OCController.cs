@@ -5,6 +5,30 @@ using System.Collections.Generic;
 
 public class OCController : MonoBehaviour
 {
+    [System.Serializable]
+    private struct SharedLayoutTransform
+    {
+        public RectTransform target;
+        public Vector2 landscapePosition;
+        public Vector3 landscapeScale;
+        public Vector2 portraitPosition;
+        public Vector3 portraitScale;
+        public bool preserveVerticalPosition;
+
+        public void Apply(bool isMobilePortrait)
+        {
+            if (target == null)
+                return;
+
+            var position = isMobilePortrait ? portraitPosition : landscapePosition;
+            if (preserveVerticalPosition)
+                position.y = target.anchoredPosition.y;
+
+            target.anchoredPosition = position;
+            target.localScale = isMobilePortrait ? portraitScale : landscapeScale;
+        }
+    }
+
     [Header("References")]
     [SerializeField] private OrientationChange orientationChange;
     [SerializeField] private CanvasScaler canvasScaler;
@@ -39,6 +63,8 @@ public class OCController : MonoBehaviour
     [SerializeField] private Vector3 portraitSlotScale = new Vector3(0.73f, 0.73f, 0.73f);
     [SerializeField] private Vector3 landscapeSlotPosition = Vector3.zero;
     [SerializeField] private Vector3 portraitSlotPosition = new Vector3(0f, -150f, 0f);
+    [SerializeField] private SharedLayoutTransform[] sharedSlotLayout = System.Array.Empty<SharedLayoutTransform>();
+    [SerializeField] private GameObject landscapeBanner;
 
     [Header("Logo Object Settings")]
     [SerializeField] private RectTransform logoObject;
@@ -176,6 +202,15 @@ public class OCController : MonoBehaviour
         }
 
         // 5. Update Slot Object Scale and Position
+        foreach (var layout in sharedSlotLayout)
+        {
+            layout.Apply(isMobilePortrait);
+        }
+        if (landscapeBanner != null)
+        {
+            landscapeBanner.SetActive(!isMobilePortrait);
+        }
+
         if (slotObject != null)
         {
             Vector3 targetScale = isMobilePortrait ? portraitSlotScale : landscapeSlotScale;

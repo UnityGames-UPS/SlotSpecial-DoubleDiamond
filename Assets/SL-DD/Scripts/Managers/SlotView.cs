@@ -10,19 +10,19 @@ public class SlotView : MonoBehaviour
     [SerializeField] private GameManager gameManager;
 
     [Header("Symbol Sprites - Assign by Name")]
-    [SerializeField] private Sprite spriteSeven;           // ID: 0
-    [SerializeField] private Sprite spriteBar;            // ID: 1
+    [SerializeField] private Sprite spriteWildStar;           // ID: 0
+    [SerializeField] private Sprite spriteRedJwell;            // ID: 1
     [SerializeField] private Sprite spriteBlueJwell;         // ID: 2
-    [SerializeField] private Sprite spriteBonusDiam;              // ID: 3
-    [SerializeField] private Sprite spriteCheryy;                 // ID: 4
-    [SerializeField] private Sprite spriteGoldBar;                 // ID: 5
-    [SerializeField] private Sprite spriteGoldCoin;                 // ID: 6
-    [SerializeField] private Sprite spriteGoldCoin_2;                 // ID: 7
-    [SerializeField] private Sprite spriteJackpotInferno;               // ID: 8
-    [SerializeField] private Sprite spriteLemon;              // ID: 9
-    [SerializeField] private Sprite spriteRedJwell;              // ID: 10
-    [SerializeField] private Sprite spriteCoinStar;             // ID: 11
-    [SerializeField] private Sprite spriteWildStar;          // ID: 12
+    [SerializeField] private Sprite spriteGoldBar;              // ID: 3
+    [SerializeField] private Sprite spriteGoldCoin;                 // ID: 4
+    [SerializeField] private Sprite spriteSeven;                 // ID: 5
+    [SerializeField] private Sprite spriteBar;                 // ID: 6
+    [SerializeField] private Sprite spriteLemon;                 // ID: 7
+    [SerializeField] private Sprite spriteCheryy;               // ID: 8
+    [SerializeField] private Sprite goldCoin_2;              // ID: 9
+    [SerializeField] private Sprite starCoin;              // ID: 10
+    [SerializeField] private Sprite JackpotInferno;             // ID: 11
+    [SerializeField] private Sprite spriteBonusDiam;          // ID: 12
 
     // Internal array built from named sprites
     private Sprite[] symbolSprites;
@@ -39,6 +39,7 @@ public class SlotView : MonoBehaviour
 
     [Header("Reel Images - 8 images per reel")]
     [SerializeField] private List<ReelImages> reelImagesList;
+    [SerializeField] private float reelSymbolScale = 0.85f;
 
     [Header("Spin Settings")]
     [SerializeField] private float symbolHeight = 100f;
@@ -129,15 +130,16 @@ public class SlotView : MonoBehaviour
         if (symbolInfoCard) symbolInfoCard.HideCard();
     }
 
-    private void SetupSymbolButtons()
+    internal void SetupSymbolButtons()
     {
         if (reelImagesList == null) return;
+
+        const int visibleStartIndex = 2;
+        int rowCount = (gameManager != null && gameManager.gameConfig != null) ? gameManager.gameConfig.rowCount : 3;
         for (int col = 0; col < reelImagesList.Count; col++)
         {
             var reel = reelImagesList[col];
             if (reel == null || reel.images == null) continue;
-            int visibleStartIndex = 2;
-            int rowCount = 3;
             for (int row = 0; row < rowCount; row++)
             {
                 int imageIndex = visibleStartIndex + row;
@@ -205,19 +207,19 @@ public class SlotView : MonoBehaviour
     {
         // Build the symbol sprite array from named sprite fields
         symbolSprites = new Sprite[13];
-        symbolSprites[0] = spriteSeven;
-        symbolSprites[1] = spriteBar;
+        symbolSprites[0] = spriteWildStar;
+        symbolSprites[1] = spriteRedJwell;
         symbolSprites[2] = spriteBlueJwell;
-        symbolSprites[3] = spriteBonusDiam;
-        symbolSprites[4] = spriteCheryy;
-        symbolSprites[5] = spriteGoldBar;
-        symbolSprites[6] = spriteGoldCoin;
-        symbolSprites[7] = spriteGoldCoin_2;
-        symbolSprites[8] = spriteJackpotInferno;
-        symbolSprites[9] = spriteLemon;
-        symbolSprites[10] = spriteRedJwell;
-        symbolSprites[11] = spriteCoinStar;
-        symbolSprites[12] = spriteWildStar;
+        symbolSprites[3] = spriteGoldBar;
+        symbolSprites[4] = spriteGoldCoin;
+        symbolSprites[5] = spriteSeven;
+        symbolSprites[6] = spriteBar;
+        symbolSprites[7] = spriteLemon;
+        symbolSprites[8] = spriteCheryy;
+        symbolSprites[9] = goldCoin_2;
+        symbolSprites[10] = starCoin;
+        symbolSprites[11] = JackpotInferno;
+        symbolSprites[12] = spriteBonusDiam;
 
         // Validate
         for (int i = 0; i < symbolSprites.Length; i++)
@@ -251,6 +253,22 @@ public class SlotView : MonoBehaviour
             }
             currentDisplayMatrix.Add(defaultCol);
             reelCycleCount.Add(0);
+        }
+
+        if (reelImagesList == null) return;
+
+        Vector3 scale = Vector3.one * reelSymbolScale;
+        foreach (var reel in reelImagesList)
+        {
+            if (reel?.images == null) continue;
+
+            foreach (var image in reel.images)
+            {
+                if (image != null)
+                {
+                    image.transform.localScale = scale;
+                }
+            }
         }
     }
 
@@ -1193,7 +1211,7 @@ public class SlotView : MonoBehaviour
         if (reel.images[imageIndex] != null)
         {
             reel.images[imageIndex].DOKill();
-            reel.images[imageIndex].transform.localScale = Vector3.one;
+            reel.images[imageIndex].transform.localScale = Vector3.one * reelSymbolScale;
             // Restore alpha to full opacity
             Color c = reel.images[imageIndex].color;
             reel.images[imageIndex].color = new Color(c.r, c.g, c.b, 1f);
@@ -1392,7 +1410,7 @@ public class SlotView : MonoBehaviour
         HideAllWinLineTexts();
         HidePhase1TotalWinText();
 
-        // Restore all symbol image alphas to full opacity
+        // Restore each symbol image to its configured scale and full opacity
         foreach (var reel in reelImagesList)
         {
             if (reel.images != null)
@@ -1402,7 +1420,7 @@ public class SlotView : MonoBehaviour
                     if (image != null)
                     {
                         image.DOKill();
-                        image.transform.localScale = Vector3.one;
+                        image.transform.localScale = Vector3.one * reelSymbolScale;
                         Color c = image.color;
                         image.color = new Color(c.r, c.g, c.b, 1f);
                     }

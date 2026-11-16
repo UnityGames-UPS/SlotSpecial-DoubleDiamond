@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
+using Newtonsoft.Json; // Legacy ExtraSpinsData uses JsonProperty.
 
 #region Server Communication Models
 
@@ -44,21 +44,40 @@ public class ServerGameData
 {
     public List<List<int>> lines;
     public List<double> bets;
-    public double creditDivisor = 25;
+    // Legacy init field. Double Diamond uses totalLines for the total bet multiplier.
+    // public double creditDivisor = 25;
     public int totalLines;
 }
 
 [Serializable]
 public class ServerFeatures
 {
+    public List<SlotJackpotTier> jackpotTiers;
+    public List<List<int>> paylines; // The backend also sends these patterns in gameData.lines.
+
+    // Legacy template init fields.
+    /*
     public USpinFeature uSpin;
     public MoneyBagFeature moneyBag;
     public FreeGamesFeature freeGames;
     public int betMultiplier;
     public int maxWinMultiplier;
     public int minWinMultiplier;
+    */
 }
 
+[Serializable]
+public class SlotJackpotTier
+{
+    public string name;
+    public int tier;
+    public int? minScatters;
+    public bool? jumpOnly;
+    public int baseMultiplier;
+}
+
+// Legacy template U-Spin init DTO.
+/*
 [Serializable]
 public class USpinFeature
 {
@@ -67,7 +86,9 @@ public class USpinFeature
     public int symbolId;
     public List<USpinSegment> segments;
 }
+*/
 
+// GameConfig and WheelSpinController still use this type.
 [Serializable]
 public class USpinSegment
 {
@@ -77,6 +98,8 @@ public class USpinSegment
     public int freeGames;
 }
 
+// Legacy template bonus settings and extra-spin lookup.
+/*
 [Serializable]
 public class MoneyBagFeature
 {
@@ -102,6 +125,7 @@ public class ExtraSpinsData
     [JsonProperty("4")] public int _4;
     [JsonProperty("5")] public int _5;
 }
+*/
 
 [Serializable]
 public class ServerUIData
@@ -120,10 +144,12 @@ public class ServerSymbolInfo
 {
     public int id;
     public string name;
-    public List<double> multiplier; // Keep for fallback compatibility
-    public List<double> payout;
+    public List<double> multiplier;
     public string description;
-    public int minMatch;
+
+    // Legacy template paytable fields.
+    // public List<double> payout;
+    // public int minMatch;
 }
 
 
@@ -156,21 +182,55 @@ public class ServerPlayerBalance
 [Serializable]
 public class ServerPayload
 {
-    public List<List<string>> reels;        // Keep for fallback compatibility
-    public double totalWin;                  // Keep for fallback compatibility
+    public double winAmount;
+
+    // Double Diamond result fields.
+    public double linesWinAmount;
+    public List<ServerLineWin> lineWins;
+    public bool isFreeSpin;
+    public ServerFreeSpinsResult freeSpins;
+
+    // Legacy CNY result fields. The current converter still reads these.
+    public List<List<string>> reels;
+    public double totalWin;
     public int scatterCount;
     public bool scatterTriggered;
-    public bool isRoundOver;                 // True when free spin round is over
-    public double totalRoundWin;             // Total round win (at payload level when isRoundOver)
-
-    // CNY fields
-    public double winAmount;
+    public bool isRoundOver;
+    public double totalRoundWin;
     public double grandTotalWin;
     public double netReturnRatio;
     public List<ServerWaysWin> waysWins;
     public ServerUSpinResult uSpin;
     public ServerMoneyBagResult moneyBag;
     public ServerFreeGamesResult freeGames;
+}
+
+[Serializable]
+public class ServerLineWin
+{
+    public int lineIndex;
+    public List<ServerLineWinPosition> positions;
+    public List<int> pattern;
+    public string symbolId;
+    public string symbolName;
+    public double payout;
+    public int matchCount;
+}
+
+[Serializable]
+public class ServerLineWinPosition
+{
+    public List<int> position; // [row, column]
+}
+
+[Serializable]
+public class ServerFreeSpinsResult
+{
+    public bool triggered;
+    public int spinsAdded;
+    public double scatterWin;
+    public int remaining;
+    public double totalWon;
 }
 
 [Serializable]
@@ -282,6 +342,7 @@ public class GameConfig
     public List<List<int>> paylines;
     public List<double> availableBets;
     public List<SymbolInfo> symbols;
+    public List<SlotJackpotTier> jackpotTiers;
 
     // Wild configuration
     public int wildSymbolId = 10;      // Base wild (10)
@@ -289,12 +350,16 @@ public class GameConfig
     // Scatter configuration
     public int scatterSymbolId = 11;   // USpin is ID 11
 
-    public int betMultiplier = 1;      // CNY is cash-bet based, multiplier default is 1
-    public double creditDivisor = 25;  // Credit divisor sent in initData
+    public double totalBetMultiplier = 25; // Converts the selected bet to Total Pay.
+
+    // Legacy runtime fields with no gameplay readers.
+    /*
+    public int betMultiplier = 1;
     public int maxWinMultiplier = 10000;
     public int minWinMultiplier = 10;
     public int initialFreeSpins = 12;
-    public ExtraSpinsData extraSpinsData; // Keep to avoid compilation error in UI
+    public ExtraSpinsData extraSpinsData;
+    */
 
     // uSpin
     public List<USpinSegment> uSpinSegments;
@@ -308,42 +373,47 @@ public class SymbolInfo
     public List<double> multipliers;
     public bool isWild;
     public bool isScatter;
-    public int wildMultiplier = 1;
-    public int minMatch;
+
+    // Legacy symbol fields with no gameplay readers.
+    // public int wildMultiplier = 1;
+    // public int minMatch;
 }
 
 #endregion
 
 #region Player & Game State (Client Side)
 
+// Shared runtime models.
 [Serializable]
 public class PlayerData
 {
     public double balance;
-    public int currentBetIndex;
+    public int currentBetIndex; 
 }
 
 [Serializable]
 public class SpinResult
 {
+    // Shared spin result and free-spin progress.
     public List<List<int>> resultMatrix;  // Client uses int matrix
     public double winAmount;
     public double grandTotalWin;
     public List<WinLine> winLines;
     public PlayerData playerData;
     public FreeSpinData freeSpinData;
-    public ScatterData scatterData;
-    public OverlayScatterData overlayScatterData; // Keep for safety/UI compilation
-    public Dictionary<string, int> stickyWilds;  // Keep for safety/UI compilation
-
-    // Server-authoritative free spin state
     public int serverSpinsRemaining;
     public int serverSpinsUsed;
     public int serverTotalSpins;
     public double serverTotalRoundWin;
     public bool isRoundOver;
-    
-    // Server-authoritative wheel data
+
+    // Double Diamond result fields.
+    public bool isFreeSpin; // True for a spin played during the free-spin round.
+
+    // Legacy CNY feature fields and payout helpers.
+    public ScatterData scatterData;
+    public OverlayScatterData overlayScatterData;
+    public Dictionary<string, int> stickyWilds;
     public USpinResultData uSpinData;
     public MoneyBagResultData moneyBagData;
 
@@ -378,9 +448,12 @@ public class FreeSpinData
     public bool isTriggered;
     public int spinsAwarded;
     public int remainingSpins;
+
+    // Legacy CNY purchase flag.
     public bool isBought;
 }
 
+// Legacy CNY feature models.
 [Serializable]
 public class ScatterData
 {
@@ -480,7 +553,7 @@ public static class InitDataConverter
             paylineCount = serverData.gameData.totalLines,
             paylines = serverData.gameData.lines,
             availableBets = serverData.gameData.bets,
-            creditDivisor = (serverData.gameData != null && serverData.gameData.creditDivisor > 0) ? serverData.gameData.creditDivisor : 25,
+            totalBetMultiplier = serverData.gameData.totalLines,
             symbols = new List<SymbolInfo>()
         }; 
 
@@ -495,17 +568,25 @@ public static class InitDataConverter
                 isScatter = serverSymbol.name.ToLower().Contains("scatter") || 
                             serverSymbol.name.ToLower().Contains("uspin") || 
                             serverSymbol.name.ToLower().Contains("moneybag"),
-                minMatch = serverSymbol.minMatch
+                // Legacy paytable mapping:
+                // minMatch = serverSymbol.minMatch
             };
 
-            // Store raw payout values for info page
-            if (serverSymbol.payout != null)
+            if (serverSymbol.multiplier != null)
+            {
+                symbolInfo.multipliers.AddRange(serverSymbol.multiplier);
+            }
+            // Legacy payout arrays required reversing to put the highest match count first.
+            /*
+            else if (serverSymbol.payout != null)
             {
                 for (int i = serverSymbol.payout.Count - 1; i >= 0; i--)
                 {
                     symbolInfo.multipliers.Add(serverSymbol.payout[i]);
                 }
             }
+            */
+
             config.symbols.Add(symbolInfo);
 
             if (symbolInfo.isWild)
@@ -520,6 +601,10 @@ public static class InitDataConverter
 
         if (serverData.features != null)
         {
+            config.jackpotTiers = serverData.features.jackpotTiers;
+
+            // Legacy template init mapping. Spin results have separate DTOs and conversion.
+            /*
             config.betMultiplier = serverData.features.betMultiplier > 0 ? serverData.features.betMultiplier : 1;
             config.maxWinMultiplier = serverData.features.maxWinMultiplier;
             config.minWinMultiplier = serverData.features.minWinMultiplier;
@@ -533,6 +618,7 @@ public static class InitDataConverter
             {
                 config.uSpinSegments = serverData.features.uSpin.segments;
             }
+            */
         }
 
         return config;
@@ -552,98 +638,125 @@ public static class InitDataConverter
     /// </summary>
     internal static SpinResult ConvertServerResponseToSpinResult(ServerSpinResponse serverResponse, double currentBalance, double betAmount, GameConfig gameConfig)
     {
-        double winAmountVal = serverResponse.payload.winAmount > 0 ? serverResponse.payload.winAmount : serverResponse.payload.totalWin;
-        double totalPay = (gameConfig != null && gameConfig.creditDivisor > 0) ? betAmount * gameConfig.creditDivisor : betAmount * 25;
-        double newBalance = serverResponse.player?.balance ?? CalculateNewBalance(currentBalance, totalPay, winAmountVal);
-
-        int spinsRemaining = 0;
-        int spinsUsed = 0;
-        int totalSpins = 0;
-        double totalRoundWin = 0;
-        bool isRoundOver = false;
-
-        if (serverResponse.payload.freeGames != null)
-        {
-            spinsRemaining = serverResponse.payload.freeGames.totalAwarded - serverResponse.payload.freeGames.played;
-            spinsUsed = serverResponse.payload.freeGames.played;
-            totalSpins = serverResponse.payload.freeGames.totalAwarded;
-            totalRoundWin = serverResponse.payload.freeGames.totalFreeGamesWin;
-            isRoundOver = serverResponse.payload.freeGames.played >= serverResponse.payload.freeGames.totalAwarded && serverResponse.payload.freeGames.totalAwarded > 0;
-        }
-        else
-        {
-            isRoundOver = serverResponse.payload.isRoundOver;
-            totalRoundWin = serverResponse.payload.totalRoundWin;
-        }
-
-        double grandTotalWinVal = serverResponse.payload.grandTotalWin > 0 
-            ? serverResponse.payload.grandTotalWin 
-            : (winAmountVal + (serverResponse.payload.moneyBag != null && serverResponse.payload.moneyBag.result != null ? serverResponse.payload.moneyBag.result.winInCash : 0) + (serverResponse.payload.uSpin != null && serverResponse.payload.uSpin.result != null ? serverResponse.payload.uSpin.result.winInCash : 0));
+        var payload = serverResponse.payload;
+        bool isDoubleDiamondResult = payload.lineWins != null || payload.freeSpins != null;
+        double winAmount = isDoubleDiamondResult || payload.winAmount > 0 ? payload.winAmount : payload.totalWin;
+        double totalPay = (gameConfig != null && gameConfig.totalBetMultiplier > 0) ? betAmount * gameConfig.totalBetMultiplier : betAmount * 25;
+        double newBalance = serverResponse.player?.balance ?? CalculateNewBalance(currentBalance, totalPay, winAmount);
+        var reelMatrix = ConvertReelsToMatrix(payload.reels, serverResponse.matrix, payload.waysWins, gameConfig);
 
         var result = new SpinResult
         {
-            resultMatrix = ConvertReelsToMatrix(serverResponse.payload.reels, serverResponse.matrix, serverResponse.payload.waysWins, gameConfig),
-            winAmount = winAmountVal,
-            grandTotalWin = grandTotalWinVal,
-            winLines = ConvertWinningLines(serverResponse.payload.waysWins, gameConfig),
-
+            resultMatrix = reelMatrix,
+            winAmount = winAmount,
+            grandTotalWin = winAmount,
+            // A present Double Diamond list is authoritative, even when empty.
+            winLines = payload.lineWins != null
+                ? ConvertLineWins(payload.lineWins, reelMatrix)
+                : ConvertWinningLines(payload.waysWins, gameConfig),
             playerData = new PlayerData
             {
                 balance = newBalance,
                 currentBetIndex = 0
             },
+            isFreeSpin = payload.isFreeSpin
+        };
 
-            freeSpinData = (serverResponse.payload.freeGames != null && serverResponse.payload.freeGames.triggered)
-                ? new FreeSpinData
+        // Double Diamond sends remaining spins and the running round total directly.
+        if (payload.freeSpins != null)
+        {
+            var freeSpins = payload.freeSpins;
+            result.serverSpinsRemaining = freeSpins.remaining;
+            result.serverTotalRoundWin = freeSpins.totalWon;
+            result.isRoundOver = result.isFreeSpin && freeSpins.remaining == 0;
+
+            if (freeSpins.triggered)
+            {
+                result.freeSpinData = new FreeSpinData
                 {
                     isTriggered = true,
-                    spinsAwarded = serverResponse.payload.freeGames.totalAwarded,
-                    remainingSpins = serverResponse.payload.freeGames.totalAwarded - serverResponse.payload.freeGames.played,
-                    isBought = false
-                }
-                : null,
+                    spinsAwarded = freeSpins.spinsAdded,
+                    remainingSpins = freeSpins.remaining
+                };
 
-            scatterData = serverResponse.payload.scatterTriggered
+                // On the paid trigger spin, the award is the initial round size.
+                // Later played and awarded counts require round history.
+                if (!result.isFreeSpin)
+                {
+                    result.serverTotalSpins = freeSpins.spinsAdded;
+                }
+            }
+        }
+        // Legacy CNY sends played and awarded counts instead of remaining spins.
+        else if (payload.freeGames != null)
+        {
+            var freeGames = payload.freeGames;
+            result.serverSpinsRemaining = freeGames.totalAwarded - freeGames.played;
+            result.serverSpinsUsed = freeGames.played;
+            result.serverTotalSpins = freeGames.totalAwarded;
+            result.serverTotalRoundWin = freeGames.totalFreeGamesWin;
+            result.isRoundOver = freeGames.played >= freeGames.totalAwarded && freeGames.totalAwarded > 0;
+
+            if (freeGames.triggered)
+            {
+                result.freeSpinData = new FreeSpinData
+                {
+                    isTriggered = true,
+                    spinsAwarded = freeGames.totalAwarded,
+                    remainingSpins = result.serverSpinsRemaining,
+                    isBought = false
+                };
+            }
+        }
+        else
+        {
+            // Legacy CNY responses can report round completion at the payload level.
+            result.isRoundOver = payload.isRoundOver;
+            result.serverTotalRoundWin = payload.totalRoundWin;
+        }
+
+        // Legacy CNY scatter, wheel, and Money Bag results.
+        if (!isDoubleDiamondResult)
+        {
+            result.grandTotalWin = payload.grandTotalWin > 0
+                ? payload.grandTotalWin
+                : winAmount + (payload.moneyBag?.result?.winInCash ?? 0) + (payload.uSpin?.result?.winInCash ?? 0);
+
+            result.scatterData = payload.scatterTriggered
                 ? new ScatterData
                 {
                     isTriggered = true,
-                    scatterCount = serverResponse.payload.scatterCount,
+                    scatterCount = payload.scatterCount,
                     winAmount = 0
                 }
-                : null,
+                : null;
 
-            overlayScatterData = null,
-            stickyWilds = null,
+            result.overlayScatterData = null;
+            result.stickyWilds = null;
 
-            serverSpinsRemaining = spinsRemaining,
-            serverSpinsUsed = spinsUsed,
-            serverTotalSpins = totalSpins,
-            serverTotalRoundWin = totalRoundWin,
-            isRoundOver = isRoundOver,
-            
-            uSpinData = (serverResponse.payload.uSpin != null && serverResponse.payload.uSpin.triggered && serverResponse.payload.uSpin.result != null)
+            result.uSpinData = (payload.uSpin != null && payload.uSpin.triggered && payload.uSpin.result != null)
                 ? new USpinResultData
                 {
                     triggered = true,
-                    sliceIndex = serverResponse.payload.uSpin.result.sliceIndex,
-                    type = serverResponse.payload.uSpin.result.type,
-                    multiplierAwarded = serverResponse.payload.uSpin.result.multiplierAwarded,
-                    freeGamesAwarded = serverResponse.payload.uSpin.result.freeGamesAwarded,
-                    winInCash = serverResponse.payload.uSpin.result.winInCash
+                    sliceIndex = payload.uSpin.result.sliceIndex,
+                    type = payload.uSpin.result.type,
+                    multiplierAwarded = payload.uSpin.result.multiplierAwarded,
+                    freeGamesAwarded = payload.uSpin.result.freeGamesAwarded,
+                    winInCash = payload.uSpin.result.winInCash
                 }
-                : null,
-                
-            moneyBagData = (serverResponse.payload.moneyBag != null && serverResponse.payload.moneyBag.triggered && serverResponse.payload.moneyBag.result != null)
+                : null;
+
+            result.moneyBagData = (payload.moneyBag != null && payload.moneyBag.triggered && payload.moneyBag.result != null)
                 ? new MoneyBagResultData
                 {
                     triggered = true,
-                    pickedIndex = serverResponse.payload.moneyBag.result.pickedIndex,
-                    revealed = serverResponse.payload.moneyBag.result.revealed,
-                    creditsAwarded = serverResponse.payload.moneyBag.result.creditsAwarded,
-                    winInCash = serverResponse.payload.moneyBag.result.winInCash
+                    pickedIndex = payload.moneyBag.result.pickedIndex,
+                    revealed = payload.moneyBag.result.revealed,
+                    creditsAwarded = payload.moneyBag.result.creditsAwarded,
+                    winInCash = payload.moneyBag.result.winInCash
                 }
-                : null
-        };
+                : null;
+        }
 
         return result;
     }
@@ -707,6 +820,54 @@ public static class InitDataConverter
         return matrix;
     }
 
+    // Double Diamond supplies a payline index, matched cells, and a cash payout.
+    private static List<WinLine> ConvertLineWins(List<ServerLineWin> serverLineWins, List<List<int>> reelMatrix)
+    {
+        var winLines = new List<WinLine>(serverLineWins.Count);
+
+        foreach (var line in serverLineWins)
+        {
+            if (line?.positions == null || !int.TryParse(line.symbolId, out int symbolId))
+            {
+                continue;
+            }
+
+            var positions = new List<int>(line.positions.Count);
+            foreach (var match in line.positions)
+            {
+                var coordinates = match?.position;
+                if (coordinates == null || coordinates.Count != 2)
+                {
+                    continue;
+                }
+
+                int row = coordinates[0];
+                int col = coordinates[1];
+                if (col < 0 || col >= reelMatrix.Count || row < 0 || row >= reelMatrix[col].Count)
+                {
+                    continue;
+                }
+
+                // SlotView uses flat cell indexes with five reels per row.
+                positions.Add(row * 5 + col);
+            }
+
+            if (positions.Count > 0)
+            {
+                winLines.Add(new WinLine
+                {
+                    lineId = line.lineIndex,
+                    symbolId = symbolId,
+                    positions = positions,
+                    winAmount = line.payout
+                });
+            }
+        }
+
+        return winLines;
+    }
+
+    // Legacy CNY ways wins use their returned order as the line index.
     private static List<WinLine> ConvertWinningLines(List<ServerWaysWin> serverWaysWins, GameConfig gameConfig)
     {
         var winLines = new List<WinLine>();

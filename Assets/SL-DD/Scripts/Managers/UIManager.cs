@@ -175,9 +175,18 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text ruleSymbol8Text;
     [SerializeField] private TMP_Text ruleSymbol9Text;
 
-    [Header("Free Spin Count Display - Game Screen")]
+    [Header("Free Spins UI Setup")]
+    [SerializeField] private GameObject freeSpinTriggerPopup;
+    [SerializeField] private List<GameObject> bonusSympolImages;
+    [SerializeField] private TMP_Text freeSpinAwaredText;
+
     [SerializeField] private GameObject freeSpinCountContainer;
     [SerializeField] private TMP_Text remainingFreeSpinsText;
+
+    [SerializeField] private GameObject freeSpinTotalWinPopup;
+    [SerializeField] private GameObject freeSpinTotalWonTextImage;
+    [SerializeField] private GameObject freeSpinTotalFrame;
+    [SerializeField] private TMP_Text freeSpinTotalWonText;
 
     [Header("Ping Display")]
     [SerializeField] private TMP_Text pingText;

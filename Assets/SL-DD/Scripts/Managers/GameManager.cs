@@ -67,9 +67,14 @@ public class GameManager : MonoBehaviour
         currentBetIndex = playerData.currentBetIndex;
         UpdateBetAmount();
 
-        if (initialMatrix != null && slotView != null)
+        if (slotView != null)
         {
-            slotView.SetInitialMatrix(initialMatrix);
+            if (initialMatrix != null)
+            {
+                slotView.SetInitialMatrix(initialMatrix);
+            }
+
+            slotView.SetupSymbolButtons();
         }
 
         if (wheelController != null && gameConfig.uSpinSegments != null)
@@ -773,8 +778,8 @@ public class GameManager : MonoBehaviour
 
     internal double GetTotalPay()
     {
-        double divisor = (gameConfig != null && gameConfig.creditDivisor > 0) ? gameConfig.creditDivisor : 25;
-        return currentBetAmount * divisor;
+        double multiplier = (gameConfig != null && gameConfig.totalBetMultiplier > 0) ? gameConfig.totalBetMultiplier : 25;
+        return currentBetAmount * multiplier;
     }
 
     internal bool CanAffordBet()
