@@ -76,7 +76,7 @@ public class ImageAnimation : MonoBehaviour
 
     private void AnimationProcess()
     {
-        if (textureArray == null || textureArray.Count == 0) return;
+        if (currentAnimationState != ImageState.PLAYING || textureArray == null || textureArray.Count == 0) return;
 
         SetTextureOfIndex();
         indexOfTexture++;
@@ -86,7 +86,9 @@ public class ImageAnimation : MonoBehaviour
             indexOfTexture = 0;
             currentLoopCount++;
             onLoopComplete?.Invoke(currentLoopCount);
-            
+            // A loop callback can stop playback and hide this overlay.
+            if (currentAnimationState != ImageState.PLAYING) return;
+
             if (doLoopAnimation)
             {
                 Invoke(nameof(AnimationProcess), delayBetweenAnimation + delayBetweenLoop);
@@ -104,10 +106,23 @@ public class ImageAnimation : MonoBehaviour
 
     public void StartAnimation()
     {
-        if (textureArray == null || textureArray.Count == 0) return;
+        // Legacy playback keeps its existing speed calculation.
+        float frameInterval = idealFrameRate * (textureArray?.Count ?? 0) / AnimationSpeed;
+        StartAnimationWithInterval(frameInterval);
+    }
+
+    // Double Diamond uses a fixed frame rate across symbol sequences.
+    internal bool TryStartAtFrameRate(float framesPerSecond)
+    {
+        return isActiveAndEnabled && StartAnimationWithInterval(1f / Mathf.Max(1f, framesPerSecond));
+    }
+
+    private bool StartAnimationWithInterval(float frameInterval)
+    {
+        if (textureArray == null || textureArray.Count == 0) return false;
 
         EnsureRenderer();
-        if (rendererDelegate == null) return;
+        if (rendererDelegate == null) return false;
 
         CancelInvoke(nameof(AnimationProcess));
         indexOfTexture = 0;
@@ -116,10 +131,9 @@ public class ImageAnimation : MonoBehaviour
 
         RevertToInitialState();
 
-        delayBetweenAnimation = idealFrameRate * (float)textureArray.Count / AnimationSpeed;
-        if (delayBetweenAnimation <= 0) delayBetweenAnimation = 0.05f;
-
+        delayBetweenAnimation = frameInterval > 0 ? frameInterval : 0.05f;
         Invoke(nameof(AnimationProcess), delayBetweenAnimation);
+        return true;
     }
 
     public void PlayAnimation()

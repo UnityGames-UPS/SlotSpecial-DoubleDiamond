@@ -347,8 +347,11 @@ public class GameConfig
     // Wild configuration
     public int wildSymbolId = 10;      // Base wild (10)
 
-    // Scatter configuration
-    public int scatterSymbolId = 11;   // USpin is ID 11
+    // Double Diamond Bonus Diamonds are tagged "bonus" in game:init.
+    public int bonusSymbolId = -1;
+
+    // Legacy CNY scatter configuration.
+    public int scatterSymbolId = 11; // U-Spin.
 
     public double totalBetMultiplier = 25; // Converts the selected bet to Total Pay.
 
@@ -408,6 +411,7 @@ public class SpinResult
     public bool isRoundOver;
 
     // Double Diamond result fields.
+    public bool isDoubleDiamondResult;
     public bool isFreeSpin; // True for a spin played during the free-spin round.
 
     // Legacy CNY feature fields and payout helpers.
@@ -448,6 +452,7 @@ public class FreeSpinData
     public bool isTriggered;
     public int spinsAwarded;
     public int remainingSpins;
+    public double scatterWin; // Double Diamond trigger payout.
 
     // Legacy CNY purchase flag.
     public bool isBought;
@@ -593,6 +598,12 @@ public static class InitDataConverter
             {
                 config.wildSymbolId = symbolInfo.id;
             }
+            if (string.Equals(serverSymbol.description, "bonus", StringComparison.OrdinalIgnoreCase))
+            {
+                config.bonusSymbolId = symbolInfo.id;
+            }
+
+            // Legacy CNY identifies its scatter by the U-Spin name.
             if (symbolInfo.isScatter && symbolInfo.name.ToLower().Contains("uspin"))
             {
                 config.scatterSymbolId = symbolInfo.id;
@@ -659,6 +670,7 @@ public static class InitDataConverter
                 balance = newBalance,
                 currentBetIndex = 0
             },
+            isDoubleDiamondResult = isDoubleDiamondResult,
             isFreeSpin = payload.isFreeSpin
         };
 
@@ -676,7 +688,8 @@ public static class InitDataConverter
                 {
                     isTriggered = true,
                     spinsAwarded = freeSpins.spinsAdded,
-                    remainingSpins = freeSpins.remaining
+                    remainingSpins = freeSpins.remaining,
+                    scatterWin = freeSpins.scatterWin
                 };
 
                 // On the paid trigger spin, the award is the initial round size.

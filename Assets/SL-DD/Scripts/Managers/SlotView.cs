@@ -19,19 +19,30 @@ public class SlotView : MonoBehaviour
     [SerializeField] private Sprite spriteBar;                 // ID: 6
     [SerializeField] private Sprite spriteLemon;                 // ID: 7
     [SerializeField] private Sprite spriteCheryy;               // ID: 8
-    [SerializeField] private Sprite goldCoin_2;              // ID: 9
-    [SerializeField] private Sprite starCoin;              // ID: 10
-    [SerializeField] private Sprite JackpotInferno;             // ID: 11
-    [SerializeField] private Sprite spriteBonusDiam;          // ID: 12
+    // Double Diamond server IDs. The seven variants use temporary artwork.
+    [SerializeField] private Sprite goldCoin_2;        // ID 9: Fiery Seven placeholder.
+    [SerializeField] private Sprite starCoin;          // ID 10: Triple Seven placeholder.
+    [SerializeField] private Sprite spriteSingleSeven; // ID 11: Single Seven placeholder.
+    [SerializeField] private Sprite spriteBonusDiam;   // ID 12: Bonus Diamond.
+    [SerializeField] private Sprite JackpotInferno;    // ID 13: Jackpot Inferno.
 
     // Internal array built from named sprites
     private Sprite[] symbolSprites;
 
-    [Header("Win Animation Sprite Arrays")]
-    [Tooltip("Animation sprite arrays for symbols. USpin = ID 11")]
-    [SerializeField] private List<Sprite> animSpritesUSpin;           // ID: 11
+    [System.Serializable]
+    private class SymbolWinAnimation
+    {
+        public int symbolId;
+        public List<Sprite> frames;
+    }
 
-    // Internal array of animation sprite lists
+    [Header("Double Diamond Win Animations")]
+    [SerializeField] private SymbolWinAnimation[] doubleDiamondWinAnimations = System.Array.Empty<SymbolWinAnimation>();
+    [SerializeField, Min(1f)] private float doubleDiamondWinFramesPerSecond = 24f;
+    private List<Sprite>[] doubleDiamondAnimationSpriteArrays;
+
+    [Header("Legacy CNY Win Animations")]
+    [SerializeField] private List<Sprite> animSpritesUSpin; // Legacy U-Spin, ID 11.
     private List<Sprite>[] animationSpriteArrays;
 
     [Header("Reel Containers")]
@@ -205,8 +216,8 @@ public class SlotView : MonoBehaviour
 
     private void BuildSymbolSpriteArray()
     {
-        // Build the symbol sprite array from named sprite fields
-        symbolSprites = new Sprite[13];
+        // Index sprites by the Double Diamond symbol IDs returned by the server.
+        symbolSprites = new Sprite[14];
         symbolSprites[0] = spriteWildStar;
         symbolSprites[1] = spriteRedJwell;
         symbolSprites[2] = spriteBlueJwell;
@@ -218,8 +229,9 @@ public class SlotView : MonoBehaviour
         symbolSprites[8] = spriteCheryy;
         symbolSprites[9] = goldCoin_2;
         symbolSprites[10] = starCoin;
-        symbolSprites[11] = JackpotInferno;
+        symbolSprites[11] = spriteSingleSeven;
         symbolSprites[12] = spriteBonusDiam;
+        symbolSprites[13] = JackpotInferno;
 
         // Validate
         for (int i = 0; i < symbolSprites.Length; i++)
@@ -230,10 +242,21 @@ public class SlotView : MonoBehaviour
             }
         }
 
-        // Build the animation sprite arrays
-        animationSpriteArrays = new List<Sprite>[13];
-        // Only USpin has an animation in this game
+        animationSpriteArrays = new List<Sprite>[symbolSprites.Length];
+        // Legacy CNY U-Spin frames at ID 11. Double Diamond frame bindings are separate work.
         animationSpriteArrays[11] = animSpritesUSpin;
+
+        // Double Diamond leaves IDs without imported frames static.
+        doubleDiamondAnimationSpriteArrays = new List<Sprite>[symbolSprites.Length];
+        if (doubleDiamondWinAnimations == null) return;
+
+        foreach (var animation in doubleDiamondWinAnimations)
+        {
+            if (animation?.frames == null || animation.symbolId < 0 || animation.symbolId >= doubleDiamondAnimationSpriteArrays.Length)
+                continue;
+
+            doubleDiamondAnimationSpriteArrays[animation.symbolId] = animation.frames.FindAll(frame => frame != null);
+        }
     }
 
     private void InitializeReels()
@@ -363,7 +386,6 @@ public class SlotView : MonoBehaviour
             return null;
         }
 
-        // Validate symbolId range (0-12)
         if (symbolId < 0 || symbolId >= symbolSprites.Length)
         {
             Debug.LogWarning($"[SlotView] Invalid symbolId {symbolId}, using default sprite 0. Total sprites: {symbolSprites.Length}");
@@ -680,6 +702,8 @@ public class SlotView : MonoBehaviour
 
     private void PlayStopAnimationsForColumn(int col)
     {
+        // Double Diamond plays symbol frames together during the winning-cell pass.
+        if (gameManager?.lastResult?.isDoubleDiamondResult == true) return;
         if (currentDisplayMatrix == null || col >= currentDisplayMatrix.Count) return;
 
         for (int row = 0; row < currentDisplayMatrix[col].Count; row++)
@@ -695,8 +719,41 @@ public class SlotView : MonoBehaviour
         }
     }
 
+    // Double Diamond finds the Bonus Diamonds in the landed matrix, even when there are no winning lines.
+    internal static List<int> FindBonusDiamondPositions(List<List<int>> reelMatrix, int bonusSymbolId)
+    {
+        var positions = new List<int>();
+        if (reelMatrix == null || bonusSymbolId < 0) return positions;
+
+        for (int col = 0; col < Mathf.Min(5, reelMatrix.Count); col++)
+        {
+            var reel = reelMatrix[col];
+            if (reel == null) continue;
+
+            for (int row = 0; row < reel.Count; row++)
+            {
+                if (reel[row] == bonusSymbolId)
+                    positions.Add(row * 5 + col);
+            }
+        }
+
+        return positions;
+    }
+
+    internal IEnumerator AnimateBonusTrigger(List<int> bonusPositions)
+    {
+        if (bonusPositions.Count == 0) yield break;
+
+        // This can start from the first-pass callback of the win coroutine.
+        KillWinTweens(false);
+        yield return AnimateWinPositions(bonusPositions, isDoubleDiamond: true);
+        KillWinTweens(false);
+    }
+
+    // Legacy CNY scatter playback uses the U-Spin ID.
     internal void AnimateAllScatters(int loopCount)
     {
+        if (gameManager?.lastResult?.isDoubleDiamondResult == true) return;
         if (currentDisplayMatrix == null) return;
 
         // Clear any individual hit animations before starting the collective one
@@ -902,7 +959,8 @@ public class SlotView : MonoBehaviour
 
     #region Win Line Animation
 
-    internal void ShowWinLineAnimation(List<WinLine> winLines, System.Action onComplete)
+    internal void ShowWinLineAnimation(List<WinLine> winLines, System.Action onComplete,
+        bool? replayLines = null, System.Action<WinLine, Sprite> onLineShown = null)
     {
         if (winLines == null || winLines.Count == 0)
         {
@@ -911,10 +969,12 @@ public class SlotView : MonoBehaviour
         }
 
         KillWinTweens();
-        winAnimationCoroutine = StartCoroutine(PlayTwoPhaseWinLines(winLines, onComplete));
+        bool isDoubleDiamond = gameManager?.lastResult?.isDoubleDiamondResult == true;
+        winAnimationCoroutine = StartCoroutine(PlayTwoPhaseWinLines(winLines, onComplete, replayLines, onLineShown, isDoubleDiamond));
     }
 
-    private IEnumerator PlayTwoPhaseWinLines(List<WinLine> winLines, System.Action onComplete)
+    private IEnumerator PlayTwoPhaseWinLines(List<WinLine> winLines, System.Action onComplete,
+        bool? replayLines, System.Action<WinLine, Sprite> onLineShown, bool isDoubleDiamond)
     {
         int rowLimit = (gameManager != null && gameManager.gameConfig != null) ? gameManager.gameConfig.rowCount : 3;
 
@@ -951,8 +1011,8 @@ public class SlotView : MonoBehaviour
 
         AudioManager.Instance?.PlayWinLinePhase1Start();
 
-        // Animate all winning symbols and wait for their ImageAnimation loops to complete
-        yield return StartCoroutine(AnimateWinPositions(allWinPositions));
+        // Keep the animation in this coroutine so spin-start cleanup cancels it with the replay.
+        yield return AnimateWinPositions(allWinPositions, isDoubleDiamond);
 
         KillWinTweens(false);
         HideAllWinLineTexts();
@@ -961,14 +1021,16 @@ public class SlotView : MonoBehaviour
         // Invoke onComplete immediately after Phase 1 so game logic (Free Spins / Autoplay / Win complete) can proceed
         onComplete?.Invoke();
 
-        // Skip Phase 2 if in Free Spins, Autoplay, or if a Special Feature (USpin, MoneyBag, Scatter trigger) was triggered
+        // Double Diamond decides whether to replay before the completion callback advances the spin.
+        // Legacy CNY uses the existing free-spin, autoplay, and feature checks.
         bool hasSpecialFeature = (gameManager != null && gameManager.lastResult != null && (
             (gameManager.lastResult.uSpinData != null && gameManager.lastResult.uSpinData.triggered) ||
             (gameManager.lastResult.moneyBagData != null && gameManager.lastResult.moneyBagData.triggered) ||
             (gameManager.lastResult.freeSpinData != null && gameManager.lastResult.freeSpinData.isTriggered)
         ));
 
-        bool skipPhase2 = (gameManager != null && (gameManager.isInFreeSpins || gameManager.isAutoPlaying)) || hasSpecialFeature;
+        bool skipLegacyReplay = (gameManager != null && (gameManager.isInFreeSpins || gameManager.isAutoPlaying)) || hasSpecialFeature;
+        bool skipPhase2 = replayLines.HasValue ? !replayLines.Value : skipLegacyReplay;
         if (skipPhase2)
         {
             yield break;
@@ -986,8 +1048,8 @@ public class SlotView : MonoBehaviour
                 KillWinTweens(false);
                 HideAllWinLineTexts();
 
-                // Show WinLineText on 1st icon of the active win line only if there are multiple win lines
-                if (winLines.Count > 1)
+                // Double Diamond shows the line payout even when there is just one winning line.
+                if (onLineShown != null || winLines.Count > 1)
                 {
                     int firstFlatIndex = winLine.positions[0];
                     int firstRow = firstFlatIndex / 5;
@@ -995,93 +1057,55 @@ public class SlotView : MonoBehaviour
                     ShowWinLineTextOnIcon(firstCol, firstRow, winLine.winAmount);
                 }
 
-                // Animate win line symbols and wait for their ImageAnimation loops to complete
-                yield return StartCoroutine(AnimateWinPositions(winLine.positions));
+                // Keep the Double Diamond popup synchronized with the line being highlighted.
+                onLineShown?.Invoke(winLine, GetSymbolSprite(winLine.symbolId));
+                yield return AnimateWinPositions(winLine.positions, isDoubleDiamond);
             }
         }
     }
 
-    private IEnumerator AnimateWinPositions(IEnumerable<int> flatPositions)
+    private IEnumerator AnimateWinPositions(IEnumerable<int> flatPositions, bool isDoubleDiamond)
     {
         if (flatPositions == null) yield break;
 
-        int rowLimit = (gameManager != null && gameManager.gameConfig != null) ? gameManager.gameConfig.rowCount : 3;
-        int loopCountTarget = (gameManager != null && (gameManager.isInFreeSpins || gameManager.isAutoPlaying)) ? 1 : winSymbolLoopCount;
-
-        List<ImageAnimation> activeAnims = new List<ImageAnimation>();
-        int completedCount = 0;
-        bool isCompleted = false;
+        int rowLimit = gameManager?.gameConfig?.rowCount ?? 3;
+        int loopCountTarget = (gameManager != null && (gameManager.isInFreeSpins || gameManager.isAutoPlaying))
+            ? 1
+            : Mathf.Max(1, winSymbolLoopCount);
+        var animationLookup = isDoubleDiamond ? doubleDiamondAnimationSpriteArrays : animationSpriteArrays;
+        var animations = new List<(ImageAnimation player, Image renderer, Image symbol, List<Sprite> frames)>();
 
         foreach (int flatIndex in flatPositions)
         {
+            if (flatIndex < 0) continue;
+
             int row = flatIndex / 5;
             int col = flatIndex % 5;
+            if (row >= rowLimit) continue;
 
-            if (col < 0 || col >= 5 || row < 0 || row >= rowLimit) continue;
-
+            // WinBoxes belong to the matching cells even when the symbols have no frames.
             EnableWinBox(col, row);
+
+            if (animationLookup == null || currentDisplayMatrix == null || col >= currentDisplayMatrix.Count ||
+                currentDisplayMatrix[col] == null || row >= currentDisplayMatrix[col].Count) continue;
+            int symbolId = currentDisplayMatrix[col][row];
+            if (symbolId < 0 || symbolId >= animationLookup.Length) continue;
+            var frames = animationLookup[symbolId];
+            if (frames == null || frames.Count == 0) continue;
 
             if (col >= reelImagesList.Count) continue;
             var reel = reelImagesList[col];
-            if (reel.images == null || reel.images.Count != 8) continue;
-
             int imageIndex = 2 + row;
-            if (imageIndex >= reel.images.Count) continue;
+            if (reel.images == null || imageIndex >= reel.images.Count) continue;
+            Image symbol = reel.images[imageIndex];
+            if (symbol == null) continue;
 
-            Image symbolImage = reel.images[imageIndex];
-            if (symbolImage == null) continue;
+            var overlay = WinBox(winAnimationColumns, col, row);
+            if (overlay == null || !overlay.TryGetComponent(out ImageAnimation player) || !player.enabled) continue;
+            var renderer = player.rendererDelegate != null ? player.rendererDelegate : overlay.GetComponent<Image>();
+            if (renderer == null) continue;
 
-            var animGO = WinBox(winAnimationColumns, col, row);
-            if (animGO == null) continue;
-
-            ImageAnimation imageAnim = animGO.GetComponent<ImageAnimation>();
-            if (imageAnim == null) continue;
-
-            if (col >= currentDisplayMatrix.Count || row >= currentDisplayMatrix[col].Count) continue;
-            int symbolId = currentDisplayMatrix[col][row];
-            if (symbolId < 0 || symbolId >= animationSpriteArrays.Length) continue;
-
-            List<Sprite> animSprites = animationSpriteArrays[symbolId];
-            if (animSprites == null || animSprites.Count == 0) continue;
-
-            imageAnim.textureArray = animSprites;
-            imageAnim.doLoopAnimation = true;
-
-            animGO.SetActive(true);
-            Image animRenderer = imageAnim.rendererDelegate != null ? imageAnim.rendererDelegate : animGO.GetComponent<Image>();
-            if (animRenderer != null)
-            {
-                animRenderer.DOKill();
-                Color c = animRenderer.color;
-                animRenderer.color = new Color(c.r, c.g, c.b, 1f);
-            }
-
-            symbolImage.DOKill();
-            symbolImage.DOFade(0f, 0.2f);
-
-            activeAnims.Add(imageAnim);
-
-            imageAnim.onLoopComplete = (currentLoop) =>
-            {
-                if (currentLoop >= loopCountTarget)
-                {
-                    imageAnim.onLoopComplete = null;
-                    imageAnim.StopAnimation();
-                    if (animGO != null) animGO.SetActive(false);
-
-                    if (symbolImage != null)
-                    {
-                        symbolImage.DOKill();
-                        symbolImage.DOFade(1f, 0.2f);
-                    }
-
-                    completedCount++;
-                    if (completedCount >= activeAnims.Count)
-                    {
-                        isCompleted = true;
-                    }
-                }
-            };
+            animations.Add((player, renderer, symbol, frames));
         }
 
         if (winLineBoxToAnimationDelay > 0)
@@ -1089,14 +1113,61 @@ public class SlotView : MonoBehaviour
             yield return new WaitForSeconds(winLineBoxToAnimationDelay);
         }
 
-        foreach (var imageAnim in activeAnims)
+        int animatedCount = 0;
+        foreach (var cell in animations)
         {
-            imageAnim.StartAnimation();
+            var player = cell.player;
+            var overlay = player.gameObject;
+
+            // Assign frames after activation so every cell starts on the same pass.
+            player.textureArray = null;
+            overlay.SetActive(true);
+            player.textureArray = cell.frames;
+            player.doLoopAnimation = true;
+            player.onLoopComplete = loops =>
+            {
+                if (loops < loopCountTarget) return;
+
+                player.onLoopComplete = null;
+                player.StopAnimation();
+                overlay.SetActive(false);
+                if (cell.symbol != null)
+                {
+                    cell.symbol.DOKill();
+                    cell.symbol.DOFade(1f, 0.2f);
+                }
+            };
+
+            bool started;
+            if (isDoubleDiamond)
+            {
+                started = player.TryStartAtFrameRate(doubleDiamondWinFramesPerSecond);
+            }
+            else
+            {
+                player.StartAnimation();
+                started = player.currentAnimationState == ImageAnimation.ImageState.PLAYING;
+            }
+
+            if (!started)
+            {
+                player.onLoopComplete = null;
+                overlay.SetActive(false);
+                continue;
+            }
+
+            cell.renderer.DOKill();
+            Color color = cell.renderer.color;
+            cell.renderer.color = new Color(color.r, color.g, color.b, 1f);
+            cell.symbol.DOKill();
+            cell.symbol.DOFade(0f, 0.2f);
+            animatedCount++;
         }
 
-        if (activeAnims.Count > 0)
+        if (animatedCount > 0)
         {
-            yield return new WaitUntil(() => isCompleted);
+            yield return new WaitUntil(() => animations.TrueForAll(cell => cell.player == null ||
+                !cell.player.isActiveAndEnabled || cell.player.currentAnimationState != ImageAnimation.ImageState.PLAYING));
         }
         else
         {

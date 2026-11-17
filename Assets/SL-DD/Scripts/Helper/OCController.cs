@@ -43,6 +43,8 @@ public class OCController : MonoBehaviour
     [Header("Background Toggle Settings")]
     [SerializeField] private GameObject landscapeBackground;
     [SerializeField] private GameObject portraitBackground;
+    [SerializeField] private GameObject freeSpinLandscapeBackground;
+    [SerializeField] private GameObject freeSpinPortraitBackground;
     [SerializeField] private GameObject wheelLandscapeBackground;
     [SerializeField] private GameObject wheelPortraitBackground;
 
@@ -81,6 +83,9 @@ public class OCController : MonoBehaviour
     [SerializeField] private float transitionDuration = 0.2f;
 
     private List<Tween> activeTweens = new List<Tween>();
+    private bool lineWinPopupVisible;
+    private bool doubleDiamondFreeSpinsActive;
+    private bool doubleDiamondFreeSpinDisplayVisible;
 
     private void Awake()
     {
@@ -133,14 +138,7 @@ public class OCController : MonoBehaviour
         }
 
         // 2. Toggle Landscape vs Portrait Background Objects
-        if (landscapeBackground != null)
-        {
-            landscapeBackground.SetActive(!isMobilePortrait);
-        }
-        if (portraitBackground != null)
-        {
-            portraitBackground.SetActive(isMobilePortrait);
-        }
+        UpdateBackgroundVisibility(isMobilePortrait);
 
         // Toggle Wheel Landscape vs Portrait Background Objects
         if (wheelLandscapeBackground != null)
@@ -206,10 +204,7 @@ public class OCController : MonoBehaviour
         {
             layout.Apply(isMobilePortrait);
         }
-        if (landscapeBanner != null)
-        {
-            landscapeBanner.SetActive(!isMobilePortrait);
-        }
+        UpdateLandscapeBannerVisibility(isMobilePortrait);
 
         if (slotObject != null)
         {
@@ -280,6 +275,44 @@ public class OCController : MonoBehaviour
             {
                 guideScrollObject.sizeDelta = targetScrollSize;
             }
+        }
+    }
+
+    // Double Diamond replaces the banner with the line win popup during replay.
+    internal void SetLineWinPopupVisible(bool visible)
+    {
+        lineWinPopupVisible = visible;
+        bool isMobilePortrait = orientationChange != null &&
+                                orientationChange.CurrentMode == OrientationChange.OrientationMode.MobilePortrait;
+        UpdateLandscapeBannerVisibility(isMobilePortrait);
+    }
+
+    internal void SetDoubleDiamondFreeSpinPresentation(bool active, bool displayVisible = false)
+    {
+        doubleDiamondFreeSpinsActive = active;
+        doubleDiamondFreeSpinDisplayVisible = active && displayVisible;
+        bool isMobilePortrait = orientationChange != null &&
+                                orientationChange.CurrentMode == OrientationChange.OrientationMode.MobilePortrait;
+        UpdateBackgroundVisibility(isMobilePortrait);
+        UpdateLandscapeBannerVisibility(isMobilePortrait);
+    }
+
+    private void UpdateBackgroundVisibility(bool isMobilePortrait)
+    {
+        bool showFreeSpinLandscape = doubleDiamondFreeSpinsActive && !isMobilePortrait && freeSpinLandscapeBackground != null;
+        bool showFreeSpinPortrait = doubleDiamondFreeSpinsActive && isMobilePortrait && freeSpinPortraitBackground != null;
+
+        if (landscapeBackground != null) landscapeBackground.SetActive(!isMobilePortrait && !showFreeSpinLandscape);
+        if (portraitBackground != null) portraitBackground.SetActive(isMobilePortrait && !showFreeSpinPortrait);
+        if (freeSpinLandscapeBackground != null) freeSpinLandscapeBackground.SetActive(showFreeSpinLandscape);
+        if (freeSpinPortraitBackground != null) freeSpinPortraitBackground.SetActive(showFreeSpinPortrait);
+    }
+
+    private void UpdateLandscapeBannerVisibility(bool isMobilePortrait)
+    {
+        if (landscapeBanner != null)
+        {
+            landscapeBanner.SetActive(!isMobilePortrait && !lineWinPopupVisible && !doubleDiamondFreeSpinDisplayVisible);
         }
     }
 

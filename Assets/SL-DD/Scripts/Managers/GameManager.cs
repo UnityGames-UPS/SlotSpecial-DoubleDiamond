@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     internal bool isInFreeSpins;
     internal int freeSpinsRemaining;
     internal int freeSpinsUsed;
+    private int doubleDiamondFreeSpinsAwarded;
     internal bool waitingForFreeSpinStart;
 
     internal bool isInitialized;
@@ -211,6 +212,8 @@ public class GameManager : MonoBehaviour
             if (playerData.balance < 0) playerData.balance = 0;
         }
 
+        // Clear the Double Diamond line replay UI when a new spin starts.
+        uiManager.CloseLineWinPopup();
         uiManager.OnSpinStarted();
 
         if (slotView != null)
@@ -277,6 +280,13 @@ public class GameManager : MonoBehaviour
     {
         if (lastResult != null)
         {
+            // Keep the post-bet balance visible before any trigger-result UI is refreshed.
+            if (lastResult.isDoubleDiamondResult && !lastResult.isFreeSpin &&
+                lastResult.freeSpinData?.isTriggered == true)
+            {
+                uiManager.HoldDoubleDiamondFreeSpinBalance();
+            }
+
             double featureDeferredWin = lastResult.GetTotalFeatureDeferredWins();
             double reelStopBalance = lastResult.playerData != null ? (lastResult.playerData.balance - featureDeferredWin) : 0;
 
@@ -289,6 +299,23 @@ public class GameManager : MonoBehaviour
 
         if (lastResult != null && lastResult.winAmount > 0 && lastResult.winLines != null && lastResult.winLines.Count > 0)
         {
+            // Double Diamond free-spin wins use the grouped pass. Paid wins can replay individual lines.
+            if (lastResult.isDoubleDiamondResult)
+            {
+                bool replayLines = !lastResult.isFreeSpin && !isInFreeSpins &&
+                    !isAutoPlaying && lastResult.freeSpinData?.isTriggered != true;
+
+                uiManager.DisableControlsDuringWinAnimation();
+                uiManager.OnSpinStopping(lastResult);
+                slotView.ShowWinLineAnimation(
+                    lastResult.winLines,
+                    onComplete: () => StartCoroutine(ProcessSpecialFeaturesAfterWin()),
+                    replayLines: replayLines,
+                    onLineShown: uiManager.ShowLineWinPopup);
+                return;
+            }
+
+            // Legacy CNY threshold presentation.
             double totalPay = GetTotalPay();
             double multiplier = totalPay > 0 ? (lastResult.winAmount / totalPay) : 0;
 
@@ -383,7 +410,11 @@ public class GameManager : MonoBehaviour
 
         if (lastResult != null && lastResult.freeSpinData != null && lastResult.freeSpinData.isTriggered && !isInFreeSpins)
         {
-            yield return StartCoroutine(DelayScatterTriggerResult());
+            if (lastResult.isDoubleDiamondResult)
+                yield return PlayDoubleDiamondFreeSpinTrigger(lastResult);
+            else
+                yield return StartCoroutine(DelayScatterTriggerResult()); // Legacy CNY.
+
             yield break;
         }
 
@@ -402,6 +433,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Double Diamond plays the Bonus Diamonds before opening the award popup.
+    private IEnumerator PlayDoubleDiamondFreeSpinTrigger(SpinResult trigger)
+    {
+        currentState = GameState.Stopping;
+        uiManager.DisableControlsDuringWinAnimation();
+
+        var bonusPositions = SlotView.FindBonusDiamondPositions(trigger.resultMatrix, gameConfig?.bonusSymbolId ?? -1);
+        if (slotView != null && bonusPositions.Count > 0)
+            yield return slotView.AnimateBonusTrigger(bonusPositions);
+
+        if (lastResult == trigger)
+            ProcessSpinResult(bonusPositions.Count);
+    }
+
+    // Legacy CNY scatter animation and sound.
     private IEnumerator DelayScatterTriggerResult()
     {
         // Play special feature trigger sound AFTER all reels have stopped
@@ -490,9 +536,18 @@ public class GameManager : MonoBehaviour
     {
         lastResult = result;
 
-        // CRITICAL FIX: Update free spin counter IMMEDIATELY when server response arrives
-        // This ensures the display shows the exact server-authoritative played count without lag
-        if (isInFreeSpins && result.serverSpinsRemaining >= 0)
+        // Double Diamond shows the remaining count reported by the server.
+        if (isInFreeSpins && result.isDoubleDiamondResult && result.isFreeSpin &&
+            result.serverSpinsRemaining >= 0)
+        {
+            doubleDiamondFreeSpinsAwarded += result.freeSpinData?.spinsAwarded ?? 0;
+            freeSpinsRemaining = result.serverSpinsRemaining;
+            freeSpinsUsed = doubleDiamondFreeSpinsAwarded - freeSpinsRemaining;
+            uiManager.UpdateDoubleDiamondFreeSpinCount(freeSpinsRemaining);
+        }
+        // Legacy CNY receives played and awarded counts directly.
+        else if (isInFreeSpins && !result.isDoubleDiamondResult &&
+                 result.serverSpinsRemaining >= 0)
         {
             freeSpinsRemaining = result.serverSpinsRemaining;
             freeSpinsUsed = result.serverSpinsUsed;
@@ -518,7 +573,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void ProcessSpinResult()
+    private void ProcessSpinResult(int bonusDiamondCount = 0)
     {
         playerData = lastResult.playerData;
 
@@ -529,6 +584,7 @@ public class GameManager : MonoBehaviour
         int serverSpinsUsed = lastResult.serverSpinsUsed;
         double serverTotalRoundWin = lastResult.serverTotalRoundWin;
         bool isRoundOver = lastResult.isRoundOver;
+        bool isDoubleDiamondResult = lastResult.isDoubleDiamondResult;
 
         // Note: freeSpinsRemaining already updated in OnSpinResultReceived
         // Keeping this for safety in case OnSpinResultReceived wasn't called
@@ -541,8 +597,9 @@ public class GameManager : MonoBehaviour
         // Check if free spins were just triggered (initial trigger from base game)
         if (lastResult.freeSpinData != null && lastResult.freeSpinData.isTriggered && !isInFreeSpins)
         {
-            StartFreeSpins(lastResult.freeSpinData.spinsAwarded);
+            var trigger = lastResult;
             lastResult = null;
+            StartFreeSpins(trigger, bonusDiamondCount);
             return;
         }
 
@@ -587,8 +644,7 @@ public class GameManager : MonoBehaviour
 
             if (isRoundOver || freeSpinsRemaining <= 0)
             {
-                // Always use server-authoritative spinsUsed
-                EndFreeSpins(serverTotalRoundWin, serverSpinsUsed);
+                EndFreeSpins(serverTotalRoundWin, serverSpinsUsed, isDoubleDiamondResult);
             }
             else
             {
@@ -681,11 +737,13 @@ public class GameManager : MonoBehaviour
 
     #region Free Spins
 
-    private void StartFreeSpins(int spins)
+    private void StartFreeSpins(SpinResult trigger, int bonusDiamondCount)
     {
+        int spins = trigger.freeSpinData.spinsAwarded;
         isInFreeSpins = true;
-        freeSpinsRemaining = spins;
+        freeSpinsRemaining = trigger.isDoubleDiamondResult ? trigger.freeSpinData.remainingSpins : spins;
         freeSpinsUsed = 0;
+        doubleDiamondFreeSpinsAwarded = trigger.isDoubleDiamondResult ? spins : 0;
         waitingForFreeSpinStart = true;
         AudioManager.Instance?.PlayFreeSpinBg();
 
@@ -700,9 +758,11 @@ public class GameManager : MonoBehaviour
             savedAutoPlayRemainingRounds = (prevTotal != -1) ? (prevRemaining - 1) : -1;
         }
 
-        uiManager.OnFreeSpinsStarted(spins);
-
         currentState = GameState.Idle;
+        if (trigger.isDoubleDiamondResult)
+            uiManager.OnDoubleDiamondFreeSpinsStarted(spins, freeSpinsRemaining, bonusDiamondCount, trigger.serverTotalRoundWin);
+        else
+            uiManager.OnFreeSpinsStarted(spins); // Legacy CNY award popup.
     }
 
     internal void StartFirstFreeSpin()
@@ -732,14 +792,23 @@ public class GameManager : MonoBehaviour
         RequestSpin();
     }
 
-    private void EndFreeSpins(double totalRoundWin, int totalSpinsUsed)
+    private void EndFreeSpins(double totalRoundWin, int totalSpinsUsed, bool isDoubleDiamondResult)
     {
         isInFreeSpins = false;
         freeSpinsRemaining = 0;
+        doubleDiamondFreeSpinsAwarded = 0;
         AudioManager.Instance?.PlayMainBg();
 
-        uiManager.OnFreeSpinsEnded(totalRoundWin, totalSpinsUsed);
+        if (isDoubleDiamondResult)
+        {
+            // Double Diamond holds the next spin until the total-win popup and return transition finish.
+            currentState = GameState.Stopping;
+            uiManager.OnDoubleDiamondFreeSpinsEnded(totalRoundWin, () => currentState = GameState.Idle);
+            return;
+        }
 
+        // Legacy CNY completes free spins through the universal popup.
+        uiManager.OnFreeSpinsEnded(totalRoundWin, totalSpinsUsed);
         currentState = GameState.Idle;
     }
 

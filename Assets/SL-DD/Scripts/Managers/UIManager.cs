@@ -76,6 +76,13 @@ public class UIManager : MonoBehaviour
     [Header("Universal Win Popup - Star Particle Burst")]
     [SerializeField] private StarFountain starFountain;
 
+    [Header("Double Diamond Line Wins")]
+    [SerializeField] private GameObject lineWinPopup;
+    [SerializeField] private Image lineWinSymbolImage;
+    [SerializeField] private TMP_Text lineWinNumberText;
+    [SerializeField] private TMP_Text lineWinAmountText;
+    [SerializeField] private OCController lineWinOrientationController;
+
     [Header("Spin Button")]
     [SerializeField] private Button spinButton;
     [SerializeField] private Button stopButton;
@@ -179,6 +186,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject freeSpinTriggerPopup;
     [SerializeField] private List<GameObject> bonusSympolImages;
     [SerializeField] private TMP_Text freeSpinAwaredText;
+    [SerializeField, Min(0f)] private float freeSpinTriggerPopupDuration = 5f;
 
     [SerializeField] private GameObject freeSpinCountContainer;
     [SerializeField] private TMP_Text remainingFreeSpinsText;
@@ -187,6 +195,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject freeSpinTotalWonTextImage;
     [SerializeField] private GameObject freeSpinTotalFrame;
     [SerializeField] private TMP_Text freeSpinTotalWonText;
+    [SerializeField, Min(0f)] private float freeSpinTotalWinIntroDuration = 0.6f;
+    [SerializeField, Min(0f)] private float freeSpinTotalWinCountUpDuration = 1f;
 
     [Header("Ping Display")]
     [SerializeField] private TMP_Text pingText;
@@ -216,10 +226,12 @@ public class UIManager : MonoBehaviour
 
     private Tween balanceTween;
     private Tween winTween;
-    private double totalFreeSpinWin = 0;
     private int totalFreeSpinsAwarded = 0;
 
     private int initialFreeSpins = 0;
+    private bool holdDoubleDiamondFreeSpinBalance;
+    private bool awaitingDoubleDiamondFreeSpinStart;
+    private System.Action doubleDiamondFreeSpinReturn;
 
     // Optimistic balance: the locally-deducted balance shown while the spin is in flight
     private double optimisticBalance = 0;
@@ -283,17 +295,19 @@ public class UIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        OrientationChange.OnOrientationChanged += HandleOrientationChangedForWheelButtons;
+        OrientationChange.OnOrientationChanged += HandleOrientationChanged;
     }
 
     private void OnDisable()
     {
-        OrientationChange.OnOrientationChanged -= HandleOrientationChangedForWheelButtons;
+        OrientationChange.OnOrientationChanged -= HandleOrientationChanged;
     }
 
-    private void HandleOrientationChangedForWheelButtons(OrientationChange.OrientationMode mode, int width, int height)
+    private void HandleOrientationChanged(OrientationChange.OrientationMode mode, int width, int height)
     {
         UpdateNewWheelSpinButtonsVisibility();
+        if (doubleDiamondFreeSpinReturn != null)
+            StartCoroutine(RefreshFreeSpinTakeAfterOrientationChange());
     }
 
     private void UpdateNewWheelSpinButtonsVisibility()
@@ -467,9 +481,9 @@ public class UIManager : MonoBehaviour
         if (expandButtonPortrait) expandButtonPortrait.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); OnExpand(); });
         if (shrinkButtonPortrait) shrinkButtonPortrait.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); OnShrink(); });
 
-        if (wheelSpinButton) wheelSpinButton.onClick.AddListener(() => { AudioManager.Instance?.PlayWheelStart(); OnWheelSpinClicked(); });
+        if (wheelSpinButton) wheelSpinButton.onClick.AddListener(OnSharedStartButtonClicked);
         if (wheelSpinButton2) wheelSpinButton2.onClick.AddListener(() => { AudioManager.Instance?.PlayWheelStart(); OnWheelSpinClicked(); });
-        if (wheelSpinButtonPortrait) wheelSpinButtonPortrait.onClick.AddListener(() => { AudioManager.Instance?.PlayWheelStart(); OnWheelSpinClicked(); });
+        if (wheelSpinButtonPortrait) wheelSpinButtonPortrait.onClick.AddListener(OnSharedStartButtonClicked);
         if (wheelSpinButtonPortrait2) wheelSpinButtonPortrait2.onClick.AddListener(() => { AudioManager.Instance?.PlayWheelStart(); OnWheelSpinClicked(); });
 
         // Take button for universal win popup
@@ -626,19 +640,13 @@ public class UIManager : MonoBehaviour
     {
         UpdateBalanceDisplay();
         if (result != null)
-        {
-            double displayWin = (gameManager != null && gameManager.isInFreeSpins) ? result.serverTotalRoundWin : result.winAmount;
-            UpdateWinDisplay(displayWin);
-        }
+            UpdateWinDisplay(GetSpinDisplayWin(result));
     }
 
     internal void OnSpinCompleted(SpinResult result = null)
     {
         if (result != null)
-        {
-            double displayWin = (gameManager != null && gameManager.isInFreeSpins) ? result.serverTotalRoundWin : result.winAmount;
-            UpdateWinDisplay(displayWin);
-        }
+            UpdateWinDisplay(GetSpinDisplayWin(result));
         UpdateBalanceDisplay();
 
         if (gameManager.isAutoPlaying)
@@ -658,6 +666,65 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private double GetSpinDisplayWin(SpinResult result)
+    {
+        if (gameManager != null && gameManager.isInFreeSpins)
+            return result.serverTotalRoundWin;
+
+        if (result.isDoubleDiamondResult && !result.isFreeSpin && result.freeSpinData?.isTriggered == true)
+            return result.freeSpinData.scatterWin;
+
+        return result.winAmount;
+    }
+
+    // Double Diamond displays these details while the active winning line is highlighted.
+    internal void ShowLineWinPopup(WinLine line, Sprite symbol)
+    {
+        if (lineWinPopup == null) return;
+
+        if (lineWinSymbolImage != null) lineWinSymbolImage.sprite = symbol;
+        if (lineWinNumberText != null) lineWinNumberText.text = FormatWinDigits(line.lineId + 1);
+        if (lineWinAmountText != null) lineWinAmountText.text = FormatWinDigits(line.winAmount);
+
+        if (!lineWinPopup.activeSelf)
+        {
+            lineWinPopup.SetActive(true);
+            lineWinOrientationController?.SetLineWinPopupVisible(true);
+        }
+    }
+
+    internal void CloseLineWinPopup()
+    {
+        if (lineWinPopup == null || !lineWinPopup.activeSelf) return;
+
+        lineWinPopup.SetActive(false);
+        lineWinOrientationController?.SetLineWinPopupVisible(false);
+    }
+
+    private static string FormatWinDigits(double value)
+    {
+        string formatted = value.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture);
+        var digits = new System.Text.StringBuilder();
+        foreach (char character in formatted)
+        {
+            if (character == '.')
+            {
+                digits.Append("<sprite index=10>"); // Decimal point.
+            }
+            else if (character >= '0' && character <= '9')
+            {
+                digits.Append("<sprite index=").Append(character).Append('>');
+            }
+            else
+            {
+                digits.Append(character);
+            }
+        }
+
+        return digits.ToString();
+    }
+
+    // Legacy CNY universal popup used by the existing Big Win flow.
     internal void TriggerBigWinPopup(SpinResult result, System.Action onComplete = null)
     {
         double winAmount = (result != null) ? result.winAmount : 0;
@@ -1132,6 +1199,69 @@ public class UIManager : MonoBehaviour
 
     #region Free Spins Flow
 
+    internal void HoldDoubleDiamondFreeSpinBalance()
+    {
+        holdDoubleDiamondFreeSpinBalance = true;
+    }
+
+    internal void OnDoubleDiamondFreeSpinsStarted(int spinsAwarded, int spinsRemaining, int bonusDiamondCount, double roundWin)
+    {
+        DisableControlsDuringWinAnimation();
+        StartCoroutine(ShowDoubleDiamondFreeSpinTrigger(spinsAwarded, spinsRemaining, bonusDiamondCount, roundWin));
+    }
+
+    private IEnumerator ShowDoubleDiamondFreeSpinTrigger(int spinsAwarded, int spinsRemaining, int bonusDiamondCount, double roundWin)
+    {
+        if (gameLogoObject) gameLogoObject.SetActive(false);
+        lineWinOrientationController?.SetDoubleDiamondFreeSpinPresentation(true);
+        if (freeSpinTriggerPopup != null)
+        {
+            if (freeSpinAwaredText != null)
+                freeSpinAwaredText.text = FormatWinDigits(spinsAwarded);
+
+            if (bonusSympolImages != null)
+            {
+                for (int i = 0; i < bonusSympolImages.Count; i++)
+                {
+                    var diamond = bonusSympolImages[i];
+                    if (diamond != null)
+                        diamond.SetActive(i < bonusDiamondCount);
+                }
+            }
+
+            freeSpinTriggerPopup.SetActive(true);
+            yield return new WaitForSeconds(freeSpinTriggerPopupDuration);
+            freeSpinTriggerPopup.SetActive(false);
+        }
+
+        lineWinOrientationController?.SetDoubleDiamondFreeSpinPresentation(true, displayVisible: true);
+        UpdateDoubleDiamondFreeSpinCount(spinsRemaining);
+        UpdateWinDisplay(roundWin);
+
+        // Reuse the Start controls already positioned over Spin in both orientations.
+        awaitingDoubleDiamondFreeSpinStart = true;
+        SetButtonActive(spinButton, spinButtonPortrait, false);
+        SetButtonActive(wheelSpinButton, wheelSpinButtonPortrait, true);
+        SetButtonInteractable(wheelSpinButton, wheelSpinButtonPortrait, true);
+    }
+
+    private void OnSharedStartButtonClicked()
+    {
+        if (awaitingDoubleDiamondFreeSpinStart)
+        {
+            awaitingDoubleDiamondFreeSpinStart = false;
+            SetButtonActive(wheelSpinButton, wheelSpinButtonPortrait, false);
+            AudioManager.Instance?.PlayButton();
+            gameManager.StartFirstFreeSpin();
+            return;
+        }
+
+        // Legacy CNY U-Spin wheel Start.
+        AudioManager.Instance?.PlayWheelStart();
+        OnWheelSpinClicked();
+    }
+
+    // Legacy CNY starts free spins through the universal popup.
     internal void OnFreeSpinsStarted(int spins)
     {
         OnFreeSpinsTriggered(spins);
@@ -1147,7 +1277,6 @@ public class UIManager : MonoBehaviour
 
     private void StartFreeSpinsSequence(int spinsAwarded)
     {
-        totalFreeSpinWin = 0;
         initialFreeSpins = spinsAwarded;
         totalFreeSpinsAwarded = spinsAwarded;
         
@@ -1158,6 +1287,128 @@ public class UIManager : MonoBehaviour
         gameManager.StartFirstFreeSpin();
     }
 
+    internal void OnDoubleDiamondFreeSpinsEnded(double serverTotalRoundWin, System.Action onTransitionComplete)
+    {
+        initialFreeSpins = 0;
+        totalFreeSpinsAwarded = 0;
+        DisableControlsDuringWinAnimation();
+        SetButtonActive(spinButton, spinButtonPortrait, false);
+        StartCoroutine(ShowDoubleDiamondFreeSpinsTotal(serverTotalRoundWin, onTransitionComplete));
+    }
+
+    private IEnumerator ShowDoubleDiamondFreeSpinsTotal(double serverTotalRoundWin, System.Action onTransitionComplete)
+    {
+        if (freeSpinTotalWinPopup != null)
+        {
+            if (freeSpinTotalWonText != null)
+                freeSpinTotalWonText.gameObject.SetActive(false);
+
+            freeSpinTotalWinPopup.SetActive(true);
+            if (freeSpinTotalWinIntroDuration > 0f)
+            {
+                var intro = DOTween.Sequence().SetLink(freeSpinTotalWinPopup)
+                    .AppendInterval(freeSpinTotalWinIntroDuration);
+                FadeInFreeSpinTotalArt(intro, freeSpinTotalWonTextImage);
+                FadeInFreeSpinTotalArt(intro, freeSpinTotalFrame);
+                yield return intro.WaitForCompletion();
+            }
+
+            if (freeSpinTotalWonText != null)
+            {
+                freeSpinTotalWonText.text = FormatWinDigits(0);
+                freeSpinTotalWonText.gameObject.SetActive(true);
+                if (serverTotalRoundWin > 0 && freeSpinTotalWinCountUpDuration > 0f)
+                {
+                    Tween countUp = DOVirtual.Float(0f, 1f, freeSpinTotalWinCountUpDuration, progress =>
+                    {
+                        freeSpinTotalWonText.text = FormatWinDigits(serverTotalRoundWin * progress);
+                    }).SetEase(Ease.Linear).SetLink(freeSpinTotalWinPopup);
+                    yield return countUp.WaitForCompletion();
+                }
+                freeSpinTotalWonText.text = FormatWinDigits(serverTotalRoundWin);
+            }
+        }
+
+        doubleDiamondFreeSpinReturn = onTransitionComplete;
+        SetButtonActive(uwpTakeButton, uwpTakeButtonPortrait, true);
+        SetFreeSpinTakeAboveModal(uwpTakeButton, true);
+        SetFreeSpinTakeAboveModal(uwpTakeButtonPortrait, true);
+        SetButtonInteractable(uwpTakeButton, uwpTakeButtonPortrait, true);
+    }
+
+    private void FadeInFreeSpinTotalArt(Sequence intro, GameObject part)
+    {
+        if (part == null || !part.TryGetComponent(out UnityEngine.UI.Image image)) return;
+
+        Color color = image.color;
+        image.color = new Color(color.r, color.g, color.b, 0f);
+        intro.Insert(0f, image.DOFade(color.a, freeSpinTotalWinIntroDuration));
+    }
+
+    private IEnumerator RefreshFreeSpinTakeAfterOrientationChange()
+    {
+        // Wait for the orientation controller to activate the new bottom bar.
+        yield return null;
+        if (doubleDiamondFreeSpinReturn == null) yield break;
+
+        SetFreeSpinTakeAboveModal(uwpTakeButton, true);
+        SetFreeSpinTakeAboveModal(uwpTakeButtonPortrait, true);
+    }
+
+    private static void SetFreeSpinTakeAboveModal(Button button, bool aboveModal)
+    {
+        if (button == null) return;
+        button.TryGetComponent(out Canvas buttonCanvas);
+        if (!aboveModal)
+        {
+            if (buttonCanvas != null)
+            {
+                buttonCanvas.overrideSorting = false;
+                buttonCanvas.enabled = false;
+                button.GetComponent<GraphicRaycaster>().enabled = false;
+            }
+            return;
+        }
+
+        if (!button.gameObject.activeInHierarchy) return;
+        var parentCanvas = button.transform.parent.GetComponentInParent<Canvas>();
+        if (parentCanvas == null) return;
+
+        // The existing Take buttons are under the bottom bars. Give them priority over the modal backdrop.
+        if (buttonCanvas == null)
+        {
+            buttonCanvas = button.gameObject.AddComponent<Canvas>();
+            button.gameObject.AddComponent<GraphicRaycaster>();
+        }
+
+        buttonCanvas.enabled = true;
+        button.GetComponent<GraphicRaycaster>().enabled = true;
+        buttonCanvas.overrideSorting = true;
+        buttonCanvas.worldCamera = parentCanvas.worldCamera;
+        buttonCanvas.sortingLayerID = parentCanvas.sortingLayerID;
+        buttonCanvas.sortingOrder = parentCanvas.sortingOrder + 1;
+    }
+
+    private void TakeDoubleDiamondFreeSpinWin()
+    {
+        var onTransitionComplete = doubleDiamondFreeSpinReturn;
+        doubleDiamondFreeSpinReturn = null;
+        SetFreeSpinTakeAboveModal(uwpTakeButton, false);
+        SetFreeSpinTakeAboveModal(uwpTakeButtonPortrait, false);
+        SetButtonActive(uwpTakeButton, uwpTakeButtonPortrait, false);
+        if (freeSpinTotalWinPopup) freeSpinTotalWinPopup.SetActive(false);
+
+        holdDoubleDiamondFreeSpinBalance = false;
+        UpdateBalanceDisplay();
+
+        // Double Diamond returns directly to the normal HUD.
+        lineWinOrientationController?.SetDoubleDiamondFreeSpinPresentation(false);
+        RestoreBaseGameHudAfterFreeSpins();
+        onTransitionComplete?.Invoke();
+        gameManager?.ResumeAutoPlay();
+    }
+
+    // Legacy CNY uses the universal completion popup and its Take button.
     internal void OnFreeSpinsEnded(double serverTotalRoundWin, int serverTotalSpinsUsed)
     {
         initialFreeSpins = 0;
@@ -1181,15 +1432,8 @@ public class UIManager : MonoBehaviour
         }
 
         // 2. Setup main slot UI state behind back film
-        if (freeSpinCountContainer) freeSpinCountContainer.SetActive(false);
         if (gameLogoObject) gameLogoObject.SetActive(true);
-
-        // Reset win display for base game after free spins end
-        UpdateWinDisplay(0);
-
-        SetSpinStopButtonStates(isSpinningState: false, isInteractable: true);
-        SetButtonInteractable(settingsOpenButton, settingsOpenButtonPortrait, true);
-        SetBetControlsEnabled(true);
+        RestoreBaseGameHudAfterFreeSpins();
 
         // 3. Fade out back film
         if (transitionBackFilm != null)
@@ -1198,13 +1442,25 @@ public class UIManager : MonoBehaviour
             transitionBackFilm.gameObject.SetActive(false);
         }
 
-        // 4. Resume autoplay if it was active before free spins and has leftover rounds
-        if (gameManager != null && gameManager.ShouldResumeAutoPlay())
-        {
-            gameManager.ResumeAutoPlay();
-        }
+        gameManager?.ResumeAutoPlay();
     }
 
+    private void RestoreBaseGameHudAfterFreeSpins()
+    {
+        if (freeSpinCountContainer) freeSpinCountContainer.SetActive(false);
+        UpdateWinDisplay(0);
+        SetSpinStopButtonStates(isSpinningState: false, isInteractable: true);
+        SetButtonInteractable(settingsOpenButton, settingsOpenButtonPortrait, true);
+        SetBetControlsEnabled(true);
+    }
+
+    internal void UpdateDoubleDiamondFreeSpinCount(int spinsRemaining)
+    {
+        if (freeSpinCountContainer) freeSpinCountContainer.SetActive(true);
+        if (remainingFreeSpinsText) remainingFreeSpinsText.text = FormatWinDigits(spinsRemaining);
+    }
+
+    // Legacy CNY displays played and awarded spins.
     internal void UpdateFreeSpinCount(int playedSpins, int totalSpins = -1)
     {
         if (totalSpins > 0)
@@ -1322,6 +1578,7 @@ public class UIManager : MonoBehaviour
 
     internal void UpdateBalanceDisplay()
     {
+        if (holdDoubleDiamondFreeSpinBalance) return;
         SetTMPText(balanceText, balanceTextPortrait, "BALANCE : " + FormatAmount(gameManager.playerData.balance));
     }
 
@@ -1347,6 +1604,7 @@ public class UIManager : MonoBehaviour
 
     private void AnimateBalanceUpdate(double newBalance, double startBalance = -1f, float durationOverride = -1f)
     {
+        if (holdDoubleDiamondFreeSpinBalance) return;
         if (balanceTween != null) balanceTween.Kill();
         hasOptimisticBalance = false;
         SetTMPText(balanceText, balanceTextPortrait, "BALANCE : " + FormatAmount(newBalance));
@@ -1905,6 +2163,13 @@ public class UIManager : MonoBehaviour
 
     private void OnUniversalWinTakeButtonClicked()
     {
+        if (doubleDiamondFreeSpinReturn != null)
+        {
+            AudioManager.Instance?.PlayTakeButton();
+            TakeDoubleDiamondFreeSpinWin();
+            return;
+        }
+
         AudioManager.Instance?.StopWinObjectBg();
         AudioManager.Instance?.PlayTakeButton();
         CloseUniversalWinPopup();
