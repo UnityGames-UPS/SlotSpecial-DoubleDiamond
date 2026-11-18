@@ -701,6 +701,15 @@ public class UIManager : MonoBehaviour
         lineWinOrientationController?.SetLineWinPopupVisible(false);
     }
 
+    internal void SetWinSpriteDigits(TMP_Text label, double value)
+    {
+        var spriteAsset = lineWinAmountText != null ? lineWinAmountText.spriteAsset : null;
+        if (spriteAsset != null)
+            label.spriteAsset = spriteAsset;
+
+        label.text = label.spriteAsset != null ? FormatWinDigits(value) : value.ToString("0.###");
+    }
+
     private static string FormatWinDigits(double value)
     {
         string formatted = value.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture);

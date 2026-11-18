@@ -1007,12 +1007,12 @@ public class SlotView : MonoBehaviour
         }
 
         // Show Phase 1 Total Win Text with final win value
-        ShowPhase1TotalWin(totalWinAmount);
+        ShowPhase1TotalWin(totalWinAmount, isDoubleDiamond);
 
         AudioManager.Instance?.PlayWinLinePhase1Start();
 
         // Keep the animation in this coroutine so spin-start cleanup cancels it with the replay.
-        yield return AnimateWinPositions(allWinPositions, isDoubleDiamond);
+        yield return AnimateWinPositions(allWinPositions, isDoubleDiamond, randomizeWinBoxes: isDoubleDiamond);
 
         KillWinTweens(false);
         HideAllWinLineTexts();
@@ -1039,6 +1039,7 @@ public class SlotView : MonoBehaviour
         // ==========================================
         // PHASE 2: Individual Win Line presentation loop
         // ==========================================
+        var winBoxSpritesByLine = new Dictionary<int, Sprite>();
         while (true)
         {
             foreach (var winLine in winLines)
@@ -1054,17 +1055,26 @@ public class SlotView : MonoBehaviour
                     int firstFlatIndex = winLine.positions[0];
                     int firstRow = firstFlatIndex / 5;
                     int firstCol = firstFlatIndex % 5;
-                    ShowWinLineTextOnIcon(firstCol, firstRow, winLine.winAmount);
+                    ShowWinLineTextOnIcon(firstCol, firstRow, winLine.winAmount, isDoubleDiamond);
                 }
 
                 // Keep the Double Diamond popup synchronized with the line being highlighted.
                 onLineShown?.Invoke(winLine, GetSymbolSprite(winLine.symbolId));
-                yield return AnimateWinPositions(winLine.positions, isDoubleDiamond);
+
+                Sprite lineWinBoxSprite = null;
+                if (isDoubleDiamond && !winBoxSpritesByLine.TryGetValue(winLine.lineId, out lineWinBoxSprite))
+                {
+                    lineWinBoxSprite = PickLineWinBoxSprite(winLine.positions, rowLimit);
+                    winBoxSpritesByLine.Add(winLine.lineId, lineWinBoxSprite);
+                }
+
+                yield return AnimateWinPositions(winLine.positions, isDoubleDiamond, winBoxSprite: lineWinBoxSprite);
             }
         }
     }
 
-    private IEnumerator AnimateWinPositions(IEnumerable<int> flatPositions, bool isDoubleDiamond)
+    private IEnumerator AnimateWinPositions(IEnumerable<int> flatPositions, bool isDoubleDiamond,
+        bool randomizeWinBoxes = false, Sprite winBoxSprite = null)
     {
         if (flatPositions == null) yield break;
 
@@ -1084,7 +1094,7 @@ public class SlotView : MonoBehaviour
             if (row >= rowLimit) continue;
 
             // WinBoxes belong to the matching cells even when the symbols have no frames.
-            EnableWinBox(col, row);
+            EnableWinBox(col, row, winBoxSprite, randomizeWinBoxes);
 
             if (animationLookup == null || currentDisplayMatrix == null || col >= currentDisplayMatrix.Count ||
                 currentDisplayMatrix[col] == null || row >= currentDisplayMatrix[col].Count) continue;
@@ -1175,7 +1185,7 @@ public class SlotView : MonoBehaviour
         }
     }
 
-    private void ShowWinLineTextOnIcon(int col, int row, double winAmount)
+    private void ShowWinLineTextOnIcon(int col, int row, double winAmount, bool isDoubleDiamond)
     {
         if (col < 0 || col >= reelImagesList.Count) return;
         var reel = reelImagesList[col];
@@ -1192,7 +1202,7 @@ public class SlotView : MonoBehaviour
             var tmpText = textTransform.GetComponent<TMPro.TMP_Text>();
             if (tmpText != null)
             {
-                tmpText.text = winAmount.ToString("0.###");
+                SetWinAmountText(tmpText, winAmount, isDoubleDiamond);
             }
             AnimateTextScaleAppear(textTransform);
         }
@@ -1222,13 +1232,21 @@ public class SlotView : MonoBehaviour
         }
     }
 
-    private void ShowPhase1TotalWin(double totalWinAmount)
+    private void ShowPhase1TotalWin(double totalWinAmount, bool isDoubleDiamond)
     {
         if (phase1TotalWinText != null)
         {
-            phase1TotalWinText.text = totalWinAmount.ToString("0.###");
+            SetWinAmountText(phase1TotalWinText, totalWinAmount, isDoubleDiamond);
             AnimateTextScaleAppear(phase1TotalWinText.transform);
         }
+    }
+
+    private void SetWinAmountText(TMPro.TMP_Text label, double amount, bool isDoubleDiamond)
+    {
+        if (isDoubleDiamond && gameManager?.uiManager != null)
+            gameManager.uiManager.SetWinSpriteDigits(label, amount);
+        else
+            label.text = amount.ToString("0.###");
     }
 
     private void HidePhase1TotalWinText()
@@ -1253,11 +1271,33 @@ public class SlotView : MonoBehaviour
         seq.Append(textTransform.DOScale(1.0f, durationDown).SetEase(Ease.InQuad));
         winTweens.Add(seq);
     }
-    private void EnableWinBox(int col, int row)
+    private Sprite PickLineWinBoxSprite(IEnumerable<int> positions, int rowLimit)
+    {
+        foreach (int position in positions)
+        {
+            if (position < 0 || position / 5 >= rowLimit) continue;
+
+            var box = WinBox(winBoxColumns, position % 5, position / 5);
+            var sprite = GetRandomWinBoxSprite(box);
+            if (sprite != null) return sprite;
+        }
+
+        return null;
+    }
+
+    private static Sprite GetRandomWinBoxSprite(GameObject box)
+    {
+        return box != null && box.TryGetComponent(out WinBoxSelector selector) ? selector.GetRandomSprite() : null;
+    }
+
+    private void EnableWinBox(int col, int row, Sprite sprite = null, bool randomize = false)
     {
         var go = WinBox(winBoxColumns, col, row);
         if (go)
         {
+            if (go.TryGetComponent(out Image image))
+                image.overrideSprite = randomize ? GetRandomWinBoxSprite(go) : sprite;
+
             go.SetActive(true);
         }
         else
