@@ -182,6 +182,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text ruleSymbol8Text;
     [SerializeField] private TMP_Text ruleSymbol9Text;
 
+    [Header("Double Diamond Win Display")]
+    [SerializeField, Min(0f)] private float winDisplayCountUpDuration = 1.25f;
+    internal float WinDisplayCountUpDuration => Mathf.Max(0f, winDisplayCountUpDuration);
+
     [Header("Free Spins UI Setup")]
     [SerializeField] private GameObject freeSpinTriggerPopup;
     [SerializeField] private List<GameObject> bonusSympolImages;
@@ -641,6 +645,16 @@ public class UIManager : MonoBehaviour
         UpdateBalanceDisplay();
         if (result != null)
             UpdateWinDisplay(GetSpinDisplayWin(result));
+    }
+
+    internal System.Action<float> BeginWinDisplayCountUp(SpinResult result)
+    {
+        UpdateBalanceDisplay();
+        double target = result.isFreeSpin || gameManager?.isInFreeSpins == true
+            ? result.serverTotalRoundWin
+            : result.winAmount;
+        UpdateWinDisplay(0, forceWinVisible: true);
+        return progress => UpdateWinDisplay(target * progress, forceWinVisible: true);
     }
 
     internal void OnSpinCompleted(SpinResult result = null)
@@ -1591,13 +1605,13 @@ public class UIManager : MonoBehaviour
         SetTMPText(balanceText, balanceTextPortrait, "BALANCE : " + FormatAmount(gameManager.playerData.balance));
     }
 
-    private void UpdateWinDisplay(double amount)
+    private void UpdateWinDisplay(double amount, bool forceWinVisible = false)
     {
         currentWinDisplayValue = amount;
         if (winAmountText) winAmountText.text = FormatAmount(amount);
         if (winAmountTextPortrait) winAmountTextPortrait.text = "WIN " + FormatAmount(amount);
 
-        bool showWinText = amount > 0 || (gameManager != null && gameManager.isInFreeSpins);
+        bool showWinText = forceWinVisible || amount > 0 || (gameManager != null && gameManager.isInFreeSpins);
 
         if (showWinText)
         {

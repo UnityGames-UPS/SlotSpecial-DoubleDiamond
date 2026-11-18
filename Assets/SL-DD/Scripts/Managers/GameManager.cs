@@ -297,24 +297,34 @@ public class GameManager : MonoBehaviour
             };
         }
 
-        if (lastResult != null && lastResult.winAmount > 0 && lastResult.winLines != null && lastResult.winLines.Count > 0)
+        if (lastResult?.isDoubleDiamondResult == true && lastResult.winAmount > 0)
         {
-            // Double Diamond free-spin wins use the grouped pass. Paid wins can replay individual lines.
-            if (lastResult.isDoubleDiamondResult)
-            {
-                bool replayLines = !lastResult.isFreeSpin && !isInFreeSpins &&
-                    !isAutoPlaying && lastResult.freeSpinData?.isTriggered != true;
+            var result = lastResult;
+            uiManager.DisableControlsDuringWinAnimation();
+            var updateWinCountUp = uiManager.BeginWinDisplayCountUp(result);
+            float duration = uiManager.WinDisplayCountUpDuration;
 
-                uiManager.DisableControlsDuringWinAnimation();
-                uiManager.OnSpinStopping(lastResult);
+            if (result.winLines?.Count > 0)
+            {
+                bool replayLines = !result.isFreeSpin && !isInFreeSpins &&
+                    !isAutoPlaying && result.freeSpinData?.isTriggered != true;
                 slotView.ShowWinLineAnimation(
-                    lastResult.winLines,
+                    result.winLines,
                     onComplete: () => StartCoroutine(ProcessSpecialFeaturesAfterWin()),
                     replayLines: replayLines,
-                    onLineShown: uiManager.ShowLineWinPopup);
-                return;
+                    onLineShown: uiManager.ShowLineWinPopup,
+                    countUpDuration: duration,
+                    updateWinCountUp: updateWinCountUp);
             }
+            else
+            {
+                StartCoroutine(PlayDoubleDiamondWinWithoutLines(result, duration, updateWinCountUp));
+            }
+            return;
+        }
 
+        if (lastResult != null && lastResult.winAmount > 0 && lastResult.winLines != null && lastResult.winLines.Count > 0)
+        {
             // Legacy CNY threshold presentation.
             double totalPay = GetTotalPay();
             double multiplier = totalPay > 0 ? (lastResult.winAmount / totalPay) : 0;
@@ -433,15 +443,32 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private IEnumerator PlayDoubleDiamondWinWithoutLines(SpinResult result, float countUpDuration,
+        System.Action<float> updateWinCountUp)
+    {
+        if (result.freeSpinData?.isTriggered == true && !isInFreeSpins)
+        {
+            yield return PlayDoubleDiamondFreeSpinTrigger(result, countUpDuration, updateWinCountUp);
+            yield break;
+        }
+
+        yield return slotView.AnimateWinCountUp(countUpDuration, updateWinCountUp);
+        if (lastResult == result)
+            yield return ProcessSpecialFeaturesAfterWin();
+    }
+
     // Double Diamond plays the Bonus Diamonds before opening the award popup.
-    private IEnumerator PlayDoubleDiamondFreeSpinTrigger(SpinResult trigger)
+    private IEnumerator PlayDoubleDiamondFreeSpinTrigger(SpinResult trigger, float countUpDuration = 0f,
+        System.Action<float> updateWinCountUp = null)
     {
         currentState = GameState.Stopping;
         uiManager.DisableControlsDuringWinAnimation();
 
         var bonusPositions = SlotView.FindBonusDiamondPositions(trigger.resultMatrix, gameConfig?.bonusSymbolId ?? -1);
-        if (slotView != null && bonusPositions.Count > 0)
-            yield return slotView.AnimateBonusTrigger(bonusPositions);
+        if (slotView != null && (bonusPositions.Count > 0 || updateWinCountUp != null))
+            yield return slotView.AnimateBonusTrigger(bonusPositions, countUpDuration, updateWinCountUp);
+        else
+            updateWinCountUp?.Invoke(1f);
 
         if (lastResult == trigger)
             ProcessSpinResult(bonusPositions.Count);

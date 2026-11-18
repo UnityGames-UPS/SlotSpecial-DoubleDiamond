@@ -740,13 +740,15 @@ public class SlotView : MonoBehaviour
         return positions;
     }
 
-    internal IEnumerator AnimateBonusTrigger(List<int> bonusPositions)
+    internal IEnumerator AnimateBonusTrigger(List<int> bonusPositions, float countUpDuration = 0f,
+        System.Action<float> updateWinCountUp = null)
     {
-        if (bonusPositions.Count == 0) yield break;
+        if (bonusPositions.Count == 0 && updateWinCountUp == null) yield break;
 
         // This can start from the first-pass callback of the win coroutine.
         KillWinTweens(false);
-        yield return AnimateWinPositions(bonusPositions, isDoubleDiamond: true);
+        yield return AnimateWinPositions(bonusPositions, isDoubleDiamond: true,
+            countUpDuration: countUpDuration, updateWinCountUp: updateWinCountUp);
         KillWinTweens(false);
     }
 
@@ -960,7 +962,8 @@ public class SlotView : MonoBehaviour
     #region Win Line Animation
 
     internal void ShowWinLineAnimation(List<WinLine> winLines, System.Action onComplete,
-        bool? replayLines = null, System.Action<WinLine, Sprite> onLineShown = null)
+        bool? replayLines = null, System.Action<WinLine, Sprite> onLineShown = null,
+        float countUpDuration = 0f, System.Action<float> updateWinCountUp = null)
     {
         if (winLines == null || winLines.Count == 0)
         {
@@ -970,11 +973,13 @@ public class SlotView : MonoBehaviour
 
         KillWinTweens();
         bool isDoubleDiamond = gameManager?.lastResult?.isDoubleDiamondResult == true;
-        winAnimationCoroutine = StartCoroutine(PlayTwoPhaseWinLines(winLines, onComplete, replayLines, onLineShown, isDoubleDiamond));
+        winAnimationCoroutine = StartCoroutine(PlayTwoPhaseWinLines(winLines, onComplete, replayLines,
+            onLineShown, isDoubleDiamond, countUpDuration, updateWinCountUp));
     }
 
     private IEnumerator PlayTwoPhaseWinLines(List<WinLine> winLines, System.Action onComplete,
-        bool? replayLines, System.Action<WinLine, Sprite> onLineShown, bool isDoubleDiamond)
+        bool? replayLines, System.Action<WinLine, Sprite> onLineShown, bool isDoubleDiamond,
+        float countUpDuration, System.Action<float> updateWinCountUp)
     {
         int rowLimit = (gameManager != null && gameManager.gameConfig != null) ? gameManager.gameConfig.rowCount : 3;
 
@@ -1012,7 +1017,8 @@ public class SlotView : MonoBehaviour
         AudioManager.Instance?.PlayWinLinePhase1Start();
 
         // Keep the animation in this coroutine so spin-start cleanup cancels it with the replay.
-        yield return AnimateWinPositions(allWinPositions, isDoubleDiamond, randomizeWinBoxes: isDoubleDiamond);
+        yield return AnimateWinPositions(allWinPositions, isDoubleDiamond, randomizeWinBoxes: isDoubleDiamond,
+            countUpDuration: countUpDuration, updateWinCountUp: updateWinCountUp);
 
         KillWinTweens(false);
         HideAllWinLineTexts();
@@ -1052,10 +1058,11 @@ public class SlotView : MonoBehaviour
                 // Double Diamond shows the line payout even when there is just one winning line.
                 if (onLineShown != null || winLines.Count > 1)
                 {
-                    int firstFlatIndex = winLine.positions[0];
-                    int firstRow = firstFlatIndex / 5;
-                    int firstCol = firstFlatIndex % 5;
-                    ShowWinLineTextOnIcon(firstCol, firstRow, winLine.winAmount, isDoubleDiamond);
+                    int labelPosition = isDoubleDiamond
+                        ? GetRightmostWinPosition(winLine.positions, rowLimit)
+                        : winLine.positions[0];
+                    if (labelPosition >= 0)
+                        ShowWinLineTextOnIcon(labelPosition % 5, labelPosition / 5, winLine.winAmount, isDoubleDiamond);
                 }
 
                 // Keep the Double Diamond popup synchronized with the line being highlighted.
@@ -1068,20 +1075,29 @@ public class SlotView : MonoBehaviour
                     winBoxSpritesByLine.Add(winLine.lineId, lineWinBoxSprite);
                 }
 
-                yield return AnimateWinPositions(winLine.positions, isDoubleDiamond, winBoxSprite: lineWinBoxSprite);
+                yield return AnimateWinPositions(winLine.positions, isDoubleDiamond, winBoxSprite: lineWinBoxSprite,
+                    loopCountOverride: isDoubleDiamond ? 1 : (int?)null);
             }
         }
     }
 
     private IEnumerator AnimateWinPositions(IEnumerable<int> flatPositions, bool isDoubleDiamond,
-        bool randomizeWinBoxes = false, Sprite winBoxSprite = null)
+        bool randomizeWinBoxes = false, Sprite winBoxSprite = null, float countUpDuration = 0f,
+        System.Action<float> updateWinCountUp = null, int? loopCountOverride = null)
     {
         if (flatPositions == null) yield break;
 
+        bool usesCountUp = updateWinCountUp != null;
+        if (usesCountUp && countUpDuration <= 0f)
+        {
+            updateWinCountUp(1f);
+            yield break;
+        }
+
         int rowLimit = gameManager?.gameConfig?.rowCount ?? 3;
-        int loopCountTarget = (gameManager != null && (gameManager.isInFreeSpins || gameManager.isAutoPlaying))
+        int loopCountTarget = loopCountOverride ?? ((gameManager != null && (gameManager.isInFreeSpins || gameManager.isAutoPlaying))
             ? 1
-            : Mathf.Max(1, winSymbolLoopCount);
+            : Mathf.Max(1, winSymbolLoopCount));
         var animationLookup = isDoubleDiamond ? doubleDiamondAnimationSpriteArrays : animationSpriteArrays;
         var animations = new List<(ImageAnimation player, Image renderer, Image symbol, List<Sprite> frames)>();
 
@@ -1132,31 +1148,34 @@ public class SlotView : MonoBehaviour
             // Assign frames after activation so every cell starts on the same pass.
             player.textureArray = null;
             overlay.SetActive(true);
-            player.textureArray = cell.frames;
-            player.doLoopAnimation = true;
-            player.onLoopComplete = loops =>
+            bool started = player.isActiveAndEnabled;
+            if (!usesCountUp)
             {
-                if (loops < loopCountTarget) return;
-
-                player.onLoopComplete = null;
-                player.StopAnimation();
-                overlay.SetActive(false);
-                if (cell.symbol != null)
+                player.textureArray = cell.frames;
+                player.doLoopAnimation = true;
+                player.onLoopComplete = loops =>
                 {
-                    cell.symbol.DOKill();
-                    cell.symbol.DOFade(1f, 0.2f);
-                }
-            };
+                    if (loops < loopCountTarget) return;
 
-            bool started;
-            if (isDoubleDiamond)
-            {
-                started = player.TryStartAtFrameRate(doubleDiamondWinFramesPerSecond);
-            }
-            else
-            {
-                player.StartAnimation();
-                started = player.currentAnimationState == ImageAnimation.ImageState.PLAYING;
+                    player.onLoopComplete = null;
+                    player.StopAnimation();
+                    overlay.SetActive(false);
+                    if (cell.symbol != null)
+                    {
+                        cell.symbol.DOKill();
+                        cell.symbol.DOFade(1f, 0.2f);
+                    }
+                };
+
+                if (isDoubleDiamond)
+                {
+                    started = player.TryStartAtFrameRate(doubleDiamondWinFramesPerSecond);
+                }
+                else
+                {
+                    player.StartAnimation();
+                    started = player.currentAnimationState == ImageAnimation.ImageState.PLAYING;
+                }
             }
 
             if (!started)
@@ -1174,7 +1193,12 @@ public class SlotView : MonoBehaviour
             animatedCount++;
         }
 
-        if (animatedCount > 0)
+        // The count-up and every grouped symbol reach the end on the same clock.
+        if (usesCountUp)
+        {
+            yield return AnimateWinCountUp(countUpDuration, updateWinCountUp, animations);
+        }
+        else if (animatedCount > 0)
         {
             yield return new WaitUntil(() => animations.TrueForAll(cell => cell.player == null ||
                 !cell.player.isActiveAndEnabled || cell.player.currentAnimationState != ImageAnimation.ImageState.PLAYING));
@@ -1183,6 +1207,48 @@ public class SlotView : MonoBehaviour
         {
             yield return new WaitForSeconds(winSymbolLoopDuration);
         }
+    }
+
+    internal IEnumerator AnimateWinCountUp(float duration, System.Action<float> updateWinCountUp,
+        List<(ImageAnimation player, Image renderer, Image symbol, List<Sprite> frames)> animations = null)
+    {
+        for (float elapsed = 0f; elapsed < duration; elapsed += Time.deltaTime)
+        {
+            float progress = elapsed / duration;
+            updateWinCountUp(progress);
+            if (animations != null)
+            {
+                foreach (var cell in animations)
+                {
+                    if (cell.player == null || !cell.player.isActiveAndEnabled || cell.renderer == null) continue;
+
+                    int frame = Mathf.Min((int)(progress * cell.frames.Count), cell.frames.Count - 1);
+                    cell.renderer.sprite = cell.frames[frame];
+                }
+            }
+
+            yield return null;
+        }
+
+        updateWinCountUp(1f);
+    }
+
+    private static int GetRightmostWinPosition(IEnumerable<int> positions, int rowLimit)
+    {
+        int rightmostPosition = -1;
+        int rightmostColumn = -1;
+        foreach (int position in positions)
+        {
+            if (position < 0 || position / 5 >= rowLimit) continue;
+
+            int column = position % 5;
+            if (column <= rightmostColumn) continue;
+
+            rightmostPosition = position;
+            rightmostColumn = column;
+        }
+
+        return rightmostPosition;
     }
 
     private void ShowWinLineTextOnIcon(int col, int row, double winAmount, bool isDoubleDiamond)
@@ -1204,7 +1270,15 @@ public class SlotView : MonoBehaviour
             {
                 SetWinAmountText(tmpText, winAmount, isDoubleDiamond);
             }
-            AnimateTextScaleAppear(textTransform);
+            if (isDoubleDiamond)
+            {
+                textTransform.localScale = Vector3.one;
+                textTransform.gameObject.SetActive(true);
+            }
+            else
+            {
+                AnimateTextScaleAppear(textTransform);
+            }
         }
     }
 
