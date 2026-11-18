@@ -257,13 +257,7 @@ public class GameManager : MonoBehaviour
         {
             if (currentSpinSpeed == SpinSpeed.QuickSpin || stopRequested)
             {
-                slotView.QuickStop(lastResult.resultMatrix);
-
-                // Wait for the snap animation to settle before processing result
-                float quickStopWaitTime = 0.5f;
-                yield return new WaitForSeconds(quickStopWaitTime);
-
-                OnReelsStoppedComplete();
+                slotView.QuickStop(lastResult.resultMatrix, OnReelsStoppedComplete);
             }
             else
             {
@@ -278,6 +272,13 @@ public class GameManager : MonoBehaviour
 
     private void OnReelsStoppedComplete()
     {
+        // Double Diamond keeps the outlines for the trigger popup only when opening a free-spin round.
+        if (lastResult?.isDoubleDiamondResult == true &&
+            (lastResult.freeSpinData?.isTriggered != true || isInFreeSpins))
+        {
+            slotView?.FadeBonusReelOutlinesAfterFirstLoop();
+        }
+
         if (lastResult != null)
         {
             // Keep the post-bet balance visible before any trigger-result UI is refreshed.
@@ -287,8 +288,10 @@ public class GameManager : MonoBehaviour
                 uiManager.HoldDoubleDiamondFreeSpinBalance();
             }
 
-            double featureDeferredWin = lastResult.GetTotalFeatureDeferredWins();
-            double reelStopBalance = lastResult.playerData != null ? (lastResult.playerData.balance - featureDeferredWin) : 0;
+            double reelStopBalance = lastResult.playerData?.balance ?? 0d;
+            // Legacy CNY defers crediting U-Spin and Money Bag payouts until their features finish.
+            if (!lastResult.isDoubleDiamondResult && lastResult.playerData != null)
+                reelStopBalance -= lastResult.GetTotalFeatureDeferredWins();
 
             playerData = new PlayerData
             {
@@ -456,6 +459,8 @@ public class GameManager : MonoBehaviour
         if (lastResult == result)
             yield return ProcessSpecialFeaturesAfterWin();
     }
+
+    internal void FadeBonusReelOutlines() => slotView?.FadeBonusReelOutlines();
 
     // Double Diamond plays the Bonus Diamonds before opening the award popup.
     private IEnumerator PlayDoubleDiamondFreeSpinTrigger(SpinResult trigger, float countUpDuration = 0f,
@@ -871,6 +876,26 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Helper Methods
+
+    // The symbol card and Double Diamond Info Page show payouts at the selected bet.
+    internal IEnumerable<(int matchCount, double payout)> GetSymbolPayoutRows(
+        SymbolInfo symbol, bool applySelectedBet = true)
+    {
+        if (symbol?.multipliers == null) yield break;
+
+        double betFactor = 1d;
+        if (applySelectedBet)
+        {
+            var bets = gameConfig?.availableBets;
+            double fallbackBet = bets != null && currentBetIndex >= 0 && currentBetIndex < bets.Count
+                ? bets[currentBetIndex]
+                : currentBetIndex + 1;
+            betFactor = currentBetAmount > 0 ? currentBetAmount : fallbackBet;
+        }
+
+        for (int i = 0; i < symbol.multipliers.Count; i++)
+            yield return (5 - i, symbol.multipliers[i] * betFactor);
+    }
 
     internal double GetTotalPay()
     {

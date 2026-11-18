@@ -41,6 +41,14 @@ public class SlotView : MonoBehaviour
     [SerializeField, Min(1f)] private float doubleDiamondWinFramesPerSecond = 24f;
     private List<Sprite>[] doubleDiamondAnimationSpriteArrays;
 
+    [Header("Bonus Reel Outline")]
+    [SerializeField] private ImageAnimation[] bonusReelOutlines = System.Array.Empty<ImageAnimation>();
+    [SerializeField] private List<Sprite> bonusReelOutlineFrames = new List<Sprite>();
+    [SerializeField, Min(1f)] private float bonusReelOutlineFramesPerSecond = 24f;
+    [SerializeField, Min(0f)] private float bonusReelOutlineFadeDuration = 0.25f;
+    private bool bonusReelOutlinesSuppressed;
+    private Coroutine bonusReelOutlineFadeRoutine;
+
     [Header("Legacy CNY Win Animations")]
     [SerializeField] private List<Sprite> animSpritesUSpin; // Legacy U-Spin, ID 11.
     private List<Sprite>[] animationSpriteArrays;
@@ -414,6 +422,8 @@ public class SlotView : MonoBehaviour
         isSpinning = true;
         KillAllTweens();
 
+        FadeBonusReelOutlines();
+        bonusReelOutlinesSuppressed = false;
         DisableAllOverlays();
 
         for (int i = 0; i < reelCycleCount.Count; i++)
@@ -526,21 +536,25 @@ public class SlotView : MonoBehaviour
 
     internal void StopSpin(List<List<int>> resultMatrix, System.Action onComplete)
     {
+        bool isDoubleDiamond = gameManager?.lastResult?.isDoubleDiamondResult == true;
         if (!isSpinning)
         {
             currentDisplayMatrix = resultMatrix;
             for (int col = 0; col < 5; col++)
             {
                 SetReelSymbols(col, resultMatrix[col], false);
+                if (isDoubleDiamond)
+                    PlayStopAnimationsForColumn(col, resultMatrix[col], isDoubleDiamond);
             }
             onComplete?.Invoke();
             return;
         }
 
-        StartCoroutine(StopSpinSequence(resultMatrix, onComplete, false));
+        StartCoroutine(StopSpinSequence(resultMatrix, onComplete, isQuickStop: false, isDoubleDiamond: isDoubleDiamond));
     }
 
-    private IEnumerator StopSpinSequence(List<List<int>> resultMatrix, System.Action onComplete, bool isQuickStop)
+    private IEnumerator StopSpinSequence(List<List<int>> resultMatrix, System.Action onComplete,
+        bool isQuickStop, bool isDoubleDiamond)
     {
         currentDisplayMatrix = resultMatrix;
 
@@ -561,31 +575,25 @@ public class SlotView : MonoBehaviour
         }
 
         float stagger = isQuickStop ? quickStopStagger : reelStopStagger;
+        int remainingReels = 5;
+        System.Action onReelSettled = () => remainingReels--;
 
         for (int col = 0; col < 5; col++)
         {
             float delay = col * stagger;
-            StartCoroutine(StopSingleReel(col, resultMatrix[col], delay, isQuickStop));
+            StartCoroutine(StopSingleReel(col, resultMatrix[col], delay, isQuickStop, isDoubleDiamond, onReelSettled));
         }
 
-        float longestStopTime;
-        if (isQuickStop)
-        {
-            longestStopTime = (4 * stagger) + quickStopDuration;
-        }
-        else
-        {
-            longestStopTime = (4 * stagger) + stopOvershootDuration + stopSettleDuration;
-        }
-
-        yield return new WaitForSeconds(longestStopTime);
+        // Staggered starts can reach their tween callbacks later than a duration estimate.
+        yield return new WaitUntil(() => remainingReels == 0);
 
         isSpinning = false;
 
         onComplete?.Invoke();
     }
 
-    private IEnumerator StopSingleReel(int columnIndex, List<int> targetSymbols, float delay, bool isQuickStop)
+    private IEnumerator StopSingleReel(int columnIndex, List<int> targetSymbols, float delay,
+        bool isQuickStop, bool isDoubleDiamond, System.Action onSettled)
     {
         if (delay > 0)
         {
@@ -628,28 +636,22 @@ public class SlotView : MonoBehaviour
         }
         // ──────────────────────────────────────────────────────────────────
 
+        Sequence stopSequence = DOTween.Sequence();
         if (isQuickStop)
         {
-            Sequence quickStopSequence = DOTween.Sequence();
-
-            quickStopSequence.Append(
+            stopSequence.Append(
                 slotTransform.DOLocalMoveY(middlePosition - quickStopOvershoot, quickStopDuration * 0.3f)
                     .SetEase(Ease.OutQuad)
             );
 
-            quickStopSequence.Append(
+            stopSequence.Append(
                 slotTransform.DOLocalMoveY(middlePosition, quickStopDuration * 0.7f)
                     .SetEase(Ease.InOutQuad)
             );
 
-            quickStopSequence.OnComplete(() => PlayStopAnimationsForColumn(columnIndex));
-
-            spinTweens[columnIndex] = quickStopSequence;
         }
         else
         {
-            Sequence stopSequence = DOTween.Sequence();
-
             stopSequence.Append(
                 slotTransform.DOLocalMoveY(middlePosition - stopOvershootDistance, stopOvershootDuration)
                     .SetEase(Ease.OutQuad)
@@ -660,10 +662,14 @@ public class SlotView : MonoBehaviour
                     .SetEase(Ease.InOutQuad)
             );
 
-            stopSequence.OnComplete(() => PlayStopAnimationsForColumn(columnIndex));
-
-            spinTweens[columnIndex] = stopSequence;
         }
+
+        stopSequence.OnComplete(() =>
+        {
+            PlayStopAnimationsForColumn(columnIndex, targetSymbols, isDoubleDiamond);
+            onSettled();
+        });
+        spinTweens[columnIndex] = stopSequence;
     }
 
     #endregion
@@ -672,6 +678,7 @@ public class SlotView : MonoBehaviour
 
     internal void QuickStop(List<List<int>> resultMatrix, System.Action onComplete = null)
     {
+        bool isDoubleDiamond = gameManager?.lastResult?.isDoubleDiamondResult == true;
         if (!isSpinning)
         {
             currentDisplayMatrix = resultMatrix;
@@ -685,7 +692,7 @@ public class SlotView : MonoBehaviour
                         middlePosition,
                         0
                     );
-                    PlayStopAnimationsForColumn(col);
+                    PlayStopAnimationsForColumn(col, resultMatrix[col], isDoubleDiamond);
                 }
             }
 
@@ -693,22 +700,25 @@ public class SlotView : MonoBehaviour
             return;
         }
 
-        StartCoroutine(StopSpinSequence(resultMatrix, onComplete, true));
+        StartCoroutine(StopSpinSequence(resultMatrix, onComplete, isQuickStop: true, isDoubleDiamond: isDoubleDiamond));
     }
 
     #endregion
 
-    #region Stop Symbol Animations
+    #region Reel Stop Presentation
 
-    private void PlayStopAnimationsForColumn(int col)
+    private void PlayStopAnimationsForColumn(int col, List<int> landedSymbols, bool isDoubleDiamond)
     {
-        // Double Diamond plays symbol frames together during the winning-cell pass.
-        if (gameManager?.lastResult?.isDoubleDiamondResult == true) return;
-        if (currentDisplayMatrix == null || col >= currentDisplayMatrix.Count) return;
-
-        for (int row = 0; row < currentDisplayMatrix[col].Count; row++)
+        if (landedSymbols == null) return;
+        if (isDoubleDiamond)
         {
-            int symId = currentDisplayMatrix[col][row];
+            TryPlayBonusReelOutline(col, landedSymbols);
+            return;
+        }
+
+        for (int row = 0; row < landedSymbols.Count; row++)
+        {
+            int symId = landedSymbols[row];
             int wildId = gameManager?.gameConfig != null ? gameManager.gameConfig.wildSymbolId : 10;
             bool isWild = (symId == wildId);
 
@@ -716,6 +726,91 @@ public class SlotView : MonoBehaviour
             {
                 AnimateSymbolSingleLoop(col, row, 1);
             }
+        }
+    }
+
+    private void TryPlayBonusReelOutline(int col, List<int> landedSymbols)
+    {
+        int bonusSymbolId = gameManager?.gameConfig?.bonusSymbolId ?? -1;
+        if (bonusReelOutlinesSuppressed || bonusSymbolId < 0 || col >= bonusReelOutlines.Length ||
+            bonusReelOutlineFrames.Count == 0 || landedSymbols == null) return;
+
+        var outline = bonusReelOutlines[col];
+        if (outline == null || outline.rendererDelegate == null) return;
+
+        int visibleRows = Mathf.Min(landedSymbols.Count, gameManager.gameConfig.rowCount);
+        if (landedSymbols.IndexOf(bonusSymbolId, 0, visibleRows) < 0) return;
+
+        var image = outline.rendererDelegate;
+        image.DOKill();
+        Color color = image.color;
+        color.a = 1f;
+        image.color = color;
+        outline.textureArray = bonusReelOutlineFrames;
+        outline.doLoopAnimation = true;
+        outline.gameObject.SetActive(true);
+        if (!outline.TryStartAtFrameRate(bonusReelOutlineFramesPerSecond))
+            outline.gameObject.SetActive(false);
+    }
+
+    internal void FadeBonusReelOutlinesAfterFirstLoop()
+    {
+        if (!HasBonusReelOutlineInFirstLoop())
+        {
+            FadeBonusReelOutlines();
+            return;
+        }
+
+        if (bonusReelOutlineFadeRoutine == null)
+            bonusReelOutlineFadeRoutine = StartCoroutine(WaitForBonusReelOutlineFirstLoops());
+    }
+
+    private IEnumerator WaitForBonusReelOutlineFirstLoops()
+    {
+        // The last reel may have just started its outline as the result presentation begins.
+        yield return new WaitWhile(HasBonusReelOutlineInFirstLoop);
+        bonusReelOutlineFadeRoutine = null;
+        FadeBonusReelOutlines();
+    }
+
+    private bool HasBonusReelOutlineInFirstLoop()
+    {
+        foreach (var outline in bonusReelOutlines)
+        {
+            if (outline != null && outline.isActiveAndEnabled &&
+                outline.currentAnimationState == ImageAnimation.ImageState.PLAYING && !outline.HasCompletedLoop)
+                return true;
+        }
+
+        return false;
+    }
+
+    internal void FadeBonusReelOutlines()
+    {
+        if (bonusReelOutlineFadeRoutine != null)
+        {
+            StopCoroutine(bonusReelOutlineFadeRoutine);
+            bonusReelOutlineFadeRoutine = null;
+        }
+
+        // Ignore a late reel-settle callback after the award popup has opened.
+        bonusReelOutlinesSuppressed = true;
+        foreach (var outline in bonusReelOutlines)
+        {
+            if (outline == null || !outline.gameObject.activeSelf) continue;
+
+            var image = outline.rendererDelegate;
+            if (image == null || bonusReelOutlineFadeDuration <= 0f)
+            {
+                image?.DOKill();
+                outline.gameObject.SetActive(false);
+                continue;
+            }
+
+            image.DOKill();
+            image.DOFade(0f, bonusReelOutlineFadeDuration)
+                .SetLink(outline.gameObject)
+                .OnComplete(() => outline.gameObject.SetActive(false));
         }
     }
 

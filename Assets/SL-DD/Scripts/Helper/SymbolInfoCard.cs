@@ -168,43 +168,16 @@ else if (isWild)
             infoText.alignment = TextAlignmentOptions.Flush;
             infoText.enableWordWrapping = false;
 
-            double betFactor = 1.0;
+            var lines = new List<string>();
             if (gameManager != null)
             {
-                if (gameManager.currentBetAmount > 0)
+                foreach (var (matchCount, payout) in gameManager.GetSymbolPayoutRows(symbolInfo))
                 {
-                    betFactor = gameManager.currentBetAmount;
-                }
-                else if (gameManager.gameConfig != null && gameManager.gameConfig.availableBets != null &&
-                         gameManager.gameConfig.availableBets.Count > gameManager.currentBetIndex &&
-                         gameManager.currentBetIndex >= 0)
-                {
-                    betFactor = gameManager.gameConfig.availableBets[gameManager.currentBetIndex];
-                }
-                else
-                {
-                    betFactor = gameManager.currentBetIndex + 1;
+                    lines.Add($"<color=#FFC700>X{matchCount}</color>   {payout:0.###}");
                 }
             }
 
-            if (symbolInfo != null && symbolInfo.multipliers != null && symbolInfo.multipliers.Count > 0)
-            {
-                List<string> lines = new List<string>();
-                int currentMatch = 5;
-
-                for (int m = 0; m < symbolInfo.multipliers.Count; m++)
-                {
-                    double payout = symbolInfo.multipliers[m] * betFactor;
-                    lines.Add($"<color=#FFC700>X{currentMatch}</color>   {payout.ToString("0.###")}");
-                    currentMatch--;
-                }
-
-                infoText.text = string.Join("\n", lines);
-            }
-            else
-            {
-                infoText.text = "";
-            }
+            infoText.text = string.Join("\n", lines);
         }
     }
 

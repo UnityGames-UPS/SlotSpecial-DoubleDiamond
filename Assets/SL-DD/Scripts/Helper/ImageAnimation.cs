@@ -20,6 +20,7 @@ public class ImageAnimation : MonoBehaviour
     
     public System.Action<int> onLoopComplete;
     private int currentLoopCount = 0;
+    internal bool HasCompletedLoop => currentLoopCount > 0;
     
     [SerializeField] private bool StartOnAwake;
     [SerializeField] private bool StartonEnable;
