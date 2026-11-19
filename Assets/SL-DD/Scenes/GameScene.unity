@@ -9072,7 +9072,7 @@ GameObject:
   - component: {fileID: 317206257}
   - component: {fileID: 317206256}
   m_Layer: 5
-  m_Name: LandscapeFreeSpinsBanner
+  m_Name: FreeSpinsBanner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9711,6 +9711,7 @@ GameObject:
   m_Component:
   - component: {fileID: 354345285}
   - component: {fileID: 354345286}
+  - component: {fileID: 354345287}
   m_Layer: 5
   m_Name: DynamicImages
   m_TagString: Untagged
@@ -9747,6 +9748,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 354345284}
   m_CullTransparentMesh: 1
+--- !u!114 &354345287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354345284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee8c2e420e0b86745add1116d8611681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DynamicImagesController
+  freeSpinsBanner: {fileID: 317206254}
+  jackpotTriggerBanner: {fileID: 1946727225}
+  switchInterval: 3
 --- !u!1 &360998096
 GameObject:
   m_ObjectHideFlags: 0
@@ -27931,337 +27947,532 @@ MonoBehaviour:
     portraitPosition: {x: -219.48616, y: -14.037464}
     portraitScale: {x: 0.94961405, y: 0.8619743, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1395785691}
     landscapePosition: {x: -215.84467, y: 38.064495}
     landscapeScale: {x: 6.06641, y: 9.942485, z: 9.8526}
     portraitPosition: {x: -237.26, y: 45.76}
     portraitScale: {x: 5.5291805, y: 8.617379, z: 9.8526}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1892591560}
     landscapePosition: {x: -19.37085, y: 44.956245}
     landscapeScale: {x: 1.0780606, y: 1.2323915, z: 1}
     portraitPosition: {x: -20.691, y: 39.807}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1033786120}
     landscapePosition: {x: 32.602657, y: 0}
     landscapeScale: {x: 1, y: 1, z: 1}
     portraitPosition: {x: 30.753, y: -0.0000019073}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1229884668}
     landscapePosition: {x: -19.37085, y: 32.01132}
     landscapeScale: {x: 1.0780606, y: 1.2323915, z: 1}
     portraitPosition: {x: -20.691, y: 28.6}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1292321946}
     landscapePosition: {x: 32.602657, y: 0}
     landscapeScale: {x: 1, y: 1, z: 1}
     portraitPosition: {x: 30.753, y: -0.0000019073}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 2054281912}
     landscapePosition: {x: -19.37085, y: 18.49248}
     landscapeScale: {x: 1.0780606, y: 1.2323915, z: 1}
     portraitPosition: {x: -20.691, y: 17}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1542839546}
     landscapePosition: {x: 32.602657, y: 0}
     landscapeScale: {x: 1, y: 1, z: 1}
     portraitPosition: {x: 30.753, y: -0.0000019073}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 901791777}
     landscapePosition: {x: -19.37085, y: 4.9736423}
     landscapeScale: {x: 1.0780606, y: 1.2323915, z: 1}
     portraitPosition: {x: -20.691, y: 5.1}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1572347598}
     landscapePosition: {x: 32.602657, y: 0}
     landscapeScale: {x: 1, y: 1, z: 1}
     portraitPosition: {x: 30.753, y: -0.0000019073}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 2018693425}
     landscapePosition: {x: -19.37085, y: -8.608963}
     landscapeScale: {x: 1.0780606, y: 1.2323915, z: 1}
     portraitPosition: {x: -20.691, y: -6.6}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 286593523}
     landscapePosition: {x: 32.602657, y: 0}
     landscapeScale: {x: 1, y: 1, z: 1}
     portraitPosition: {x: 30.753, y: -0.0000019073}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 120868729}
     landscapePosition: {x: -19.37085, y: -21.968386}
     landscapeScale: {x: 1.0780606, y: 1.2323915, z: 1}
     portraitPosition: {x: -20.691, y: -18.5}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1423659324}
     landscapePosition: {x: 32.602657, y: 0}
     landscapeScale: {x: 1, y: 1, z: 1}
     portraitPosition: {x: 30.753, y: -0.0000019073}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1816084742}
     landscapePosition: {x: -19.37085, y: -35.423454}
     landscapeScale: {x: 1.0780606, y: 1.2323915, z: 1}
     portraitPosition: {x: -20.691, y: -29.8}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 397280015}
     landscapePosition: {x: 32.602657, y: 0}
     landscapeScale: {x: 1, y: 1, z: 1}
     portraitPosition: {x: 30.753, y: -0.0000019073}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 550703593}
     landscapePosition: {x: -19.37085, y: -48.01766}
     landscapeScale: {x: 1.0780606, y: 1.2323915, z: 1}
     portraitPosition: {x: -20.691, y: -41}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 480633674}
     landscapePosition: {x: 32.602657, y: 0}
     landscapeScale: {x: 1, y: 1, z: 1}
     portraitPosition: {x: 30.753, y: -0.0000019073}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1103718699}
     landscapePosition: {x: 21.329971, y: -24.85116}
     landscapeScale: {x: 0.92571944, y: 1.0889136, z: 1}
     portraitPosition: {x: 8.087, y: -32.151}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 682958188}
     landscapePosition: {x: -545.24725, y: 0}
     landscapeScale: {x: 1, y: 1, z: 1}
     portraitPosition: {x: -491, y: 7}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 1
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 219372943}
     landscapePosition: {x: 55.597015, y: 265.53564}
     landscapeScale: {x: 0.69598114, y: 0.61757225, z: 0.65}
     portraitPosition: {x: 59, y: 233}
     portraitScale: {x: 0.65, y: 0.65, z: 0.65}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1187183818}
     landscapePosition: {x: 55.597015, y: 93.37839}
     landscapeScale: {x: 0.69598114, y: 0.61757225, z: 0.65}
     portraitPosition: {x: 59, y: 82}
     portraitScale: {x: 0.65, y: 0.65, z: 0.65}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1808138370}
     landscapePosition: {x: 55.597015, y: -78.77883}
     landscapeScale: {x: 0.69598114, y: 0.61757225, z: 0.65}
     portraitPosition: {x: 59, y: -70}
     portraitScale: {x: 0.65, y: 0.65, z: 0.65}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 995141572}
     landscapePosition: {x: 55.597015, y: -250.9361}
     landscapeScale: {x: 0.69598114, y: 0.61757225, z: 0.65}
     portraitPosition: {x: 59, y: -224}
     portraitScale: {x: 0.65, y: 0.65, z: 0.65}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1305524030}
     landscapePosition: {x: -274.17557, y: 0}
     landscapeScale: {x: 1, y: 1, z: 1}
     portraitPosition: {x: -251, y: 7}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 1
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1971831741}
     landscapePosition: {x: 32.933365, y: 265.53564}
     landscapeScale: {x: 0.69598114, y: 0.61757225, z: 0.65}
     portraitPosition: {x: 25, y: 233}
     portraitScale: {x: 0.65, y: 0.65, z: 0.65}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1567492345}
     landscapePosition: {x: 32.933365, y: 93.37839}
     landscapeScale: {x: 0.69598114, y: 0.61757225, z: 0.65}
     portraitPosition: {x: 26, y: 81}
     portraitScale: {x: 0.65, y: 0.65, z: 0.65}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1015033946}
     landscapePosition: {x: 32.933365, y: -78.77883}
     landscapeScale: {x: 0.69598114, y: 0.61757225, z: 0.65}
     portraitPosition: {x: 24, y: -74}
     portraitScale: {x: 0.65, y: 0.65, z: 0.65}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1250836327}
     landscapePosition: {x: 32.933365, y: -250.9361}
     landscapeScale: {x: 0.69598114, y: 0.61757225, z: 0.65}
     portraitPosition: {x: 24, y: -227}
     portraitScale: {x: 0.65, y: 0.65, z: 0.65}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 940051164}
     landscapePosition: {x: 5.173123, y: 0}
     landscapeScale: {x: 1, y: 1, z: 1}
     portraitPosition: {x: 4, y: 7}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 1
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1523466729}
     landscapePosition: {x: 18.031857, y: 265.53564}
     landscapeScale: {x: 0.69598114, y: 0.61757225, z: 0.65}
     portraitPosition: {x: 3, y: 233}
     portraitScale: {x: 0.65, y: 0.65, z: 0.65}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1011595394}
     landscapePosition: {x: 18.031857, y: 93.37839}
     landscapeScale: {x: 0.69598114, y: 0.61757225, z: 0.65}
     portraitPosition: {x: 3, y: 83}
     portraitScale: {x: 0.65, y: 0.65, z: 0.65}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 13505654}
     landscapePosition: {x: 18.031857, y: -78.77883}
     landscapeScale: {x: 0.69598114, y: 0.61757225, z: 0.65}
     portraitPosition: {x: 3, y: -72}
     portraitScale: {x: 0.65, y: 0.65, z: 0.65}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1977876125}
     landscapePosition: {x: 18.031857, y: -250.9361}
     landscapeScale: {x: 0.69598114, y: 0.61757225, z: 0.65}
     portraitPosition: {x: 3, y: -229}
     portraitScale: {x: 0.65, y: 0.65, z: 0.65}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1910318100}
     landscapePosition: {x: 282.45255, y: 0}
     landscapeScale: {x: 1, y: 1, z: 1}
     portraitPosition: {x: 254, y: 7}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 1
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 21820926}
     landscapePosition: {x: 1.7147522, y: 265.53564}
     landscapeScale: {x: 0.69598114, y: 0.61757225, z: 0.65}
     portraitPosition: {x: -20, y: 233}
     portraitScale: {x: 0.65, y: 0.65, z: 0.65}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 169268729}
     landscapePosition: {x: 1.7147522, y: 93.37839}
     landscapeScale: {x: 0.69598114, y: 0.61757225, z: 0.65}
     portraitPosition: {x: -20, y: 85}
     portraitScale: {x: 0.65, y: 0.65, z: 0.65}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 2042805245}
     landscapePosition: {x: 1.7147522, y: -78.77883}
     landscapeScale: {x: 0.69598114, y: 0.61757225, z: 0.65}
     portraitPosition: {x: -20, y: -64}
     portraitScale: {x: 0.65, y: 0.65, z: 0.65}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1684486099}
     landscapePosition: {x: 1.7147522, y: -250.9361}
     landscapeScale: {x: 0.69598114, y: 0.61757225, z: 0.65}
     portraitPosition: {x: -20, y: -232}
     portraitScale: {x: 0.65, y: 0.65, z: 0.65}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 2107062688}
     landscapePosition: {x: 548.35114, y: 0}
     landscapeScale: {x: 1, y: 1, z: 1}
     portraitPosition: {x: 506, y: 7}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 1
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 756340904}
     landscapePosition: {x: -24.837769, y: 265.53564}
     landscapeScale: {x: 0.69598114, y: 0.61757225, z: 0.65}
     portraitPosition: {x: -38, y: 233}
     portraitScale: {x: 0.65, y: 0.65, z: 0.65}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 2005960427}
     landscapePosition: {x: -24.837769, y: 93.37839}
     landscapeScale: {x: 0.69598114, y: 0.61757225, z: 0.65}
     portraitPosition: {x: -38, y: 87}
     portraitScale: {x: 0.65, y: 0.65, z: 0.65}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1313887395}
     landscapePosition: {x: -24.837769, y: -78.77883}
     landscapeScale: {x: 0.69598114, y: 0.61757225, z: 0.65}
     portraitPosition: {x: -38, y: -60}
     portraitScale: {x: 0.65, y: 0.65, z: 0.65}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 987328203}
     landscapePosition: {x: -24.837769, y: -250.9361}
     landscapeScale: {x: 0.69598114, y: 0.61757225, z: 0.65}
     portraitPosition: {x: -38, y: -231}
     portraitScale: {x: 0.65, y: 0.65, z: 0.65}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 556074297}
     landscapePosition: {x: 1080.4026, y: -27.712154}
     landscapeScale: {x: 0.95610845, y: 0.8608274, z: 0.94755125}
     portraitPosition: {x: 1125.0669, y: -41.36825}
     portraitScale: {x: 1.0315611, y: 0.98719656, z: 0.94755125}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 354345285}
     landscapePosition: {x: 0, y: 0}
     landscapeScale: {x: 1, y: 1, z: 1}
     portraitPosition: {x: -5.6329618, y: -120.30708}
     portraitScale: {x: 0.90378004, y: 1.060606, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1265852765}
     landscapePosition: {x: 0, y: -18}
     landscapeScale: {x: 1, y: 1, z: 1}
     portraitPosition: {x: -10.133, y: -68}
     portraitScale: {x: 0.89868, y: 0.89868, z: 0.89868}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 995389094}
-    landscapePosition: {x: -234.35, y: 265}
+    landscapePosition: {x: -190, y: 257}
     landscapeScale: {x: 1, y: 2.0209, z: 1}
-    portraitPosition: {x: -215.17, y: 153}
+    portraitPosition: {x: -193, y: 197}
     portraitScale: {x: 1, y: 2.0209, z: 1}
     preserveVerticalPosition: 0
+    applySize: 1
+    landscapeSize: {x: 951.65, y: 146.96}
+    portraitSize: {x: 675.21, y: 130.39}
   - target: {fileID: 2115980532}
     landscapePosition: {x: 0, y: 0}
     landscapeScale: {x: 1, y: 1.0358001, z: 1}
     portraitPosition: {x: 0, y: 0}
     portraitScale: {x: 1, y: 1.0358001, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1037254385}
     landscapePosition: {x: 0, y: 0}
     landscapeScale: {x: 1, y: 1, z: 1}
     portraitPosition: {x: 0, y: 0}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 2086823181}
     landscapePosition: {x: 21.329971, y: -24.85116}
     landscapeScale: {x: 0.92571944, y: 1.0889136, z: 1}
     portraitPosition: {x: 8.087, y: -32.151}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 352849580}
     landscapePosition: {x: -545.24725, y: 0}
     landscapeScale: {x: 1, y: 1, z: 1}
     portraitPosition: {x: -491, y: 0}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 125905595}
     landscapePosition: {x: -274.17557, y: 0}
     landscapeScale: {x: 1, y: 1, z: 1}
     portraitPosition: {x: -251, y: 0}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1252505151}
     landscapePosition: {x: 5.173123, y: 0}
     landscapeScale: {x: 1, y: 1, z: 1}
     portraitPosition: {x: 4, y: 0}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 1305774829}
     landscapePosition: {x: 282.45255, y: 0}
     landscapeScale: {x: 1, y: 1, z: 1}
     portraitPosition: {x: 254, y: 0}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
   - target: {fileID: 417419103}
     landscapePosition: {x: 548.35114, y: 0}
     landscapeScale: {x: 1, y: 1, z: 1}
     portraitPosition: {x: 506, y: 0}
     portraitScale: {x: 1, y: 1, z: 1}
     preserveVerticalPosition: 0
-  landscapeBanner: {fileID: 354345284}
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
+  - target: {fileID: 830862724}
+    landscapePosition: {x: -19.793, y: 19.145}
+    landscapeScale: {x: 1, y: 1, z: 1}
+    portraitPosition: {x: -1, y: -52}
+    portraitScale: {x: 0.59473, y: 0.59473, z: 0.59473}
+    preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 0, y: 0}
+    portraitSize: {x: 0, y: 0}
+  - target: {fileID: 354322298}
+    landscapePosition: {x: 0, y: 160}
+    landscapeScale: {x: 8.5037, y: 8.5037, z: 8.5037}
+    portraitPosition: {x: 0, y: 39}
+    portraitScale: {x: 6.134399, y: 6.134399, z: 6.134399}
+    preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 100, y: 100}
+    portraitSize: {x: 100, y: 100}
+  - target: {fileID: 1249405004}
+    landscapePosition: {x: 0, y: -21.465}
+    landscapeScale: {x: 12.6, y: 12.6, z: 12.6}
+    portraitPosition: {x: 0, y: -91.90298}
+    portraitScale: {x: 9.089388, y: 9.089388, z: 9.089388}
+    preserveVerticalPosition: 0
+    applySize: 0
+    landscapeSize: {x: 105.119, y: 42.93}
+    portraitSize: {x: 105.119, y: 42.93}
+  dynamicImages: {fileID: 354345284}
   logoObject: {fileID: 524679666}
   landscapeLogoScale: {x: 1, y: 1, z: 1}
   portraitLogoScale: {x: 1.27, y: 1.27, z: 1.27}
@@ -28827,7 +29038,7 @@ MonoBehaviour:
   ruleSymbol7Text: {fileID: 516646042}
   ruleSymbol8Text: {fileID: 868088779}
   ruleSymbol9Text: {fileID: 1474419506}
-  winDisplayCountUpDuration: 1.25
+  winDisplayCountUpDuration: 0.8
   freeSpinTriggerPopup: {fileID: 2115980531}
   freeSpinTriggerPanel: {fileID: 90647794}
   bonusDiamondDimmers:
@@ -40445,7 +40656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f521a04de7f494272a617b2719edd271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SocketIOManager
-  testToken: 7e5e246a7c344884885c8082fc73296b
+  testToken: 2e9fd0b80e704aaba9aea4ade087fc6a
   gameManager: {fileID: 1206269883}
   uiManager: {fileID: 885496184}
   popupManager: {fileID: 1363796882}
@@ -63411,7 +63622,7 @@ GameObject:
   - component: {fileID: 1946727228}
   - component: {fileID: 1946727227}
   m_Layer: 5
-  m_Name: LandscapeJackpotTriggerBanner
+  m_Name: JackpotTriggerBanner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

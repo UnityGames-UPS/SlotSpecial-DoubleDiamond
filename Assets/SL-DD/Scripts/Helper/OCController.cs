@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 public class OCController : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class OCController : MonoBehaviour
         public Vector2 portraitPosition;
         public Vector3 portraitScale;
         public bool preserveVerticalPosition;
+        // Double Diamond can resize individual HUD elements when their portrait dimensions differ.
+        public bool applySize;
+        public Vector2 landscapeSize;
+        public Vector2 portraitSize;
 
         public void Apply(bool isMobilePortrait)
         {
@@ -26,6 +31,8 @@ public class OCController : MonoBehaviour
 
             target.anchoredPosition = position;
             target.localScale = isMobilePortrait ? portraitScale : landscapeScale;
+            if (applySize)
+                target.sizeDelta = isMobilePortrait ? portraitSize : landscapeSize;
         }
     }
 
@@ -66,7 +73,11 @@ public class OCController : MonoBehaviour
     [SerializeField] private Vector3 landscapeSlotPosition = Vector3.zero;
     [SerializeField] private Vector3 portraitSlotPosition = new Vector3(0f, -150f, 0f);
     [SerializeField] private SharedLayoutTransform[] sharedSlotLayout = System.Array.Empty<SharedLayoutTransform>();
-    [SerializeField] private GameObject landscapeBanner;
+
+    [Header("Double Diamond Dynamic Images")]
+    // The former CNY landscape banner reference now serves DD in both orientations.
+    [FormerlySerializedAs("landscapeBanner")]
+    [SerializeField] private GameObject dynamicImages;
 
     [Header("Logo Object Settings")]
     [SerializeField] private RectTransform logoObject;
@@ -204,7 +215,7 @@ public class OCController : MonoBehaviour
         {
             layout.Apply(isMobilePortrait);
         }
-        UpdateLandscapeBannerVisibility(isMobilePortrait);
+        UpdateDynamicImagesVisibility();
 
         if (slotObject != null)
         {
@@ -282,9 +293,7 @@ public class OCController : MonoBehaviour
     internal void SetLineWinPopupVisible(bool visible)
     {
         lineWinPopupVisible = visible;
-        bool isMobilePortrait = orientationChange != null &&
-                                orientationChange.CurrentMode == OrientationChange.OrientationMode.MobilePortrait;
-        UpdateLandscapeBannerVisibility(isMobilePortrait);
+        UpdateDynamicImagesVisibility();
     }
 
     internal void SetDoubleDiamondFreeSpinPresentation(bool active, bool displayVisible = false)
@@ -294,7 +303,7 @@ public class OCController : MonoBehaviour
         bool isMobilePortrait = orientationChange != null &&
                                 orientationChange.CurrentMode == OrientationChange.OrientationMode.MobilePortrait;
         UpdateBackgroundVisibility(isMobilePortrait);
-        UpdateLandscapeBannerVisibility(isMobilePortrait);
+        UpdateDynamicImagesVisibility();
     }
 
     private void UpdateBackgroundVisibility(bool isMobilePortrait)
@@ -308,11 +317,11 @@ public class OCController : MonoBehaviour
         if (freeSpinPortraitBackground != null) freeSpinPortraitBackground.SetActive(showFreeSpinPortrait);
     }
 
-    private void UpdateLandscapeBannerVisibility(bool isMobilePortrait)
+    private void UpdateDynamicImagesVisibility()
     {
-        if (landscapeBanner != null)
+        if (dynamicImages != null)
         {
-            landscapeBanner.SetActive(!isMobilePortrait && !lineWinPopupVisible && !doubleDiamondFreeSpinDisplayVisible);
+            dynamicImages.SetActive(!lineWinPopupVisible && !doubleDiamondFreeSpinDisplayVisible);
         }
     }
 

@@ -1093,7 +1093,7 @@ public class SlotView : MonoBehaviour
             }
         }
 
-        Debug.Log($"[PlayTwoPhaseWinLines] Phase 1: Showing all {allWinPositions.Count} winning icons at once for {winLines.Count} win lines");
+        //Debug.Log($"[PlayTwoPhaseWinLines] Phase 1: Showing all {allWinPositions.Count} winning icons at once for {winLines.Count} win lines");
 
         // Calculate Phase 1 Total Win Amount
         double totalWinAmount = 0;
