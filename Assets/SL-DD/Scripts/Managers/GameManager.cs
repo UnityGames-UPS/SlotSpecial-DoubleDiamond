@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -792,7 +793,12 @@ public class GameManager : MonoBehaviour
 
         currentState = GameState.Idle;
         if (trigger.isDoubleDiamondResult)
-            uiManager.OnDoubleDiamondFreeSpinsStarted(spins, freeSpinsRemaining, bonusDiamondCount, trigger.serverTotalRoundWin);
+        {
+            // DD carries the paid trigger's line wins through its UI totals.
+            double triggerLineWin = trigger.winLines?.Sum(line => line.winAmount) ?? 0d;
+            uiManager.OnDoubleDiamondFreeSpinsStarted(
+                spins, freeSpinsRemaining, bonusDiamondCount, trigger.serverTotalRoundWin, triggerLineWin);
+        }
         else
             uiManager.OnFreeSpinsStarted(spins); // Legacy CNY award popup.
     }

@@ -623,8 +623,8 @@ public class SlotView : MonoBehaviour
         // ── Play reel-stop sound immediately when symbols lock in ──────────
         AudioManager.Instance?.PlayReelStop();
 
-        // Detect wild symbols in this column for hit sounds
-        if (currentDisplayMatrix != null && columnIndex < currentDisplayMatrix.Count)
+        // Legacy CNY adds a Wild hit. DD uses one stop sound per reel.
+        if (!isDoubleDiamond && currentDisplayMatrix != null && columnIndex < currentDisplayMatrix.Count)
         {
             bool hasWild = false;
             int wildId = gameManager?.gameConfig != null ? gameManager.gameConfig.wildSymbolId : 10;
@@ -1109,7 +1109,9 @@ public class SlotView : MonoBehaviour
         // Show Phase 1 Total Win Text with final win value
         ShowPhase1TotalWin(totalWinAmount, isDoubleDiamond);
 
-        AudioManager.Instance?.PlayWinLinePhase1Start();
+        // DD win audio is synchronized with the Win Display count-up.
+        if (!isDoubleDiamond)
+            AudioManager.Instance?.PlayWinLinePhase1Start();
 
         // Keep the animation in this coroutine so spin-start cleanup cancels it with the replay.
         yield return AnimateWinPositions(allWinPositions, isDoubleDiamond, randomizeWinBoxes: isDoubleDiamond,

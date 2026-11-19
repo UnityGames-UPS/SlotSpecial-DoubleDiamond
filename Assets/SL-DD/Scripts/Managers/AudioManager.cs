@@ -50,6 +50,12 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip clipWinLinePhase1Start;
     [SerializeField] private AudioClip clipReelStop;
 
+    [Header("DD Win SFX")]
+    [SerializeField] private AudioSource ddWinSource;
+    [SerializeField] private AudioClip clipDDWinning;
+    [SerializeField] private AudioClip clipDDAfterWin;
+    [SerializeField] private AudioClip clipDDTotalBonusWon;
+
     private bool _musicEnabled = true;
     private bool _sfxEnabled   = true;
     private float _musicVolume = 0.5f;
@@ -104,6 +110,7 @@ public class AudioManager : MonoBehaviour
         if (uiSource           != null) uiSource.volume           = v;
         if (wheelSegmentSource != null) wheelSegmentSource.volume = v;
         if (reserveSource      != null) reserveSource.volume      = v;
+        if (ddWinSource        != null) ddWinSource.volume        = v;
     }
 
     /// <summary>
@@ -299,6 +306,44 @@ public class AudioManager : MonoBehaviour
         else
             PlayUISound(clipReelStop);
     }
+
+    #region DD Win SFX
+
+    internal void PlayDDWinCountUp()
+    {
+        PlayDDWinSound(clipDDWinning, loop: true);
+    }
+
+    internal void CompleteDDWinCountUp()
+    {
+        PlayDDWinSound(clipDDAfterWin);
+    }
+
+    internal void PlayDDTotalBonusWin()
+    {
+        PlayDDWinSound(clipDDTotalBonusWon);
+    }
+
+    internal void StopDDWinAudio()
+    {
+        StopSource(ddWinSource);
+        if (ddWinSource != null)
+            ddWinSource.clip = null;
+    }
+
+    private void PlayDDWinSound(AudioClip clip, bool loop = false)
+    {
+        StopDDWinAudio();
+        if (!_sfxEnabled || ddWinSource == null || clip == null) return;
+
+        // DD win playback follows the existing SFX controls.
+        ddWinSource.clip = clip;
+        ddWinSource.loop = loop;
+        ddWinSource.volume = _sfxVolume;
+        ddWinSource.Play();
+    }
+
+    #endregion
 
     private bool isForceMuted = false;
 

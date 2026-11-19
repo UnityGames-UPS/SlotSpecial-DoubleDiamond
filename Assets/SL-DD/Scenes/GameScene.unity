@@ -8085,8 +8085,8 @@ RectTransform:
   - {fileID: 748399234}
   - {fileID: 749700607}
   - {fileID: 161473517}
-  - {fileID: 1037254385}
   - {fileID: 360998097}
+  - {fileID: 1037254385}
   - {fileID: 2115980532}
   - {fileID: 2115638692}
   - {fileID: 627276383}
@@ -9660,7 +9660,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 160}
+  m_AnchoredPosition: {x: 0, y: 199}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &354322299
@@ -16201,6 +16201,135 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &520183911
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 520183913}
+  - component: {fileID: 520183912}
+  m_Layer: 0
+  m_Name: DDWinSFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &520183912
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520183911}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &520183913
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520183911}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1330086577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &524679665
 GameObject:
@@ -28455,7 +28584,7 @@ MonoBehaviour:
     landscapeSize: {x: 0, y: 0}
     portraitSize: {x: 0, y: 0}
   - target: {fileID: 354322298}
-    landscapePosition: {x: 0, y: 160}
+    landscapePosition: {x: 0, y: 199}
     landscapeScale: {x: 8.5037, y: 8.5037, z: 8.5037}
     portraitPosition: {x: 0, y: 39}
     portraitScale: {x: 6.134399, y: 6.134399, z: 6.134399}
@@ -28464,7 +28593,7 @@ MonoBehaviour:
     landscapeSize: {x: 100, y: 100}
     portraitSize: {x: 100, y: 100}
   - target: {fileID: 1249405004}
-    landscapePosition: {x: 0, y: -21.465}
+    landscapePosition: {x: 0, y: -39}
     landscapeScale: {x: 12.6, y: 12.6, z: 12.6}
     portraitPosition: {x: 0, y: -91.90298}
     portraitScale: {x: 9.089388, y: 9.089388, z: 9.089388}
@@ -29057,6 +29186,8 @@ MonoBehaviour:
   freeSpinTotalWonText: {fileID: 1348202547}
   freeSpinTotalWinIntroDuration: 0.6
   freeSpinTotalWinCountUpDuration: 1
+  totalWinPulseDuration: 0.6
+  totalWinPulseAmount: 0.05
   pingText: {fileID: 758464196}
   pingTextPortrait: {fileID: 460680268}
   grandJackpotText: {fileID: 1039016733}
@@ -40656,7 +40787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f521a04de7f494272a617b2719edd271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SocketIOManager
-  testToken: 2e9fd0b80e704aaba9aea4ade087fc6a
+  testToken: e5bdf33907fa4b32b9b1d12718fb088e
   gameManager: {fileID: 1206269883}
   uiManager: {fileID: 885496184}
   popupManager: {fileID: 1363796882}
@@ -41027,7 +41158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -21.465}
+  m_AnchoredPosition: {x: 0, y: -39}
   m_SizeDelta: {x: 105.119, y: 42.93}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1249405005
@@ -43647,7 +43778,7 @@ MonoBehaviour:
   uiSource: {fileID: 72827552}
   wheelSegmentSource: {fileID: 723936146}
   reserveSource: {fileID: 126421844}
-  clipGameMainBg: {fileID: 8300000, guid: 25ddf52ed6b6d4ae4aea89c0a56e2203, type: 3}
+  clipGameMainBg: {fileID: 8300000, guid: 445ab373f68f19e45bf0dc1bd16eae6f, type: 3}
   clipBetPlusMinus: {fileID: 8300000, guid: 2f2b2ed50e5fe4c05bde643bb826e4c2, type: 3}
   clipMaxBetReached: {fileID: 8300000, guid: b556940f8a085479cbf7662d579f648c, type: 3}
   clip3UspinWinLineLoop: {fileID: 8300000, guid: a873c67d75600477baf32901e789e032, type: 3}
@@ -43660,7 +43791,11 @@ MonoBehaviour:
   clipFreeSpinBg: {fileID: 8300000, guid: c97b9f215da27434bb5ba3343288f3ef, type: 3}
   clipWheelSegmentTick: {fileID: 8300000, guid: 839489cb9eafa495989ee5a0b651a1f3, type: 3}
   clipWinLinePhase1Start: {fileID: 8300000, guid: c494e35d645f344e1a65ed0687a532cf, type: 3}
-  clipReelStop: {fileID: 8300000, guid: 16f2d8d30f748472c96c56f3a63797e0, type: 3}
+  clipReelStop: {fileID: 8300000, guid: 168356babcf305f4bb5e835157eb3eaa, type: 3}
+  ddWinSource: {fileID: 520183912}
+  clipDDWinning: {fileID: 8300000, guid: 4a5029dfa8eddfc44a9b1cc20c4fd01f, type: 3}
+  clipDDAfterWin: {fileID: 8300000, guid: 363cb6f0224b1064296443e3a1b5496f, type: 3}
+  clipDDTotalBonusWon: {fileID: 8300000, guid: a2a66eec9d645494088f74405e36698b, type: 3}
 --- !u!4 &1330086577
 Transform:
   m_ObjectHideFlags: 0
@@ -43678,6 +43813,7 @@ Transform:
   - {fileID: 72827553}
   - {fileID: 126421845}
   - {fileID: 723936147}
+  - {fileID: 520183913}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1331973492

@@ -209,6 +209,14 @@ public class UIManager : MonoBehaviour
     [SerializeField, Min(0f)] private float freeSpinTotalWinIntroDuration = 0.6f;
     [SerializeField, Min(0f)] private float freeSpinTotalWinCountUpDuration = 1f;
 
+    [Header("DD Total Win Pulse")]
+    [SerializeField, Min(0.1f)] private float totalWinPulseDuration = 0.6f;
+    [SerializeField, Range(0f, 0.2f)] private float totalWinPulseAmount = 0.05f;
+    private Tween ddTotalWinPulse;
+    private Coroutine ddTotalWinPulseRestart;
+    private Vector3 ddTotalWinImageBaseScale;
+    private Vector3 ddTotalWinFrameBaseScale;
+
     [Header("Ping Display")]
     [SerializeField] private TMP_Text pingText;
     [SerializeField] private TMP_Text pingTextPortrait;
@@ -241,6 +249,8 @@ public class UIManager : MonoBehaviour
 
     private int initialFreeSpins = 0;
     private bool holdDoubleDiamondFreeSpinBalance;
+    // DD adds the triggering paid spin's line wins to the displayed free-spin sequence total.
+    private double ddFreeSpinTriggerLineWin;
     private bool awaitingDoubleDiamondFreeSpinStart;
     private System.Action doubleDiamondFreeSpinReturn;
 
@@ -312,6 +322,8 @@ public class UIManager : MonoBehaviour
     private void OnDisable()
     {
         OrientationChange.OnOrientationChanged -= HandleOrientationChanged;
+        StopDDTotalWinPulse();
+        AudioManager.Instance?.StopDDWinAudio();
     }
 
     private void HandleOrientationChanged(OrientationChange.OrientationMode mode, int width, int height)
@@ -319,6 +331,14 @@ public class UIManager : MonoBehaviour
         UpdateNewWheelSpinButtonsVisibility();
         if (doubleDiamondFreeSpinReturn != null)
             StartCoroutine(RefreshFreeSpinTakeAfterOrientationChange());
+
+        if (freeSpinTotalWinPopup != null && freeSpinTotalWinPopup.activeInHierarchy &&
+            (ddTotalWinPulse != null || ddTotalWinPulseRestart != null))
+        {
+            // DD lets OCController apply the new scales before restarting the pulse.
+            StopDDTotalWinPulse(restoreScale: false);
+            ddTotalWinPulseRestart = StartCoroutine(RestartDDTotalWinPulseAfterOrientationChange());
+        }
     }
 
     private void UpdateNewWheelSpinButtonsVisibility()
@@ -604,6 +624,7 @@ public class UIManager : MonoBehaviour
 
     internal void OnGameInitialized()
     {
+        ddFreeSpinTriggerLineWin = 0d;
         currentWinDisplayValue = 0;
         UpdateBetDisplay();
         UpdateBalanceDisplay();
@@ -612,6 +633,7 @@ public class UIManager : MonoBehaviour
 
     internal void OnSpinStarted()
     {
+        AudioManager.Instance?.StopDDWinAudio();
         AudioManager.Instance?.PlaySpinStart();
 
         if (gameManager.isInFreeSpins)
@@ -620,6 +642,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
+            ddFreeSpinTriggerLineWin = 0d;
             SetSpinStopButtonStates(isSpinningState: true, isInteractable: true);
             SetBetControlsEnabled(false);
             SetButtonInteractable(settingsOpenButton, settingsOpenButtonPortrait, true);
@@ -658,11 +681,22 @@ public class UIManager : MonoBehaviour
     {
         UpdateBalanceDisplay();
         bool isFreeSpin = result.isFreeSpin || gameManager?.isInFreeSpins == true;
-        // Double Diamond free spins count up from the previous displayed round total.
+        // DD free spins count up from the previous displayed sequence total.
         double start = isFreeSpin ? currentWinDisplayValue : 0d;
-        double target = isFreeSpin ? result.serverTotalRoundWin : result.winAmount;
+        double target = GetSpinDisplayWin(result);
         UpdateWinDisplay(start, forceWinVisible: true);
-        return progress => UpdateWinDisplay(start + (target - start) * progress, forceWinVisible: true);
+
+        AudioManager.Instance?.PlayDDWinCountUp();
+        bool completed = false;
+        return progress =>
+        {
+            UpdateWinDisplay(start + (target - start) * progress, forceWinVisible: true);
+            if (progress >= 1f && !completed)
+            {
+                completed = true;
+                AudioManager.Instance?.CompleteDDWinCountUp();
+            }
+        };
     }
 
     internal void OnSpinCompleted(SpinResult result = null)
@@ -690,11 +724,8 @@ public class UIManager : MonoBehaviour
 
     private double GetSpinDisplayWin(SpinResult result)
     {
-        if (gameManager != null && gameManager.isInFreeSpins)
-            return result.serverTotalRoundWin;
-
-        if (result.isDoubleDiamondResult && !result.isFreeSpin && result.freeSpinData?.isTriggered == true)
-            return result.freeSpinData.scatterWin;
+        if (result.isFreeSpin || gameManager?.isInFreeSpins == true)
+            return result.serverTotalRoundWin + (result.isDoubleDiamondResult ? ddFreeSpinTriggerLineWin : 0d);
 
         return result.winAmount;
     }
@@ -1235,13 +1266,16 @@ public class UIManager : MonoBehaviour
         holdDoubleDiamondFreeSpinBalance = true;
     }
 
-    internal void OnDoubleDiamondFreeSpinsStarted(int spinsAwarded, int spinsRemaining, int bonusDiamondCount, double roundWin)
+    internal void OnDoubleDiamondFreeSpinsStarted(int spinsAwarded, int spinsRemaining, int bonusDiamondCount,
+        double roundWin, double triggerLineWin)
     {
+        ddFreeSpinTriggerLineWin = triggerLineWin;
         DisableControlsDuringWinAnimation();
-        StartCoroutine(ShowDoubleDiamondFreeSpinTrigger(spinsAwarded, spinsRemaining, bonusDiamondCount, roundWin));
+        StartCoroutine(ShowDoubleDiamondFreeSpinTrigger(
+            spinsAwarded, spinsRemaining, bonusDiamondCount, roundWin + ddFreeSpinTriggerLineWin));
     }
 
-    private IEnumerator ShowDoubleDiamondFreeSpinTrigger(int spinsAwarded, int spinsRemaining, int bonusDiamondCount, double roundWin)
+    private IEnumerator ShowDoubleDiamondFreeSpinTrigger(int spinsAwarded, int spinsRemaining, int bonusDiamondCount, double displayWin)
     {
         if (gameLogoObject) gameLogoObject.SetActive(false);
         lineWinOrientationController?.SetDoubleDiamondFreeSpinPresentation(true);
@@ -1263,7 +1297,7 @@ public class UIManager : MonoBehaviour
 
         lineWinOrientationController?.SetDoubleDiamondFreeSpinPresentation(true, displayVisible: true);
         UpdateDoubleDiamondFreeSpinCount(spinsRemaining);
-        UpdateWinDisplay(roundWin);
+        UpdateWinDisplay(displayWin);
 
         // Reuse the Start controls already positioned over Spin in both orientations.
         awaitingDoubleDiamondFreeSpinStart = true;
@@ -1355,10 +1389,11 @@ public class UIManager : MonoBehaviour
         totalFreeSpinsAwarded = 0;
         DisableControlsDuringWinAnimation();
         SetButtonActive(spinButton, spinButtonPortrait, false);
-        StartCoroutine(ShowDoubleDiamondFreeSpinsTotal(serverTotalRoundWin, onTransitionComplete));
+        double displayTotalWin = serverTotalRoundWin + ddFreeSpinTriggerLineWin;
+        StartCoroutine(ShowDoubleDiamondFreeSpinsTotal(displayTotalWin, onTransitionComplete));
     }
 
-    private IEnumerator ShowDoubleDiamondFreeSpinsTotal(double serverTotalRoundWin, System.Action onTransitionComplete)
+    private IEnumerator ShowDoubleDiamondFreeSpinsTotal(double displayTotalWin, System.Action onTransitionComplete)
     {
         if (freeSpinTotalWinPopup != null)
         {
@@ -1366,6 +1401,8 @@ public class UIManager : MonoBehaviour
                 freeSpinTotalWonText.gameObject.SetActive(false);
 
             freeSpinTotalWinPopup.SetActive(true);
+            AudioManager.Instance?.PlayDDTotalBonusWin();
+            StartDDTotalWinPulse();
             if (freeSpinTotalWinIntroDuration > 0f)
             {
                 var intro = DOTween.Sequence().SetLink(freeSpinTotalWinPopup)
@@ -1379,15 +1416,15 @@ public class UIManager : MonoBehaviour
             {
                 freeSpinTotalWonText.text = FormatWinDigits(0);
                 freeSpinTotalWonText.gameObject.SetActive(true);
-                if (serverTotalRoundWin > 0 && freeSpinTotalWinCountUpDuration > 0f)
+                if (displayTotalWin > 0 && freeSpinTotalWinCountUpDuration > 0f)
                 {
                     Tween countUp = DOVirtual.Float(0f, 1f, freeSpinTotalWinCountUpDuration, progress =>
                     {
-                        freeSpinTotalWonText.text = FormatWinDigits(serverTotalRoundWin * progress);
+                        freeSpinTotalWonText.text = FormatWinDigits(displayTotalWin * progress);
                     }).SetEase(Ease.Linear).SetLink(freeSpinTotalWinPopup);
                     yield return countUp.WaitForCompletion();
                 }
-                freeSpinTotalWonText.text = FormatWinDigits(serverTotalRoundWin);
+                freeSpinTotalWonText.text = FormatWinDigits(displayTotalWin);
             }
         }
 
@@ -1396,6 +1433,63 @@ public class UIManager : MonoBehaviour
         SetFreeSpinTakeAboveModal(uwpTakeButton, true);
         SetFreeSpinTakeAboveModal(uwpTakeButtonPortrait, true);
         SetButtonInteractable(uwpTakeButton, uwpTakeButtonPortrait, true);
+    }
+
+    private void StartDDTotalWinPulse()
+    {
+        StopDDTotalWinPulse();
+        if (freeSpinTotalWonTextImage == null || freeSpinTotalFrame == null)
+            return;
+
+        Transform image = freeSpinTotalWonTextImage.transform;
+        Transform frame = freeSpinTotalFrame.transform;
+
+        // DD uses each orientation's configured scales as its resting size.
+        ddTotalWinImageBaseScale = image.localScale;
+        ddTotalWinFrameBaseScale = frame.localScale;
+
+        ddTotalWinPulse = DOVirtual.Float(-1f, 1f, Mathf.Max(0.1f, totalWinPulseDuration), progress =>
+        {
+            float change = totalWinPulseAmount * progress;
+            image.localScale = ddTotalWinImageBaseScale * (1f + change);
+            frame.localScale = ddTotalWinFrameBaseScale * (1f - change);
+        })
+            .SetEase(Ease.InOutSine)
+            .SetLoops(-1, LoopType.Yoyo)
+            .SetLink(freeSpinTotalWinPopup, LinkBehaviour.KillOnDisable);
+    }
+
+    private void StopDDTotalWinPulse(bool restoreScale = true)
+    {
+        if (ddTotalWinPulseRestart != null)
+        {
+            StopCoroutine(ddTotalWinPulseRestart);
+            ddTotalWinPulseRestart = null;
+        }
+
+        if (ddTotalWinPulse == null)
+            return;
+
+        ddTotalWinPulse.Kill();
+        ddTotalWinPulse = null;
+
+        if (restoreScale)
+        {
+            if (freeSpinTotalWonTextImage != null)
+                freeSpinTotalWonTextImage.transform.localScale = ddTotalWinImageBaseScale;
+            if (freeSpinTotalFrame != null)
+                freeSpinTotalFrame.transform.localScale = ddTotalWinFrameBaseScale;
+        }
+    }
+
+    private IEnumerator RestartDDTotalWinPulseAfterOrientationChange()
+    {
+        // DD waits for all orientation handlers before capturing the new resting scales.
+        yield return null;
+        ddTotalWinPulseRestart = null;
+
+        if (freeSpinTotalWinPopup != null && freeSpinTotalWinPopup.activeInHierarchy)
+            StartDDTotalWinPulse();
     }
 
     private void FadeInFreeSpinTotalArt(Sequence intro, GameObject part)
@@ -1453,6 +1547,8 @@ public class UIManager : MonoBehaviour
 
     private void TakeDoubleDiamondFreeSpinWin()
     {
+        AudioManager.Instance?.StopDDWinAudio();
+        StopDDTotalWinPulse();
         var onTransitionComplete = doubleDiamondFreeSpinReturn;
         doubleDiamondFreeSpinReturn = null;
         SetFreeSpinTakeAboveModal(uwpTakeButton, false);
@@ -1460,6 +1556,7 @@ public class UIManager : MonoBehaviour
         SetButtonActive(uwpTakeButton, uwpTakeButtonPortrait, false);
         if (freeSpinTotalWinPopup) freeSpinTotalWinPopup.SetActive(false);
 
+        ddFreeSpinTriggerLineWin = 0d;
         holdDoubleDiamondFreeSpinBalance = false;
         UpdateBalanceDisplay();
 
