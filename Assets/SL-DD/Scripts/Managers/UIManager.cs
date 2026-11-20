@@ -203,6 +203,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text remainingFreeSpinsText;
 
     [SerializeField] private GameObject freeSpinTotalWinPopup;
+    [SerializeField] private FountainEmitter freeSpinTotalWinFountain;
+    [SerializeField] private RippleEmitter freeSpinTotalWinRipple;
     [SerializeField] private GameObject freeSpinTotalWonTextImage;
     [SerializeField] private GameObject freeSpinTotalFrame;
     [SerializeField] private TMP_Text freeSpinTotalWonText;
@@ -323,6 +325,8 @@ public class UIManager : MonoBehaviour
     {
         OrientationChange.OnOrientationChanged -= HandleOrientationChanged;
         StopDDTotalWinPulse();
+        freeSpinTotalWinFountain?.StopFountain();
+        freeSpinTotalWinRipple?.StopRipple();
         AudioManager.Instance?.StopDDWinAudio();
     }
 
@@ -1402,7 +1406,7 @@ public class UIManager : MonoBehaviour
 
             freeSpinTotalWinPopup.SetActive(true);
             AudioManager.Instance?.PlayDDTotalBonusWin();
-            StartDDTotalWinPulse();
+            StartDDTotalWinEffects();
             if (freeSpinTotalWinIntroDuration > 0f)
             {
                 var intro = DOTween.Sequence().SetLink(freeSpinTotalWinPopup)
@@ -1434,6 +1438,44 @@ public class UIManager : MonoBehaviour
         SetFreeSpinTakeAboveModal(uwpTakeButtonPortrait, true);
         SetButtonInteractable(uwpTakeButton, uwpTakeButtonPortrait, true);
     }
+
+    private void StartDDTotalWinEffects()
+    {
+        StartDDTotalWinPulse();
+        freeSpinTotalWinFountain?.StartFountain();
+        freeSpinTotalWinRipple?.StartRipple();
+    }
+
+#if UNITY_EDITOR
+    // DD preview reuses the popup effects without starting the payout flow.
+    internal bool TryOpenDDTotalWinPreview()
+    {
+        if (!Application.isPlaying || !isActiveAndEnabled || freeSpinTotalWinPopup == null ||
+            freeSpinTotalWinPopup.activeSelf ||
+            (gameManager != null && (gameManager.isInFreeSpins || gameManager.isAutoPlaying ||
+                (gameManager.currentState != GameState.Idle && gameManager.currentState != GameState.Initializing))))
+        {
+            return false;
+        }
+
+        freeSpinTotalWinPopup.SetActive(true);
+        if (!freeSpinTotalWinPopup.activeInHierarchy)
+        {
+            freeSpinTotalWinPopup.SetActive(false);
+            return false;
+        }
+
+        StartDDTotalWinEffects();
+        return true;
+    }
+
+    internal void CloseDDTotalWinPreview()
+    {
+        StopDDTotalWinPulse();
+        if (freeSpinTotalWinPopup != null)
+            freeSpinTotalWinPopup.SetActive(false);
+    }
+#endif
 
     private void StartDDTotalWinPulse()
     {
