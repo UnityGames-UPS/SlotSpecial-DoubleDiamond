@@ -6,6 +6,9 @@ using DG.Tweening;
 
 public class SlotView : MonoBehaviour
 {
+    private const int DDInfernoSymbolId = 13;
+    private const int FirstVisibleReelImage = 2;
+
     [Header("References")]
     [SerializeField] private GameManager gameManager;
 
@@ -48,6 +51,11 @@ public class SlotView : MonoBehaviour
     [SerializeField, Min(0f)] private float bonusReelOutlineFadeDuration = 0.25f;
     private bool bonusReelOutlinesSuppressed;
     private Coroutine bonusReelOutlineFadeRoutine;
+
+    [Header("DD Inferno Landing")]
+    [SerializeField] private List<Sprite> ddInfernoLandingFrames = new List<Sprite>();
+    [SerializeField, Min(1f)] private float ddInfernoLandingFramesPerSecond = 24f;
+    private readonly HashSet<DDInfernoLandingCell> activeDDInfernoCells = new HashSet<DDInfernoLandingCell>();
 
     [Header("Legacy CNY Win Animations")]
     [SerializeField] private List<Sprite> animSpritesUSpin; // Legacy U-Spin, ID 11.
@@ -143,6 +151,7 @@ public class SlotView : MonoBehaviour
 
     private void DisableAllOverlays()
     {
+        ClearDDInfernoLandings();
         DisableColumns(winBoxColumns);
         DisableColumns(winAnimationColumns);
         HidePhase1TotalWinText();
@@ -239,7 +248,7 @@ public class SlotView : MonoBehaviour
         symbolSprites[10] = starCoin;
         symbolSprites[11] = spriteSingleSeven;
         symbolSprites[12] = spriteBonusDiam;
-        symbolSprites[13] = JackpotInferno;
+        symbolSprites[DDInfernoSymbolId] = JackpotInferno;
 
         // Validate
         for (int i = 0; i < symbolSprites.Length; i++)
@@ -314,6 +323,7 @@ public class SlotView : MonoBehaviour
             if (matrix[col].Count != rowCount) return;
         }
 
+        ClearDDInfernoLandings();
         currentDisplayMatrix = matrix;
 
         for (int col = 0; col < 5; col++)
@@ -712,6 +722,7 @@ public class SlotView : MonoBehaviour
         if (landedSymbols == null) return;
         if (isDoubleDiamond)
         {
+            ShowDDInfernoLandings(col, landedSymbols);
             TryPlayBonusReelOutline(col, landedSymbols);
             return;
         }
@@ -727,6 +738,59 @@ public class SlotView : MonoBehaviour
                 AnimateSymbolSingleLoop(col, row, 1);
             }
         }
+    }
+
+    private void ShowDDInfernoLandings(int col, List<int> landedSymbols)
+    {
+        if (reelImagesList == null || col < 0 || col >= reelImagesList.Count)
+            return;
+
+        var images = reelImagesList[col]?.images;
+        if (images == null)
+            return;
+
+        int rowCount = gameManager?.gameConfig?.rowCount ?? landedSymbols.Count;
+        int visibleRows = Mathf.Min(rowCount, landedSymbols.Count, images.Count - FirstVisibleReelImage);
+        if (visibleRows <= 0 || landedSymbols.IndexOf(DDInfernoSymbolId, 0, visibleRows) < 0)
+            return;
+
+        // DD derives the ordinal from reel order even if stop callbacks arrive together.
+        int number = 0;
+        for (int earlierCol = 0; earlierCol < col; earlierCol++)
+        {
+            var earlierReel = currentDisplayMatrix[earlierCol];
+            for (int row = 0; row < Mathf.Min(rowCount, earlierReel.Count); row++)
+            {
+                if (earlierReel[row] == DDInfernoSymbolId)
+                    number++;
+            }
+        }
+
+        for (int row = 0; row < visibleRows; row++)
+        {
+            if (landedSymbols[row] != DDInfernoSymbolId)
+                continue;
+
+            number++;
+            var image = images[FirstVisibleReelImage + row];
+            var cell = image != null ? image.GetComponentInChildren<DDInfernoLandingCell>(true) : null;
+            if (cell == null)
+                continue;
+
+            activeDDInfernoCells.Add(cell);
+            cell.Show(number, ddInfernoLandingFrames, ddInfernoLandingFramesPerSecond);
+        }
+    }
+
+    private void ClearDDInfernoLandings()
+    {
+        foreach (var cell in activeDDInfernoCells)
+        {
+            if (cell != null)
+                cell.Hide();
+        }
+
+        activeDDInfernoCells.Clear();
     }
 
     private void TryPlayBonusReelOutline(int col, List<int> landedSymbols)
