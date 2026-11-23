@@ -76,9 +76,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text uwpWinAmountText;
     [SerializeField] private TMP_Text uwpFreeSpinCountText;
     [SerializeField] private GameObject uwpFreeSpinObject;
-    [SerializeField] private Button uwpTakeButton;
-    [Header("Universal Win Popup - Portrait")]
-    [SerializeField] private Button uwpTakeButtonPortrait;
+    [Header("DD and CNY Shared Win Take Buttons")]
+    [FormerlySerializedAs("uwpTakeButton")]
+    [SerializeField] private Button sharedWinTakeButton;
+    [FormerlySerializedAs("uwpTakeButtonPortrait")]
+    [SerializeField] private Button sharedWinTakeButtonPortrait;
     [Header("Universal Win Popup - Star Particle Burst")]
     [SerializeField] private StarFountain starFountain;
 
@@ -202,22 +204,36 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject freeSpinCountContainer;
     [SerializeField] private TMP_Text remainingFreeSpinsText;
 
-    [SerializeField] private GameObject freeSpinTotalWinPopup;
-    [SerializeField] private FountainEmitter freeSpinTotalWinFountain;
-    [SerializeField] private RippleEmitter freeSpinTotalWinRipple;
-    [SerializeField] private GameObject freeSpinTotalWonTextImage;
-    [SerializeField] private GameObject freeSpinTotalFrame;
-    [SerializeField] private TMP_Text freeSpinTotalWonText;
-    [SerializeField, Min(0f)] private float freeSpinTotalWinIntroDuration = 0.6f;
-    [SerializeField, Min(0f)] private float freeSpinTotalWinCountUpDuration = 1f;
+    [Header("DD Total Win Popup")]
+    [FormerlySerializedAs("freeSpinTotalWinPopup")]
+    [SerializeField] private GameObject totalWinPopup;
+    [FormerlySerializedAs("freeSpinTotalWonTextImage")]
+    [SerializeField] private GameObject freeSpinTotalWinTitle;
+    [SerializeField] private GameObject jpotTotalWinTitle;
+    [FormerlySerializedAs("freeSpinTotalFrame")]
+    [SerializeField] private GameObject totalWinFrame;
+    [FormerlySerializedAs("freeSpinTotalWonText")]
+    [SerializeField] private TMP_Text totalWinAmountText;
+    [FormerlySerializedAs("freeSpinTotalWinFountain")]
+    [SerializeField] private FountainEmitter totalWinFountain;
+    [FormerlySerializedAs("freeSpinTotalWinRipple")]
+    [SerializeField] private RippleEmitter totalWinRipple;
+    [FormerlySerializedAs("freeSpinTotalWinIntroDuration")]
+    [SerializeField, Min(0f)] private float totalWinIntroDuration = 0.6f;
+    [FormerlySerializedAs("freeSpinTotalWinCountUpDuration")]
+    [SerializeField, Min(0f)] private float totalWinCountUpDuration = 1f;
 
     [Header("DD Total Win Pulse")]
     [SerializeField, Min(0.1f)] private float totalWinPulseDuration = 0.6f;
     [SerializeField, Range(0f, 0.2f)] private float totalWinPulseAmount = 0.05f;
+    [SerializeField] private RectTransform totalWinPulseRays;
+    [SerializeField, Min(0.01f)] private float totalWinRaysMinScaleX = 21f;
+    [SerializeField, Min(0.01f)] private float totalWinRaysMaxScaleX = 26f;
     private Tween ddTotalWinPulse;
     private Coroutine ddTotalWinPulseRestart;
     private Vector3 ddTotalWinImageBaseScale;
     private Vector3 ddTotalWinFrameBaseScale;
+    private Vector3 ddTotalWinRaysBaseScale;
 
     [Header("Ping Display")]
     [SerializeField] private TMP_Text pingText;
@@ -244,6 +260,7 @@ public class UIManager : MonoBehaviour
 
     private bool isExpanded = false;
     private bool isSettingsPanelOpen = false;
+    private bool isAutoPlayPanelOpen;
 
     private Tween balanceTween;
     private Tween winTween;
@@ -254,7 +271,10 @@ public class UIManager : MonoBehaviour
     // DD adds the triggering paid spin's line wins to the displayed free-spin sequence total.
     private double ddFreeSpinTriggerLineWin;
     private bool awaitingDoubleDiamondFreeSpinStart;
-    private System.Action doubleDiamondFreeSpinReturn;
+    private System.Action ddTotalWinOnTake;
+    private bool ddTotalWinTakeReady;
+    private GameObject activeDDTotalWinTitle;
+    private Sequence ddTotalWinPresentation;
 
     // Optimistic balance: the locally-deducted balance shown while the spin is in flight
     private double optimisticBalance = 0;
@@ -324,19 +344,17 @@ public class UIManager : MonoBehaviour
     private void OnDisable()
     {
         OrientationChange.OnOrientationChanged -= HandleOrientationChanged;
-        StopDDTotalWinPulse();
-        freeSpinTotalWinFountain?.StopFountain();
-        freeSpinTotalWinRipple?.StopRipple();
+        CloseDDTotalWinPopup();
         AudioManager.Instance?.StopDDWinAudio();
     }
 
     private void HandleOrientationChanged(OrientationChange.OrientationMode mode, int width, int height)
     {
         UpdateNewWheelSpinButtonsVisibility();
-        if (doubleDiamondFreeSpinReturn != null)
-            StartCoroutine(RefreshFreeSpinTakeAfterOrientationChange());
+        if (ddTotalWinTakeReady)
+            StartCoroutine(RefreshDDTotalWinTakeAfterOrientationChange());
 
-        if (freeSpinTotalWinPopup != null && freeSpinTotalWinPopup.activeInHierarchy &&
+        if (totalWinPopup != null && totalWinPopup.activeInHierarchy &&
             (ddTotalWinPulse != null || ddTotalWinPulseRestart != null))
         {
             // DD lets OCController apply the new scales before restarting the pulse.
@@ -508,8 +526,8 @@ public class UIManager : MonoBehaviour
         if (autoPlayCloseButton) autoPlayCloseButton.onClick.AddListener(CloseAutoPlayPanel);
         if (autoPlayCloseButtonPortrait) autoPlayCloseButtonPortrait.onClick.AddListener(CloseAutoPlayPanel);
 
-        if (gameQuitButton) gameQuitButton.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); OnExitButtonPressed(); });
-        if (gameQuitButtonPortrait) gameQuitButtonPortrait.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); OnExitButtonPressed(); });
+        if (gameQuitButton) gameQuitButton.onClick.AddListener(OnExitButtonPressed);
+        if (gameQuitButtonPortrait) gameQuitButtonPortrait.onClick.AddListener(OnExitButtonPressed);
 
         if (expandButton) expandButton.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); OnExpand(); });
         if (shrinkButton) shrinkButton.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); OnShrink(); });
@@ -517,13 +535,13 @@ public class UIManager : MonoBehaviour
         if (shrinkButtonPortrait) shrinkButtonPortrait.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); OnShrink(); });
 
         if (sharedStartButton) sharedStartButton.onClick.AddListener(OnSharedStartButtonClicked);
-        if (wheelSpinButton2) wheelSpinButton2.onClick.AddListener(() => { AudioManager.Instance?.PlayWheelStart(); OnWheelSpinClicked(); });
+        if (wheelSpinButton2) wheelSpinButton2.onClick.AddListener(OnWheelSpinClicked);
         if (sharedStartButtonPortrait) sharedStartButtonPortrait.onClick.AddListener(OnSharedStartButtonClicked);
-        if (wheelSpinButtonPortrait2) wheelSpinButtonPortrait2.onClick.AddListener(() => { AudioManager.Instance?.PlayWheelStart(); OnWheelSpinClicked(); });
+        if (wheelSpinButtonPortrait2) wheelSpinButtonPortrait2.onClick.AddListener(OnWheelSpinClicked);
 
-        // Take button for universal win popup
-        if (uwpTakeButton) uwpTakeButton.onClick.AddListener(OnUniversalWinTakeButtonClicked);
-        if (uwpTakeButtonPortrait) uwpTakeButtonPortrait.onClick.AddListener(OnUniversalWinTakeButtonClicked);
+        // DD total wins and the legacy CNY popup share the Take buttons.
+        if (sharedWinTakeButton) sharedWinTakeButton.onClick.AddListener(OnWinTakeButtonClicked);
+        if (sharedWinTakeButtonPortrait) sharedWinTakeButtonPortrait.onClick.AddListener(OnWinTakeButtonClicked);
 
         // Speed buttons setup (Three-layer Toggle)
         if (normalSpeedButton) normalSpeedButton.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); SetSpeedMode(SpinSpeed.Turbo); });
@@ -536,37 +554,25 @@ public class UIManager : MonoBehaviour
 
     private void SetupAutoPlayPanel()
     {
-        if (autoPlay10Button)       autoPlay10Button.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); StartAutoplayWithRounds(10); });
-        if (autoPlay50Button)       autoPlay50Button.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); StartAutoplayWithRounds(50); });
-        if (autoPlay100Button)      autoPlay100Button.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); StartAutoplayWithRounds(100); });
-        if (autoPlay200Button)      autoPlay200Button.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); StartAutoplayWithRounds(200); });
-        if (autoPlay500Button)      autoPlay500Button.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); StartAutoplayWithRounds(500); });
-        if (autoPlayInfiniteButton) autoPlayInfiniteButton.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); StartAutoplayWithRounds(-1); });
+        if (autoPlay10Button)       autoPlay10Button.onClick.AddListener(() => StartAutoplayWithRounds(10));
+        if (autoPlay50Button)       autoPlay50Button.onClick.AddListener(() => StartAutoplayWithRounds(50));
+        if (autoPlay100Button)      autoPlay100Button.onClick.AddListener(() => StartAutoplayWithRounds(100));
+        if (autoPlay200Button)      autoPlay200Button.onClick.AddListener(() => StartAutoplayWithRounds(200));
+        if (autoPlay500Button)      autoPlay500Button.onClick.AddListener(() => StartAutoplayWithRounds(500));
+        if (autoPlayInfiniteButton) autoPlayInfiniteButton.onClick.AddListener(() => StartAutoplayWithRounds(-1));
 
-        if (autoPlay10ButtonPortrait)       autoPlay10ButtonPortrait.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); StartAutoplayWithRounds(10); });
-        if (autoPlay50ButtonPortrait)       autoPlay50ButtonPortrait.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); StartAutoplayWithRounds(50); });
-        if (autoPlay100ButtonPortrait)      autoPlay100ButtonPortrait.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); StartAutoplayWithRounds(100); });
-        if (autoPlay200ButtonPortrait)      autoPlay200ButtonPortrait.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); StartAutoplayWithRounds(200); });
-        if (autoPlay500ButtonPortrait)      autoPlay500ButtonPortrait.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); StartAutoplayWithRounds(500); });
-        if (autoPlayInfiniteButtonPortrait) autoPlayInfiniteButtonPortrait.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); StartAutoplayWithRounds(-1); });
+        if (autoPlay10ButtonPortrait)       autoPlay10ButtonPortrait.onClick.AddListener(() => StartAutoplayWithRounds(10));
+        if (autoPlay50ButtonPortrait)       autoPlay50ButtonPortrait.onClick.AddListener(() => StartAutoplayWithRounds(50));
+        if (autoPlay100ButtonPortrait)      autoPlay100ButtonPortrait.onClick.AddListener(() => StartAutoplayWithRounds(100));
+        if (autoPlay200ButtonPortrait)      autoPlay200ButtonPortrait.onClick.AddListener(() => StartAutoplayWithRounds(200));
+        if (autoPlay500ButtonPortrait)      autoPlay500ButtonPortrait.onClick.AddListener(() => StartAutoplayWithRounds(500));
+        if (autoPlayInfiniteButtonPortrait) autoPlayInfiniteButtonPortrait.onClick.AddListener(() => StartAutoplayWithRounds(-1));
     }
 
     private void SetupSettingsPanel()
     {
-        if (settingsOpenButton) settingsOpenButton.onClick.AddListener(() => { 
-            AudioManager.Instance?.PlayButton(); 
-            if (isSettingsPanelOpen)
-                CloseSettingsPanel();
-            else
-                OpenSettingsPanel();
-        });
-        if (settingsOpenButtonPortrait) settingsOpenButtonPortrait.onClick.AddListener(() => { 
-            AudioManager.Instance?.PlayButton(); 
-            if (isSettingsPanelOpen)
-                CloseSettingsPanel();
-            else
-                OpenSettingsPanel();
-        });
+        if (settingsOpenButton) settingsOpenButton.onClick.AddListener(OnSettingsToggleClicked);
+        if (settingsOpenButtonPortrait) settingsOpenButtonPortrait.onClick.AddListener(OnSettingsToggleClicked);
 
         if (settingsCloseButton) settingsCloseButton.onClick.AddListener(() => { 
             AudioManager.Instance?.PlayButton(); 
@@ -638,7 +644,6 @@ public class UIManager : MonoBehaviour
     internal void OnSpinStarted()
     {
         AudioManager.Instance?.StopDDWinAudio();
-        AudioManager.Instance?.PlaySpinStart();
 
         if (gameManager.isInFreeSpins)
         {
@@ -838,7 +843,7 @@ public class UIManager : MonoBehaviour
 
         if (!gameManager.IsSpinning())
         {
-            gameManager.RequestSpin();
+            gameManager.RequestSpin(playButtonCue: true);
         }
     }
 
@@ -940,25 +945,29 @@ public class UIManager : MonoBehaviour
     {
         if (gameManager.currentState == GameState.Idle && !gameManager.isAutoPlaying)
         {
-            AudioManager.Instance?.PlayButton();
             OpenAutoPlayPanel();
         }
     }
 
     private void OpenAutoPlayPanel()
     {
-        AudioManager.Instance?.PlayAutoplayPanelOpen();
+        if (isAutoPlayPanelOpen) return;
+
+        isAutoPlayPanelOpen = true;
+        AudioManager.Instance?.PlayAutoplayPanelToggle();
         if (isSettingsPanelOpen)
             CloseSettingsPanelImmediate();
 
         SetGameObjectActive(autoPlayPanel, autoPlayPanelPortrait, true);
         if (autoPlayPanelRect)
         {
+            autoPlayPanelRect.DOKill();
             autoPlayPanelRect.anchoredPosition = new Vector2(autoPlayPanelRect.anchoredPosition.x, -600f);
             autoPlayPanelRect.DOAnchorPosY(0f, 0.35f).SetEase(Ease.OutCubic);
         }
         if (autoPlayPanelRectPortrait)
         {
+            autoPlayPanelRectPortrait.DOKill();
             autoPlayPanelRectPortrait.anchoredPosition = new Vector2(autoPlayPanelRectPortrait.anchoredPosition.x, -600f);
             autoPlayPanelRectPortrait.DOAnchorPosY(0f, 0.35f).SetEase(Ease.OutCubic);
         }
@@ -966,10 +975,14 @@ public class UIManager : MonoBehaviour
 
     private void CloseAutoPlayPanel()
     {
-        AudioManager.Instance?.PlayPopupClose();
+        if (!isAutoPlayPanelOpen) return;
+
+        isAutoPlayPanelOpen = false;
+        AudioManager.Instance?.PlayAutoplayPanelToggle();
 
         if (autoPlayPanelRect)
         {
+            autoPlayPanelRect.DOKill();
             autoPlayPanelRect.DOAnchorPosY(-600f, 0.35f).SetEase(Ease.InCubic).OnComplete(() =>
             {
                 if (autoPlayPanel) autoPlayPanel.SetActive(false);
@@ -982,6 +995,7 @@ public class UIManager : MonoBehaviour
 
         if (autoPlayPanelRectPortrait)
         {
+            autoPlayPanelRectPortrait.DOKill();
             autoPlayPanelRectPortrait.DOAnchorPosY(-600f, 0.35f).SetEase(Ease.InCubic).OnComplete(() =>
             {
                 if (autoPlayPanelPortrait) autoPlayPanelPortrait.SetActive(false);
@@ -1094,6 +1108,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
+            AudioManager.Instance?.PlayButton();
             soundPanel.SetActive(false);
         }
     }
@@ -1111,6 +1126,19 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region Settings Panel
+
+    private void OnSettingsToggleClicked()
+    {
+        if (isAutoPlayPanelOpen)
+            CloseAutoPlayPanelImmediate(playCue: true);
+        else
+            AudioManager.Instance?.PlayButton();
+
+        if (isSettingsPanelOpen)
+            CloseSettingsPanel();
+        else
+            OpenSettingsPanel();
+    }
 
     private void OpenSettingsPanel()
     {
@@ -1204,10 +1232,21 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void CloseAutoPlayPanelImmediate()
+    private void CloseAutoPlayPanelImmediate(bool playCue = false)
     {
-        if (autoPlayPanelRect) autoPlayPanelRect.localScale = Vector3.one;
-        if (autoPlayPanelRectPortrait) autoPlayPanelRectPortrait.localScale = Vector3.one;
+        if (isAutoPlayPanelOpen && playCue)
+            AudioManager.Instance?.PlayAutoplayPanelToggle();
+        isAutoPlayPanelOpen = false;
+        if (autoPlayPanelRect)
+        {
+            autoPlayPanelRect.DOKill();
+            autoPlayPanelRect.localScale = Vector3.one;
+        }
+        if (autoPlayPanelRectPortrait)
+        {
+            autoPlayPanelRectPortrait.DOKill();
+            autoPlayPanelRectPortrait.localScale = Vector3.one;
+        }
         SetGameObjectActive(autoPlayPanel, autoPlayPanelPortrait, false);
     }
 
@@ -1217,6 +1256,7 @@ public class UIManager : MonoBehaviour
 
     private void OpenGameRulesPanel()
     {
+        AudioManager.Instance?.PlayButton();
         if (isSettingsPanelOpen)
         {
             CloseSettingsPanelImmediate();
@@ -1242,6 +1282,7 @@ public class UIManager : MonoBehaviour
 
     private void OpenGuidePanel()
     {
+        AudioManager.Instance?.PlayButton();
         if (isSettingsPanelOpen)
         {
             CloseSettingsPanelImmediate();
@@ -1351,13 +1392,12 @@ public class UIManager : MonoBehaviour
         {
             awaitingDoubleDiamondFreeSpinStart = false;
             SetButtonActive(sharedStartButton, sharedStartButtonPortrait, false);
-            AudioManager.Instance?.PlayButton();
+            AudioManager.Instance?.PlaySpinStart();
             gameManager.StartFirstFreeSpin();
             return;
         }
 
         // Legacy CNY U-Spin wheel Start.
-        AudioManager.Instance?.PlayWheelStart();
         OnWheelSpinClicked();
     }
 
@@ -1391,222 +1431,19 @@ public class UIManager : MonoBehaviour
     {
         initialFreeSpins = 0;
         totalFreeSpinsAwarded = 0;
-        DisableControlsDuringWinAnimation();
-        SetButtonActive(spinButton, spinButtonPortrait, false);
+
+        // DD free spins include the paid spin's line wins in their displayed total.
         double displayTotalWin = serverTotalRoundWin + ddFreeSpinTriggerLineWin;
-        StartCoroutine(ShowDoubleDiamondFreeSpinsTotal(displayTotalWin, onTransitionComplete));
-    }
-
-    private IEnumerator ShowDoubleDiamondFreeSpinsTotal(double displayTotalWin, System.Action onTransitionComplete)
-    {
-        if (freeSpinTotalWinPopup != null)
+        ShowDDTotalWin(TotalWinTitle.FreeSpins, displayTotalWin, () =>
         {
-            if (freeSpinTotalWonText != null)
-                freeSpinTotalWonText.gameObject.SetActive(false);
-
-            freeSpinTotalWinPopup.SetActive(true);
-            AudioManager.Instance?.PlayDDTotalBonusWin();
-            StartDDTotalWinEffects();
-            if (freeSpinTotalWinIntroDuration > 0f)
-            {
-                var intro = DOTween.Sequence().SetLink(freeSpinTotalWinPopup)
-                    .AppendInterval(freeSpinTotalWinIntroDuration);
-                FadeInFreeSpinTotalArt(intro, freeSpinTotalWonTextImage);
-                FadeInFreeSpinTotalArt(intro, freeSpinTotalFrame);
-                yield return intro.WaitForCompletion();
-            }
-
-            if (freeSpinTotalWonText != null)
-            {
-                freeSpinTotalWonText.text = FormatWinDigits(0);
-                freeSpinTotalWonText.gameObject.SetActive(true);
-                if (displayTotalWin > 0 && freeSpinTotalWinCountUpDuration > 0f)
-                {
-                    Tween countUp = DOVirtual.Float(0f, 1f, freeSpinTotalWinCountUpDuration, progress =>
-                    {
-                        freeSpinTotalWonText.text = FormatWinDigits(displayTotalWin * progress);
-                    }).SetEase(Ease.Linear).SetLink(freeSpinTotalWinPopup);
-                    yield return countUp.WaitForCompletion();
-                }
-                freeSpinTotalWonText.text = FormatWinDigits(displayTotalWin);
-            }
-        }
-
-        doubleDiamondFreeSpinReturn = onTransitionComplete;
-        SetButtonActive(uwpTakeButton, uwpTakeButtonPortrait, true);
-        SetFreeSpinTakeAboveModal(uwpTakeButton, true);
-        SetFreeSpinTakeAboveModal(uwpTakeButtonPortrait, true);
-        SetButtonInteractable(uwpTakeButton, uwpTakeButtonPortrait, true);
-    }
-
-    private void StartDDTotalWinEffects()
-    {
-        StartDDTotalWinPulse();
-        freeSpinTotalWinFountain?.StartFountain();
-        freeSpinTotalWinRipple?.StartRipple();
-    }
-
-#if UNITY_EDITOR
-    // DD preview reuses the popup effects without starting the payout flow.
-    internal bool TryOpenDDTotalWinPreview()
-    {
-        if (!Application.isPlaying || !isActiveAndEnabled || freeSpinTotalWinPopup == null ||
-            freeSpinTotalWinPopup.activeSelf ||
-            (gameManager != null && (gameManager.isInFreeSpins || gameManager.isAutoPlaying ||
-                (gameManager.currentState != GameState.Idle && gameManager.currentState != GameState.Initializing))))
-        {
-            return false;
-        }
-
-        freeSpinTotalWinPopup.SetActive(true);
-        if (!freeSpinTotalWinPopup.activeInHierarchy)
-        {
-            freeSpinTotalWinPopup.SetActive(false);
-            return false;
-        }
-
-        StartDDTotalWinEffects();
-        return true;
-    }
-
-    internal void CloseDDTotalWinPreview()
-    {
-        StopDDTotalWinPulse();
-        if (freeSpinTotalWinPopup != null)
-            freeSpinTotalWinPopup.SetActive(false);
-    }
-#endif
-
-    private void StartDDTotalWinPulse()
-    {
-        StopDDTotalWinPulse();
-        if (freeSpinTotalWonTextImage == null || freeSpinTotalFrame == null)
-            return;
-
-        Transform image = freeSpinTotalWonTextImage.transform;
-        Transform frame = freeSpinTotalFrame.transform;
-
-        // DD uses each orientation's configured scales as its resting size.
-        ddTotalWinImageBaseScale = image.localScale;
-        ddTotalWinFrameBaseScale = frame.localScale;
-
-        ddTotalWinPulse = DOVirtual.Float(-1f, 1f, Mathf.Max(0.1f, totalWinPulseDuration), progress =>
-        {
-            float change = totalWinPulseAmount * progress;
-            image.localScale = ddTotalWinImageBaseScale * (1f + change);
-            frame.localScale = ddTotalWinFrameBaseScale * (1f - change);
-        })
-            .SetEase(Ease.InOutSine)
-            .SetLoops(-1, LoopType.Yoyo)
-            .SetLink(freeSpinTotalWinPopup, LinkBehaviour.KillOnDisable);
-    }
-
-    private void StopDDTotalWinPulse(bool restoreScale = true)
-    {
-        if (ddTotalWinPulseRestart != null)
-        {
-            StopCoroutine(ddTotalWinPulseRestart);
-            ddTotalWinPulseRestart = null;
-        }
-
-        if (ddTotalWinPulse == null)
-            return;
-
-        ddTotalWinPulse.Kill();
-        ddTotalWinPulse = null;
-
-        if (restoreScale)
-        {
-            if (freeSpinTotalWonTextImage != null)
-                freeSpinTotalWonTextImage.transform.localScale = ddTotalWinImageBaseScale;
-            if (freeSpinTotalFrame != null)
-                freeSpinTotalFrame.transform.localScale = ddTotalWinFrameBaseScale;
-        }
-    }
-
-    private IEnumerator RestartDDTotalWinPulseAfterOrientationChange()
-    {
-        // DD waits for all orientation handlers before capturing the new resting scales.
-        yield return null;
-        ddTotalWinPulseRestart = null;
-
-        if (freeSpinTotalWinPopup != null && freeSpinTotalWinPopup.activeInHierarchy)
-            StartDDTotalWinPulse();
-    }
-
-    private void FadeInFreeSpinTotalArt(Sequence intro, GameObject part)
-    {
-        if (part == null || !part.TryGetComponent(out UnityEngine.UI.Image image)) return;
-
-        Color color = image.color;
-        image.color = new Color(color.r, color.g, color.b, 0f);
-        intro.Insert(0f, image.DOFade(color.a, freeSpinTotalWinIntroDuration));
-    }
-
-    private IEnumerator RefreshFreeSpinTakeAfterOrientationChange()
-    {
-        // Wait for the orientation controller to activate the new bottom bar.
-        yield return null;
-        if (doubleDiamondFreeSpinReturn == null) yield break;
-
-        SetFreeSpinTakeAboveModal(uwpTakeButton, true);
-        SetFreeSpinTakeAboveModal(uwpTakeButtonPortrait, true);
-    }
-
-    private static void SetFreeSpinTakeAboveModal(Button button, bool aboveModal)
-    {
-        if (button == null) return;
-        button.TryGetComponent(out Canvas buttonCanvas);
-        if (!aboveModal)
-        {
-            if (buttonCanvas != null)
-            {
-                buttonCanvas.overrideSorting = false;
-                buttonCanvas.enabled = false;
-                button.GetComponent<GraphicRaycaster>().enabled = false;
-            }
-            return;
-        }
-
-        if (!button.gameObject.activeInHierarchy) return;
-        var parentCanvas = button.transform.parent.GetComponentInParent<Canvas>();
-        if (parentCanvas == null) return;
-
-        // The existing Take buttons are under the bottom bars. Give them priority over the modal backdrop.
-        if (buttonCanvas == null)
-        {
-            buttonCanvas = button.gameObject.AddComponent<Canvas>();
-            button.gameObject.AddComponent<GraphicRaycaster>();
-        }
-
-        buttonCanvas.enabled = true;
-        button.GetComponent<GraphicRaycaster>().enabled = true;
-        buttonCanvas.overrideSorting = true;
-        buttonCanvas.worldCamera = parentCanvas.worldCamera;
-        buttonCanvas.sortingLayerID = parentCanvas.sortingLayerID;
-        buttonCanvas.sortingOrder = parentCanvas.sortingOrder + 1;
-    }
-
-    private void TakeDoubleDiamondFreeSpinWin()
-    {
-        AudioManager.Instance?.StopDDWinAudio();
-        StopDDTotalWinPulse();
-        var onTransitionComplete = doubleDiamondFreeSpinReturn;
-        doubleDiamondFreeSpinReturn = null;
-        SetFreeSpinTakeAboveModal(uwpTakeButton, false);
-        SetFreeSpinTakeAboveModal(uwpTakeButtonPortrait, false);
-        SetButtonActive(uwpTakeButton, uwpTakeButtonPortrait, false);
-        if (freeSpinTotalWinPopup) freeSpinTotalWinPopup.SetActive(false);
-
-        ddFreeSpinTriggerLineWin = 0d;
-        holdDoubleDiamondFreeSpinBalance = false;
-        UpdateBalanceDisplay();
-
-        // Double Diamond returns directly to the normal HUD.
-        lineWinOrientationController?.SetDoubleDiamondFreeSpinPresentation(false);
-        RestoreBaseGameHudAfterFreeSpins();
-        onTransitionComplete?.Invoke();
-        gameManager?.ResumeAutoPlay();
+            ddFreeSpinTriggerLineWin = 0d;
+            holdDoubleDiamondFreeSpinBalance = false;
+            UpdateBalanceDisplay();
+            lineWinOrientationController?.SetDoubleDiamondFreeSpinPresentation(false);
+            RestoreBaseGameHudAfterFreeSpins();
+            onTransitionComplete?.Invoke();
+            gameManager?.ResumeAutoPlay();
+        });
     }
 
     // Legacy CNY uses the universal completion popup and its Take button.
@@ -1671,6 +1508,310 @@ public class UIManager : MonoBehaviour
 
         if (freeSpinCountContainer) freeSpinCountContainer.SetActive(true);
         if (remainingFreeSpinsText) remainingFreeSpinsText.text = $"FREE GAME  {playedSpins}  OF  {totalFreeSpinsAwarded}";
+    }
+
+    #endregion
+
+    #region DD Total Win Popup
+
+    internal enum TotalWinTitle
+    {
+        FreeSpins,
+        Jackpot
+    }
+
+    internal void ShowDDTotalWin(TotalWinTitle title, double amount, System.Action onTake)
+    {
+        if (!TryOpenDDTotalWinPopup(title))
+        {
+            if (totalWinPopup == null || !totalWinPopup.activeSelf)
+                onTake?.Invoke();
+            return;
+        }
+
+        DisableControlsDuringWinAnimation();
+        SetButtonActive(spinButton, spinButtonPortrait, false);
+        ddTotalWinOnTake = onTake;
+        AudioManager.Instance?.PlayDDTotalWin();
+        AnimateDDTotalWinAmount(amount, ShowDDTotalWinTake);
+    }
+
+    private bool TryOpenDDTotalWinPopup(TotalWinTitle title)
+    {
+        if (totalWinPopup == null || totalWinPopup.activeSelf)
+            return false;
+
+        activeDDTotalWinTitle = title == TotalWinTitle.Jackpot ? jpotTotalWinTitle : freeSpinTotalWinTitle;
+        if (freeSpinTotalWinTitle != null)
+            freeSpinTotalWinTitle.SetActive(freeSpinTotalWinTitle == activeDDTotalWinTitle);
+        if (jpotTotalWinTitle != null)
+            jpotTotalWinTitle.SetActive(jpotTotalWinTitle == activeDDTotalWinTitle);
+        if (totalWinAmountText != null)
+            totalWinAmountText.gameObject.SetActive(false);
+
+        totalWinPopup.SetActive(true);
+        if (!totalWinPopup.activeInHierarchy)
+        {
+            totalWinPopup.SetActive(false);
+            activeDDTotalWinTitle = null;
+            return false;
+        }
+
+        StartDDTotalWinPulse();
+        totalWinFountain?.StartFountain();
+        totalWinRipple?.StartRipple();
+        return true;
+    }
+
+    private void AnimateDDTotalWinAmount(double amount, System.Action onPresented)
+    {
+        float introDuration = Mathf.Max(0f, totalWinIntroDuration);
+        float countUpDuration = totalWinAmountText != null && amount > 0d
+            ? Mathf.Max(0f, totalWinCountUpDuration)
+            : 0f;
+
+        if (introDuration == 0f && countUpDuration == 0f)
+        {
+            SetDDTotalWinAmount(amount);
+            onPresented?.Invoke();
+            return;
+        }
+
+        var presentation = DOTween.Sequence().SetLink(totalWinPopup, LinkBehaviour.KillOnDisable).Pause();
+        Image titleImage = activeDDTotalWinTitle != null ? activeDDTotalWinTitle.GetComponent<Image>() : null;
+        Image frameImage = totalWinFrame != null ? totalWinFrame.GetComponent<Image>() : null;
+        float titleAlpha = titleImage != null ? titleImage.color.a : 0f;
+        float frameAlpha = frameImage != null ? frameImage.color.a : 0f;
+
+        if (introDuration > 0f)
+        {
+            presentation.AppendInterval(introDuration);
+            if (titleImage != null)
+                presentation.Insert(0f, titleImage.DOFade(titleAlpha, introDuration).From(0f));
+            if (frameImage != null)
+                presentation.Insert(0f, frameImage.DOFade(frameAlpha, introDuration).From(0f));
+        }
+
+        if (countUpDuration > 0f)
+        {
+            presentation.AppendCallback(() => SetDDTotalWinAmount(0d));
+            presentation.Append(DOVirtual.Float(0f, 1f, countUpDuration, progress =>
+            {
+                totalWinAmountText.text = FormatWinDigits(amount * progress);
+            }).SetEase(Ease.Linear));
+        }
+
+        presentation.OnComplete(() =>
+        {
+            SetDDTotalWinAmount(amount);
+            onPresented?.Invoke();
+        });
+        presentation.OnKill(() =>
+        {
+            // Closing the preview during its intro must preserve the authored opacity for next time.
+            if (introDuration > 0f)
+            {
+                if (titleImage != null)
+                    titleImage.color = new Color(titleImage.color.r, titleImage.color.g, titleImage.color.b, titleAlpha);
+                if (frameImage != null)
+                    frameImage.color = new Color(frameImage.color.r, frameImage.color.g, frameImage.color.b, frameAlpha);
+            }
+            ddTotalWinPresentation = null;
+        });
+        ddTotalWinPresentation = presentation;
+        presentation.Play();
+    }
+
+    private void SetDDTotalWinAmount(double amount)
+    {
+        if (totalWinAmountText == null)
+            return;
+
+        totalWinAmountText.text = FormatWinDigits(amount);
+        totalWinAmountText.gameObject.SetActive(true);
+    }
+
+    private void ShowDDTotalWinTake()
+    {
+        ddTotalWinTakeReady = true;
+        SetButtonActive(sharedWinTakeButton, sharedWinTakeButtonPortrait, true);
+        SetDDTotalWinTakeAboveModal(sharedWinTakeButton, true);
+        SetDDTotalWinTakeAboveModal(sharedWinTakeButtonPortrait, true);
+        SetButtonInteractable(sharedWinTakeButton, sharedWinTakeButtonPortrait, true);
+    }
+
+    private void TakeDDTotalWin()
+    {
+        var onTake = ddTotalWinOnTake;
+        CloseDDTotalWinPopup();
+        AudioManager.Instance?.StopDDWinAudio();
+        if (onTake != null)
+            onTake();
+        else
+            EnableControlsAfterWinAnimation();
+    }
+
+    private void CloseDDTotalWinPopup()
+    {
+        ddTotalWinPresentation?.Kill();
+        StopDDTotalWinPulse();
+        totalWinFountain?.StopFountain();
+        totalWinRipple?.StopRipple();
+
+        if (ddTotalWinTakeReady)
+        {
+            SetDDTotalWinTakeAboveModal(sharedWinTakeButton, false);
+            SetDDTotalWinTakeAboveModal(sharedWinTakeButtonPortrait, false);
+            SetButtonActive(sharedWinTakeButton, sharedWinTakeButtonPortrait, false);
+        }
+
+        ddTotalWinTakeReady = false;
+        ddTotalWinOnTake = null;
+        activeDDTotalWinTitle = null;
+        if (totalWinPopup != null)
+            totalWinPopup.SetActive(false);
+    }
+
+#if UNITY_EDITOR
+    // DD preview uses the shared artwork and count-up without taking a payout.
+    internal bool TryOpenDDTotalWinPreview(TotalWinTitle title, double amount)
+    {
+        if (!Application.isPlaying || !isActiveAndEnabled ||
+            (gameManager != null && (gameManager.isInFreeSpins || gameManager.isAutoPlaying ||
+                (gameManager.currentState != GameState.Idle && gameManager.currentState != GameState.Initializing))))
+        {
+            return false;
+        }
+
+        if (!TryOpenDDTotalWinPopup(title))
+            return false;
+
+        AnimateDDTotalWinAmount(amount, null);
+        return true;
+    }
+
+    internal void CloseDDTotalWinPreview()
+    {
+        CloseDDTotalWinPopup();
+    }
+#endif
+
+    private void StartDDTotalWinPulse()
+    {
+        StopDDTotalWinPulse();
+        if (activeDDTotalWinTitle == null || totalWinFrame == null)
+            return;
+
+        Transform image = activeDDTotalWinTitle.transform;
+        Transform frame = totalWinFrame.transform;
+
+        // DD uses each orientation's configured scales as its resting size.
+        ddTotalWinImageBaseScale = image.localScale;
+        ddTotalWinFrameBaseScale = frame.localScale;
+
+        RectTransform rays = totalWinPulseRays;
+        if (rays != null)
+            ddTotalWinRaysBaseScale = rays.localScale;
+
+        ddTotalWinPulse = DOVirtual.Float(-1f, 1f, Mathf.Max(0.1f, totalWinPulseDuration), progress =>
+        {
+            float change = totalWinPulseAmount * progress;
+            image.localScale = ddTotalWinImageBaseScale * (1f + change);
+            frame.localScale = ddTotalWinFrameBaseScale * (1f - change);
+
+            if (rays != null && Mathf.Abs(ddTotalWinRaysBaseScale.x) > Mathf.Epsilon)
+            {
+                // DD Rays use an absolute X range while preserving the artwork's proportions.
+                float minScaleX = Mathf.Max(0.01f, totalWinRaysMinScaleX);
+                float maxScaleX = Mathf.Max(minScaleX, totalWinRaysMaxScaleX);
+                float scaleX = Mathf.Lerp(minScaleX, maxScaleX, (progress + 1f) * 0.5f);
+                rays.localScale = ddTotalWinRaysBaseScale * (scaleX / ddTotalWinRaysBaseScale.x);
+            }
+        })
+            .SetEase(Ease.InOutSine)
+            .SetLoops(-1, LoopType.Yoyo)
+            .SetLink(totalWinPopup, LinkBehaviour.KillOnDisable);
+    }
+
+    private void StopDDTotalWinPulse(bool restoreScale = true)
+    {
+        if (ddTotalWinPulseRestart != null)
+        {
+            StopCoroutine(ddTotalWinPulseRestart);
+            ddTotalWinPulseRestart = null;
+        }
+
+        if (ddTotalWinPulse == null)
+            return;
+
+        ddTotalWinPulse.Kill();
+        ddTotalWinPulse = null;
+
+        // DD Rays share one layout in both orientations. Restore before any pulse restart.
+        if (totalWinPulseRays != null)
+            totalWinPulseRays.localScale = ddTotalWinRaysBaseScale;
+
+        if (restoreScale)
+        {
+            if (activeDDTotalWinTitle != null)
+                activeDDTotalWinTitle.transform.localScale = ddTotalWinImageBaseScale;
+            if (totalWinFrame != null)
+                totalWinFrame.transform.localScale = ddTotalWinFrameBaseScale;
+        }
+    }
+
+    private IEnumerator RestartDDTotalWinPulseAfterOrientationChange()
+    {
+        // DD waits for all orientation handlers before capturing the new resting scales.
+        yield return null;
+        ddTotalWinPulseRestart = null;
+
+        if (totalWinPopup != null && totalWinPopup.activeInHierarchy)
+            StartDDTotalWinPulse();
+    }
+
+    private IEnumerator RefreshDDTotalWinTakeAfterOrientationChange()
+    {
+        // Wait for the orientation controller to activate the new bottom bar.
+        yield return null;
+        if (!ddTotalWinTakeReady) yield break;
+
+        SetDDTotalWinTakeAboveModal(sharedWinTakeButton, true);
+        SetDDTotalWinTakeAboveModal(sharedWinTakeButtonPortrait, true);
+    }
+
+    private static void SetDDTotalWinTakeAboveModal(Button button, bool aboveModal)
+    {
+        if (button == null) return;
+        button.TryGetComponent(out Canvas buttonCanvas);
+        if (!aboveModal)
+        {
+            if (buttonCanvas != null)
+            {
+                buttonCanvas.overrideSorting = false;
+                buttonCanvas.enabled = false;
+                button.GetComponent<GraphicRaycaster>().enabled = false;
+            }
+            return;
+        }
+
+        if (!button.gameObject.activeInHierarchy) return;
+        var parentCanvas = button.transform.parent.GetComponentInParent<Canvas>();
+        if (parentCanvas == null) return;
+
+        // The existing Take buttons are under the bottom bars. Give them priority over the modal backdrop.
+        if (buttonCanvas == null)
+        {
+            buttonCanvas = button.gameObject.AddComponent<Canvas>();
+            button.gameObject.AddComponent<GraphicRaycaster>();
+        }
+
+        buttonCanvas.enabled = true;
+        button.GetComponent<GraphicRaycaster>().enabled = true;
+        buttonCanvas.overrideSorting = true;
+        buttonCanvas.worldCamera = parentCanvas.worldCamera;
+        buttonCanvas.sortingLayerID = parentCanvas.sortingLayerID;
+        buttonCanvas.sortingOrder = parentCanvas.sortingOrder + 1;
     }
 
     #endregion
@@ -1896,6 +2037,7 @@ public class UIManager : MonoBehaviour
         }
         else if (gameManager != null)
         {
+            AudioManager.Instance?.PlayButton();
             gameManager.ExitGame();
         }
     }
@@ -1914,6 +2056,7 @@ public class UIManager : MonoBehaviour
     private void OnWheelSpinClicked()
     {
         if (wheelSpinTriggered) return;
+        AudioManager.Instance?.PlayWheelStart();
         wheelSpinTriggered = true;
         SetButtonInteractable(sharedStartButton, sharedStartButtonPortrait, false);
         SetButtonInteractable(wheelSpinButton2, wheelSpinButtonPortrait2, false);
@@ -2296,8 +2439,8 @@ public class UIManager : MonoBehaviour
         SetSpinStopButtonStates(isSpinningState: false, isInteractable: false);
 
         bool showTakeButton = (type != WinPopupType.BigWin);
-        SetButtonActive(uwpTakeButton, uwpTakeButtonPortrait, showTakeButton);
-        SetButtonInteractable(uwpTakeButton, uwpTakeButtonPortrait, showTakeButton);
+        SetButtonActive(sharedWinTakeButton, sharedWinTakeButtonPortrait, showTakeButton);
+        SetButtonInteractable(sharedWinTakeButton, sharedWinTakeButtonPortrait, showTakeButton);
 
         universalWinPopup.SetActive(true);
         if (universalWinPopupRect)
@@ -2355,12 +2498,12 @@ public class UIManager : MonoBehaviour
         CloseUniversalWinPopup();
     }
 
-    private void OnUniversalWinTakeButtonClicked()
+    private void OnWinTakeButtonClicked()
     {
-        if (doubleDiamondFreeSpinReturn != null)
+        if (ddTotalWinTakeReady)
         {
             AudioManager.Instance?.PlayTakeButton();
-            TakeDoubleDiamondFreeSpinWin();
+            TakeDDTotalWin();
             return;
         }
 
@@ -2392,7 +2535,7 @@ public class UIManager : MonoBehaviour
         System.Action callback = universalWinPopupCallback;
         universalWinPopupCallback = null;
 
-        SetButtonInteractable(uwpTakeButton, uwpTakeButtonPortrait, false);
+        SetButtonInteractable(sharedWinTakeButton, sharedWinTakeButtonPortrait, false);
 
         if (universalWinPopupRect)
         {
@@ -2404,7 +2547,7 @@ public class UIManager : MonoBehaviour
                 universalWinPopupRect.localScale = Vector3.one;
                 universalWinPopup.SetActive(false);
 
-                SetButtonActive(uwpTakeButton, uwpTakeButtonPortrait, false);
+                SetButtonActive(sharedWinTakeButton, sharedWinTakeButtonPortrait, false);
                 isSpecialWinActive = false;
                 EnableControlsAfterWinAnimation();
 
@@ -2414,7 +2557,7 @@ public class UIManager : MonoBehaviour
         else
         {
             universalWinPopup.SetActive(false);
-            SetButtonActive(uwpTakeButton, uwpTakeButtonPortrait, false);
+            SetButtonActive(sharedWinTakeButton, sharedWinTakeButtonPortrait, false);
             isSpecialWinActive = false;
             EnableControlsAfterWinAnimation();
 

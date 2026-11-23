@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class AudioManager : MonoBehaviour
 {
@@ -40,10 +41,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip clipMaxBetReached;
     [SerializeField] private AudioClip clip3UspinWinLineLoop;
     [SerializeField] private AudioClip clipWinObjectBg;
-    [SerializeField] private AudioClip clipPrimaryActionButton;
+    [SerializeField, Tooltip("Manual Spin button and DD free-spin Start.")] private AudioClip clipPrimaryActionButton;
     [SerializeField] private AudioClip clipGeneralButtonClick;
     [SerializeField] private AudioClip clipPopupOpenClose;
-    [SerializeField] private AudioClip clipAutoplayPanelOpen;
+    [SerializeField, Tooltip("Plays once when the autoplay panel opens or closes.")] private AudioClip clipAutoplayPanelOpen;
     [SerializeField] private AudioClip clipFeatureOpenLoop;
     [SerializeField] private AudioClip clipFreeSpinBg;
     [SerializeField] private AudioClip clipWheelSegmentTick;
@@ -54,7 +55,16 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource ddWinSource;
     [SerializeField] private AudioClip clipDDWinning;
     [SerializeField] private AudioClip clipDDAfterWin;
-    [SerializeField] private AudioClip clipDDTotalBonusWon;
+    [FormerlySerializedAs("clipDDTotalBonusWon")]
+    [SerializeField] private AudioClip clipDDTotalWin;
+
+    [Header("DD Reel and Free Spin Audio")]
+    [SerializeField] private AudioSource ddReelSource;
+    [SerializeField] private AudioClip clipDDFreeSpinBg;
+    [SerializeField] private AudioClip clipDDReelSpinning;
+    [SerializeField] private AudioClip clipDDInfernoLanding;
+    [SerializeField] private AudioClip clipDDBonusLanding;
+    [SerializeField] private AudioClip clipDDWinLineReplay;
 
     private bool _musicEnabled = true;
     private bool _sfxEnabled   = true;
@@ -111,6 +121,7 @@ public class AudioManager : MonoBehaviour
         if (wheelSegmentSource != null) wheelSegmentSource.volume = v;
         if (reserveSource      != null) reserveSource.volume      = v;
         if (ddWinSource        != null) ddWinSource.volume        = v;
+        if (ddReelSource       != null) ddReelSource.volume       = v;
     }
 
     /// <summary>
@@ -218,17 +229,16 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // 6. Spin / Stop / Take / AutoplayStop / WheelStart Btn Sound
-    internal void PlayPrimaryActionButton()
+    // 6. DD manual Spin and free-spin Start share the spin button cue.
+    internal void PlaySpinStart()
     {
         PlayUISound(clipPrimaryActionButton != null ? clipPrimaryActionButton : clipGeneralButtonClick);
     }
 
-    internal void PlaySpinStart()    => PlayPrimaryActionButton();
-    internal void PlaySpinStop()     => PlayPrimaryActionButton();
-    internal void PlayTakeButton()   => PlayPrimaryActionButton();
-    internal void PlayAutoplayStop() => PlayPrimaryActionButton();
-    internal void PlayWheelStart()   => PlayPrimaryActionButton();
+    internal void PlaySpinStop()     => PlayButton();
+    internal void PlayTakeButton()   => PlayButton();
+    internal void PlayAutoplayStop() => PlayButton();
+    internal void PlayWheelStart()   => PlayButton();
 
     // 7. General Button Click
     internal void PlayButton()
@@ -247,8 +257,8 @@ public class AudioManager : MonoBehaviour
     internal void PlayPopupClose() => PlayPopupOpenClose();
     internal void PlayPopupOpen()  => PlayPopupOpenClose();
 
-    // 9. Autoplay Panel Open Sound
-    internal void PlayAutoplayPanelOpen()
+    // 9. DD uses the same cue when the autoplay panel opens or closes.
+    internal void PlayAutoplayPanelToggle()
     {
         PlayUISound(clipAutoplayPanelOpen != null ? clipAutoplayPanelOpen : clipPopupOpenClose);
     }
@@ -270,10 +280,10 @@ public class AudioManager : MonoBehaviour
     }
 
     // 11. FreeSpin BG (loop while free spin)
-    internal void PlayFreeSpinBg()
+    internal void PlayFreeSpinBg(bool isDoubleDiamond)
     {
-        if (clipFreeSpinBg == null) return;
-        PlayLoop(bgMusicSource, clipFreeSpinBg);
+        var clip = isDoubleDiamond && clipDDFreeSpinBg != null ? clipDDFreeSpinBg : clipFreeSpinBg;
+        PlayLoop(bgMusicSource, clip);
     }
 
     // 12. Bonus Wheel Spin Segment Tick
@@ -307,6 +317,55 @@ public class AudioManager : MonoBehaviour
             PlayUISound(clipReelStop);
     }
 
+    #region DD Reel SFX
+
+    internal void StartDDReelSpinning() => PlayDDReelSound(clipDDReelSpinning, loop: true);
+
+    internal void StopDDReelSpinning()
+    {
+        if (ddReelSource != null && ddReelSource.clip == clipDDReelSpinning)
+            StopDDReelAudio();
+    }
+
+    internal void PlayDDReelLanding(bool hasInferno, bool hasBonus)
+    {
+        if (hasInferno)
+            PlayUISound(clipDDInfernoLanding);
+        else if (hasBonus)
+            PlayUISound(clipDDBonusLanding);
+    }
+
+    internal void PlayDDWinLineReplay()
+    {
+        if (!_sfxEnabled) return;
+
+        // Restart the cue on each replay without cutting the DD win/count-up source.
+        PlayDDReelSound(clipDDWinLineReplay, loop: false);
+    }
+
+    private void PlayDDReelSound(AudioClip clip, bool loop)
+    {
+        if (ddReelSource == null) return;
+
+        StopSource(ddReelSource);
+        ddReelSource.clip = clip;
+        if (clip == null) return;
+
+        ddReelSource.loop = loop;
+        ddReelSource.volume = _sfxEnabled ? _sfxVolume : 0f;
+        ddReelSource.Play();
+    }
+
+    internal void StopDDReelAudio()
+    {
+        if (ddReelSource == null) return;
+
+        StopSource(ddReelSource);
+        ddReelSource.clip = null;
+    }
+
+    #endregion
+
     #region DD Win SFX
 
     internal void PlayDDWinCountUp()
@@ -319,9 +378,9 @@ public class AudioManager : MonoBehaviour
         PlayDDWinSound(clipDDAfterWin);
     }
 
-    internal void PlayDDTotalBonusWin()
+    internal void PlayDDTotalWin()
     {
-        PlayDDWinSound(clipDDTotalBonusWon);
+        PlayDDWinSound(clipDDTotalWin);
     }
 
     internal void StopDDWinAudio()

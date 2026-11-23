@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float normalSpinDuration = 3.5f;
     [SerializeField] private float turboSpinDuration = 2.0f;
     [SerializeField] private float quickSpinCycleDuration = 0.8f;
+    [Tooltip("Seconds the reels keep spinning after pressing Stop. Set to 0 to skip this pause.")]
+    [SerializeField, Min(0f)] private float manualStopDelay = 0.5f;
 
     [Header("Win Settings")]
     [SerializeField] private double bigWinMultiplierThreshold = 500.0;
@@ -159,7 +161,7 @@ public class GameManager : MonoBehaviour
 
     #region Spin Control
     
-    internal void RequestSpin()
+    internal void RequestSpin(bool playButtonCue = false)
     {
         if (waitingForFreeSpinStart) return;
 
@@ -175,6 +177,9 @@ public class GameManager : MonoBehaviour
             }
             return;
         }
+
+        if (playButtonCue)
+            AudioManager.Instance?.PlaySpinStart();
 
         StartSpin();
     }
@@ -240,11 +245,10 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        // Player pressed Stop manually — hold for 0.5s so the reels keep
-        // spinning briefly before snapping, giving clear visual feedback.
-        if (stopRequested)
+        // A manual stop can keep the reels spinning briefly for visual feedback.
+        if (stopRequested && manualStopDelay > 0f)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(manualStopDelay);
         }
 
         while (lastResult == null)
@@ -267,6 +271,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            AudioManager.Instance?.StopDDReelSpinning();
             OnReelsStoppedComplete();
         }
     }
@@ -778,7 +783,7 @@ public class GameManager : MonoBehaviour
         freeSpinsUsed = 0;
         doubleDiamondFreeSpinsAwarded = trigger.isDoubleDiamondResult ? spins : 0;
         waitingForFreeSpinStart = true;
-        AudioManager.Instance?.PlayFreeSpinBg();
+        AudioManager.Instance?.PlayFreeSpinBg(trigger.isDoubleDiamondResult);
 
         int prevTotal = autoPlayTotalRounds;
         int prevRemaining = autoPlayRemainingRounds;
@@ -856,6 +861,7 @@ public class GameManager : MonoBehaviour
 
     internal void OnDisconnected()
     {
+        AudioManager.Instance?.StopDDReelAudio();
         if (spinCoroutine != null)
         {
             StopCoroutine(spinCoroutine);

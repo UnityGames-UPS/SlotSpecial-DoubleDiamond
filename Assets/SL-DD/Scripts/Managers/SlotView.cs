@@ -214,6 +214,7 @@ public class SlotView : MonoBehaviour
         int symbolId = currentDisplayMatrix[col][row];
         if (symbolInfoCard != null)
         {
+            AudioManager.Instance?.PlayButton();
             symbolInfoCard.ShowCard(symbolId, col, row, symbolRect, gameManager);
         }
     }
@@ -445,6 +446,8 @@ public class SlotView : MonoBehaviour
         {
             StartReelCycleWithDelay(col, col * reelStartStagger);
         }
+
+        AudioManager.Instance?.StartDDReelSpinning();
     }
 
     private void StartReelCycleWithDelay(int columnIndex, float delay)
@@ -597,6 +600,7 @@ public class SlotView : MonoBehaviour
         // Staggered starts can reach their tween callbacks later than a duration estimate.
         yield return new WaitUntil(() => remainingReels == 0);
 
+        AudioManager.Instance?.StopDDReelSpinning();
         isSpinning = false;
 
         onComplete?.Invoke();
@@ -722,6 +726,11 @@ public class SlotView : MonoBehaviour
         if (landedSymbols == null) return;
         if (isDoubleDiamond)
         {
+            int visibleRows = Mathf.Min(landedSymbols.Count, gameManager?.gameConfig?.rowCount ?? landedSymbols.Count);
+            int bonusSymbolId = gameManager?.gameConfig?.bonusSymbolId ?? -1;
+            bool hasInferno = landedSymbols.IndexOf(DDInfernoSymbolId, 0, visibleRows) >= 0;
+            bool hasBonus = bonusSymbolId >= 0 && landedSymbols.IndexOf(bonusSymbolId, 0, visibleRows) >= 0;
+            AudioManager.Instance?.PlayDDReelLanding(hasInferno, hasBonus);
             ShowDDInfernoLandings(col, landedSymbols);
             TryPlayBonusReelOutline(col, landedSymbols);
             return;
@@ -1228,6 +1237,8 @@ public class SlotView : MonoBehaviour
 
                 // Keep the Double Diamond popup synchronized with the line being highlighted.
                 onLineShown?.Invoke(winLine, GetSymbolSprite(winLine.symbolId));
+                if (isDoubleDiamond)
+                    AudioManager.Instance?.PlayDDWinLineReplay();
 
                 Sprite lineWinBoxSprite = null;
                 if (isDoubleDiamond && !winBoxSpritesByLine.TryGetValue(winLine.lineId, out lineWinBoxSprite))
@@ -1802,6 +1813,11 @@ public class SlotView : MonoBehaviour
     }
 
     #region Cleanup
+
+    private void OnDisable()
+    {
+        AudioManager.Instance?.StopDDReelAudio();
+    }
 
     private void OnDestroy()
     {

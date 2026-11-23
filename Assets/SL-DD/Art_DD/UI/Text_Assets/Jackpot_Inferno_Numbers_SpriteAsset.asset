@@ -99,27 +99,11 @@ MonoBehaviour:
     m_Scale: 1
     m_Name: Jackpot_Inferno_Numbers_.
   m_GlyphTable:
-  - m_Index: 0
-    m_Metrics:
-      m_Width: 170
-      m_Height: 207
-      m_HorizontalBearingX: -85
-      m_HorizontalBearingY: 103.5
-      m_HorizontalAdvance: 170
-    m_GlyphRect:
-      m_X: 730
-      m_Y: 635
-      m_Width: 170
-      m_Height: 207
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
-    sprite: {fileID: 6234517341449989147, guid: f4beb1281ad3ca147944c2787dfd908a, type: 3}
   - m_Index: 1
     m_Metrics:
       m_Width: 127
       m_Height: 215
-      m_HorizontalBearingX: -63.5
+      m_HorizontalBearingX: 7.04
       m_HorizontalBearingY: 107.5
       m_HorizontalAdvance: 127
     m_GlyphRect:
@@ -179,6 +163,22 @@ MonoBehaviour:
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
     sprite: {fileID: -493972580403021888, guid: f4beb1281ad3ca147944c2787dfd908a, type: 3}
+  - m_Index: 0
+    m_Metrics:
+      m_Width: 170
+      m_Height: 207
+      m_HorizontalBearingX: -85
+      m_HorizontalBearingY: 103.5
+      m_HorizontalAdvance: 170
+    m_GlyphRect:
+      m_X: 730
+      m_Y: 635
+      m_Width: 170
+      m_Height: 207
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+    sprite: {fileID: 6234517341449989147, guid: f4beb1281ad3ca147944c2787dfd908a, type: 3}
   - m_Index: 5
     m_Metrics:
       m_Width: 177
@@ -263,7 +263,7 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 164
       m_Height: 220
-      m_HorizontalBearingX: -82
+      m_HorizontalBearingX: 7.04
       m_HorizontalBearingY: 110
       m_HorizontalAdvance: 164
     m_GlyphRect:

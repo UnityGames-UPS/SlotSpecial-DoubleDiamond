@@ -77,6 +77,7 @@ public class SocketIOManager : MonoBehaviour
     if (JackpotOpen)
       return;
 
+    AudioManager.Instance?.PlayButton();
     JackpotOpen = true;
 
     var request = new JackpotOpenRequest
