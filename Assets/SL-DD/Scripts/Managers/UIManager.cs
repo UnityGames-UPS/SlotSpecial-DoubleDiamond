@@ -239,6 +239,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text pingText;
     [SerializeField] private TMP_Text pingTextPortrait;
 
+    [Header("DD Jackpot Payout Table")]
+    [Tooltip("Payout labels ordered from 12 Inferno symbols at the top to 5 at the bottom.")]
+    [SerializeField] private TMP_Text[] jackpotPayoutTexts = new TMP_Text[8];
+
     [Header("Platform Jackpot")]
     [SerializeField] private TMP_Text grandJackpotText;
     [SerializeField] private TMP_Text majorJackpotText;
@@ -774,7 +778,11 @@ public class UIManager : MonoBehaviour
 
     private static string FormatWinDigits(double value)
     {
-        string formatted = value.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture);
+        return FormatWinDigits(value.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture));
+    }
+
+    private static string FormatWinDigits(string formatted)
+    {
         var digits = new System.Text.StringBuilder();
         foreach (char character in formatted)
         {
@@ -929,6 +937,49 @@ public class UIManager : MonoBehaviour
 
         UpdateBetButtonStates();
         UpdateGameRulesDynamicTexts();
+        UpdateJackpotPayoutTable();
+    }
+
+    // DD payout rows are ordered from 12 Infernos down to 5.
+    private void UpdateJackpotPayoutTable()
+    {
+        var tiers = gameManager.gameConfig.jackpotTiers;
+        if (tiers == null || jackpotPayoutTexts == null)
+            return;
+
+        double bet = gameManager.currentBetAmount;
+        bool useThreeDecimals = tiers.Exists(tier => tier != null && tier.minScatters >= 5 && tier.minScatters <= 12 &&
+            System.Math.Round(tier.baseMultiplier * bet, 3) != System.Math.Round(tier.baseMultiplier * bet, 2));
+        string numberFormat = useThreeDecimals ? "0.000" : "0.00";
+
+        for (int i = 0; i < jackpotPayoutTexts.Length; i++)
+        {
+            TMP_Text label = jackpotPayoutTexts[i];
+            if (label == null)
+                continue;
+
+            int scatterCount = 12 - i;
+            SlotJackpotTier tier = tiers.Find(item => item != null && item.minScatters == scatterCount);
+            if (tier == null)
+                label.text = string.Empty;
+            else
+                SetJackpotPayoutText(label, tier.baseMultiplier * bet, numberFormat);
+        }
+    }
+
+    private static void SetJackpotPayoutText(TMP_Text label, double amount, string numberFormat)
+    {
+        string formatted = amount.ToString(numberFormat, System.Globalization.CultureInfo.InvariantCulture);
+        string suffix = FormatWinDigits(formatted.Substring(formatted.IndexOf('.')));
+        float suffixWidth = label.GetPreferredValues(suffix, Mathf.Infinity, Mathf.Infinity).x;
+
+        // Reserve width for the decimal and fraction so every row starts its fraction at the same x.
+        Vector4 margin = label.margin;
+        suffixWidth -= Mathf.Max(0f, margin.x) + Mathf.Max(0f, margin.z);
+        margin.z = label.rectTransform.rect.width * 0.5f - suffixWidth;
+        label.margin = margin;
+        label.horizontalAlignment = HorizontalAlignmentOptions.Right;
+        label.text = FormatWinDigits(formatted);
     }
 
     private void UpdateBetButtonStates()
@@ -2007,7 +2058,7 @@ public class UIManager : MonoBehaviour
             var symbol = symbols.Find(s => s.id == symbolId);
             var lines = new List<string>();
             foreach (var (matchCount, payout) in gameManager.GetSymbolPayoutRows(symbol, applySelectedBet: isDoubleDiamondRow))
-                lines.Add($"{matchCount}     {payout:0.###}");
+                lines.Add(isDoubleDiamondRow ? $"{matchCount}   {payout:0.###}" : $"{matchCount}     {payout:0.###}");
 
             if (isDoubleDiamondRow || lines.Count > 0)
                 symbolText.text = string.Join("\n", lines);

@@ -572,6 +572,19 @@ public class GameManager : MonoBehaviour
 
     internal void OnSpinResultReceived(SpinResult result)
     {
+        if (result.isDoubleDiamondResult)
+        {
+            // Only the first result for the active spin can alter its presentation.
+            if (currentState != GameState.Spinning || lastResult != null)
+                return;
+
+            if (slotView != null && slotView.TryGetUnmappedResultSymbol(result, out int symbolId))
+            {
+                HandleUnmappedSpinSymbol(symbolId);
+                return;
+            }
+        }
+
         lastResult = result;
 
         // Double Diamond shows the remaining count reported by the server.
@@ -609,6 +622,26 @@ public class GameManager : MonoBehaviour
 
             }
         }
+    }
+
+    private void HandleUnmappedSpinSymbol(int symbolId)
+    {
+        Debug.LogError($"[GameManager] DD spin result contains unmapped symbol ID {symbolId}.");
+        currentState = GameState.SpinResultError;
+
+        if (spinCoroutine != null)
+        {
+            StopCoroutine(spinCoroutine);
+            spinCoroutine = null;
+        }
+
+        slotView.CancelSpin();
+        if (isAutoPlaying)
+            StopAutoPlay();
+
+        wasAutoPlayingBeforeFreeSpins = false;
+        uiManager.DisableControlsDuringWinAnimation();
+        popupManager?.ShowServerError("The spin result contains an unsupported symbol. Please exit and reopen the game.");
     }
 
     private void ProcessSpinResult(int bonusDiamondCount = 0)

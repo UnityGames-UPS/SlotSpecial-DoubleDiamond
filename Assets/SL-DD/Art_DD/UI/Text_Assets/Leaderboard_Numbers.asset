@@ -82,32 +82,32 @@ MonoBehaviour:
   m_SpriteCharacterTable:
   - m_ElementType: 2
     m_Unicode: 65534
-    m_GlyphIndex: 9
+    m_GlyphIndex: 0
     m_Scale: 1
     m_Name: Leaderboard_Numbers_9
   - m_ElementType: 2
     m_Unicode: 65534
-    m_GlyphIndex: 2
+    m_GlyphIndex: 1
     m_Scale: 1
     m_Name: Leaderboard_Numbers_0
   - m_ElementType: 2
     m_Unicode: 65534
-    m_GlyphIndex: 3
+    m_GlyphIndex: 2
     m_Scale: 1
     m_Name: Leaderboard_Numbers_1
   - m_ElementType: 2
     m_Unicode: 65534
-    m_GlyphIndex: 1
+    m_GlyphIndex: 3
     m_Scale: 1
     m_Name: Leaderboard_Numbers_2
   - m_ElementType: 2
     m_Unicode: 65534
-    m_GlyphIndex: 0
+    m_GlyphIndex: 4
     m_Scale: 1
     m_Name: Leaderboard_Numbers_3
   - m_ElementType: 2
     m_Unicode: 65534
-    m_GlyphIndex: 7
+    m_GlyphIndex: 5
     m_Scale: 1
     m_Name: Leaderboard_Numbers_4
   - m_ElementType: 2
@@ -117,200 +117,200 @@ MonoBehaviour:
     m_Name: Leaderboard_Numbers_5
   - m_ElementType: 2
     m_Unicode: 65534
-    m_GlyphIndex: 4
+    m_GlyphIndex: 7
     m_Scale: 1
     m_Name: Leaderboard_Numbers_6
   - m_ElementType: 2
     m_Unicode: 65534
-    m_GlyphIndex: 5
+    m_GlyphIndex: 8
     m_Scale: 1
     m_Name: Leaderboard_Numbers_7
   - m_ElementType: 2
     m_Unicode: 65534
-    m_GlyphIndex: 10
+    m_GlyphIndex: 9
     m_Scale: 1
     m_Name: Leaderboard_Numbers_8
   - m_ElementType: 2
     m_Unicode: 65534
-    m_GlyphIndex: 8
+    m_GlyphIndex: 10
     m_Scale: 0.3
     m_Name: Leaderboard_Numbers_10
   m_GlyphTable:
   - m_Index: 0
     m_Metrics:
-      m_Width: 183
-      m_Height: 224
-      m_HorizontalBearingX: -91.5
-      m_HorizontalBearingY: 112
-      m_HorizontalAdvance: 183
+      m_Width: 167.0703
+      m_Height: 235
+      m_HorizontalBearingX: 4.1046
+      m_HorizontalBearingY: 120.2506
+      m_HorizontalAdvance: 168.8538
     m_GlyphRect:
-      m_X: 776
-      m_Y: 746
-      m_Width: 183
-      m_Height: 224
-    m_Scale: 1
+      m_X: 344
+      m_Y: 81
+      m_Width: 182
+      m_Height: 256
+    m_Scale: 0.7964
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
-    sprite: {fileID: -8494775634085328694, guid: e801de3d0b4e7934d9432bb515c35cd6, type: 3}
+    sprite: {fileID: -5152822769305963753, guid: e801de3d0b4e7934d9432bb515c35cd6, type: 3}
   - m_Index: 1
-    m_Metrics:
-      m_Width: 177
-      m_Height: 235
-      m_HorizontalBearingX: -88.5
-      m_HorizontalBearingY: 117.5
-      m_HorizontalAdvance: 177
-    m_GlyphRect:
-      m_X: 529
-      m_Y: 744
-      m_Width: 177
-      m_Height: 235
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
-    sprite: {fileID: 5711711711923201908, guid: e801de3d0b4e7934d9432bb515c35cd6, type: 3}
-  - m_Index: 2
     m_Metrics:
       m_Width: 128
       m_Height: 235
-      m_HorizontalBearingX: -64
-      m_HorizontalBearingY: 117.5
-      m_HorizontalAdvance: 128
+      m_HorizontalBearingX: -6.0806
+      m_HorizontalBearingY: 122.0021
+      m_HorizontalAdvance: 121.8389
     m_GlyphRect:
       m_X: 65
       m_Y: 742
       m_Width: 128
       m_Height: 235
-    m_Scale: 1
+    m_Scale: 0.8131
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
     sprite: {fileID: 2923444515588013556, guid: e801de3d0b4e7934d9432bb515c35cd6, type: 3}
-  - m_Index: 3
+  - m_Index: 2
     m_Metrics:
       m_Width: 186
       m_Height: 235
-      m_HorizontalBearingX: -93
-      m_HorizontalBearingY: 117.5
-      m_HorizontalAdvance: 186
+      m_HorizontalBearingX: -4.9887
+      m_HorizontalBearingY: 120.0048
+      m_HorizontalAdvance: 175.0226
     m_GlyphRect:
       m_X: 274
       m_Y: 742
       m_Width: 186
       m_Height: 235
-    m_Scale: 1
+    m_Scale: 0.7982
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
     sprite: {fileID: -3596640959549130833, guid: e801de3d0b4e7934d9432bb515c35cd6, type: 3}
+  - m_Index: 3
+    m_Metrics:
+      m_Width: 177
+      m_Height: 235
+      m_HorizontalBearingX: -1.9654
+      m_HorizontalBearingY: 120.4972
+      m_HorizontalAdvance: 173.0692
+    m_GlyphRect:
+      m_X: 529
+      m_Y: 744
+      m_Width: 177
+      m_Height: 235
+    m_Scale: 0.7945
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+    sprite: {fileID: 5711711711923201908, guid: e801de3d0b4e7934d9432bb515c35cd6, type: 3}
   - m_Index: 4
     m_Metrics:
-      m_Width: 168
-      m_Height: 240
-      m_HorizontalBearingX: -84
-      m_HorizontalBearingY: 120
-      m_HorizontalAdvance: 168
+      m_Width: 191.9866
+      m_Height: 235
+      m_HorizontalBearingX: 0.8926
+      m_HorizontalBearingY: 116.9692
+      m_HorizontalAdvance: 191.6737
     m_GlyphRect:
-      m_X: 540
-      m_Y: 413
-      m_Width: 168
-      m_Height: 240
-    m_Scale: 1
+      m_X: 776
+      m_Y: 746
+      m_Width: 183
+      m_Height: 224
+    m_Scale: 0.786
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
-    sprite: {fileID: 140229081787050181, guid: e801de3d0b4e7934d9432bb515c35cd6, type: 3}
+    sprite: {fileID: -8494775634085328694, guid: e801de3d0b4e7934d9432bb515c35cd6, type: 3}
   - m_Index: 5
     m_Metrics:
-      m_Width: 189
-      m_Height: 244
-      m_HorizontalBearingX: -94.5
-      m_HorizontalBearingY: 122
-      m_HorizontalAdvance: 189
-    m_GlyphRect:
-      m_X: 770
-      m_Y: 413
-      m_Width: 189
-      m_Height: 244
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
-    sprite: {fileID: -4865850772890934076, guid: e801de3d0b4e7934d9432bb515c35cd6, type: 3}
-  - m_Index: 6
-    m_Metrics:
-      m_Width: 192
-      m_Height: 264
-      m_HorizontalBearingX: -96
-      m_HorizontalBearingY: 132
-      m_HorizontalAdvance: 192
-    m_GlyphRect:
-      m_X: 301
-      m_Y: 407
-      m_Width: 192
-      m_Height: 264
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
-    sprite: {fileID: 3057512660333557428, guid: e801de3d0b4e7934d9432bb515c35cd6, type: 3}
-  - m_Index: 7
-    m_Metrics:
-      m_Width: 192
-      m_Height: 266
-      m_HorizontalBearingX: -96
-      m_HorizontalBearingY: 133
-      m_HorizontalAdvance: 192
+      m_Width: 169.6241
+      m_Height: 235
+      m_HorizontalBearingX: 0.254
+      m_HorizontalBearingY: 116.6144
+      m_HorizontalAdvance: 164.8312
     m_GlyphRect:
       m_X: 56
       m_Y: 398
       m_Width: 192
       m_Height: 266
-    m_Scale: 1
+    m_Scale: 0.8563
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
     sprite: {fileID: -1007846956645058664, guid: e801de3d0b4e7934d9432bb515c35cd6, type: 3}
+  - m_Index: 6
+    m_Metrics:
+      m_Width: 170.9091
+      m_Height: 235
+      m_HorizontalBearingX: -2.3124
+      m_HorizontalBearingY: 118.8356
+      m_HorizontalAdvance: 168.9548
+    m_GlyphRect:
+      m_X: 301
+      m_Y: 407
+      m_Width: 192
+      m_Height: 264
+    m_Scale: 0.8318
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+    sprite: {fileID: 3057512660333557428, guid: e801de3d0b4e7934d9432bb515c35cd6, type: 3}
+  - m_Index: 7
+    m_Metrics:
+      m_Width: 164.5
+      m_Height: 235
+      m_HorizontalBearingX: 2.082
+      m_HorizontalBearingY: 115.0561
+      m_HorizontalAdvance: 160.8306
+    m_GlyphRect:
+      m_X: 540
+      m_Y: 413
+      m_Width: 168
+      m_Height: 240
+    m_Scale: 0.7969
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+    sprite: {fileID: 140229081787050181, guid: e801de3d0b4e7934d9432bb515c35cd6, type: 3}
   - m_Index: 8
     m_Metrics:
-      m_Width: 72
-      m_Height: 87
-      m_HorizontalBearingX: -92.83
-      m_HorizontalBearingY: -21.67
-      m_HorizontalAdvance: 72
+      m_Width: 182.0287
+      m_Height: 235
+      m_HorizontalBearingX: -0.6864
+      m_HorizontalBearingY: 113.6482
+      m_HorizontalAdvance: 179.6928
+    m_GlyphRect:
+      m_X: 770
+      m_Y: 413
+      m_Width: 189
+      m_Height: 244
+    m_Scale: 0.7855
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+    sprite: {fileID: -4865850772890934076, guid: e801de3d0b4e7934d9432bb515c35cd6, type: 3}
+  - m_Index: 9
+    m_Metrics:
+      m_Width: 183.3922
+      m_Height: 235
+      m_HorizontalBearingX: -1.3877
+      m_HorizontalBearingY: 111.9715
+      m_HorizontalAdvance: 176.9305
+    m_GlyphRect:
+      m_X: 67
+      m_Y: 65
+      m_Width: 199
+      m_Height: 255
+    m_Scale: 0.79
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+    sprite: {fileID: 710211132147381585, guid: e801de3d0b4e7934d9432bb515c35cd6, type: 3}
+  - m_Index: 10
+    m_Metrics:
+      m_Width: 194.4828
+      m_Height: 235
+      m_HorizontalBearingX: 13.3333
+      m_HorizontalBearingY: -82.0115
+      m_HorizontalAdvance: 196.8391
     m_GlyphRect:
       m_X: 607
-      m_Y: 113
+      m_Y: 97
       m_Width: 72
       m_Height: 87
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
     sprite: {fileID: -7116758995987872246, guid: e801de3d0b4e7934d9432bb515c35cd6, type: 3}
-  - m_Index: 9
-    m_Metrics:
-      m_Width: 182
-      m_Height: 256
-      m_HorizontalBearingX: -91
-      m_HorizontalBearingY: 128
-      m_HorizontalAdvance: 182
-    m_GlyphRect:
-      m_X: 344
-      m_Y: 81
-      m_Width: 182
-      m_Height: 256
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
-    sprite: {fileID: -5152822769305963753, guid: e801de3d0b4e7934d9432bb515c35cd6, type: 3}
-  - m_Index: 10
-    m_Metrics:
-      m_Width: 199
-      m_Height: 255
-      m_HorizontalBearingX: -99.5
-      m_HorizontalBearingY: 127.5
-      m_HorizontalAdvance: 199
-    m_GlyphRect:
-      m_X: 67
-      m_Y: 76
-      m_Width: 199
-      m_Height: 255
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
-    sprite: {fileID: 710211132147381585, guid: e801de3d0b4e7934d9432bb515c35cd6, type: 3}
   spriteInfoList: []
   fallbackSpriteAssets: []

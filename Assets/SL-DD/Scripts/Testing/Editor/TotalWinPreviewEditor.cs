@@ -22,6 +22,13 @@ public sealed class TotalWinPreviewEditor : Editor
                 if (GUILayout.Button("Close Preview"))
                     preview.ClosePreview();
             }
+
+            EditorGUILayout.Space();
+            if (GUILayout.Button("Play Jackpot Panel Animation"))
+                preview.PlayJackpotPanelAnimation();
+
+            if (GUILayout.Button("Play Selected Row Animation"))
+                preview.PlaySelectedJackpotRowAnimation();
         }
     }
 }

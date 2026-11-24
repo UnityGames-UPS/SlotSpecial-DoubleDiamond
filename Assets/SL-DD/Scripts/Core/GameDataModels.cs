@@ -72,7 +72,8 @@ public class SlotJackpotTier
     public string name;
     public int tier;
     public int? minScatters;
-    public bool? jumpOnly;
+    // Old DD init field. All current tiers use minScatters.
+    // public bool? jumpOnly;
     public int baseMultiplier;
 }
 
@@ -337,11 +338,14 @@ public class GameConfig
 {
     public int reelCount = 5;
     public int rowCount = 3;
-    public int symbolCount = 13;
+    public int symbolCount = 11;
     public int paylineCount = 243;
     public List<List<int>> paylines;
     public List<double> availableBets;
     public List<SymbolInfo> symbols;
+
+    internal const int DDLastReelFillerSymbolId = 8;
+    internal readonly List<int> reelFillerSymbolIds = new List<int>();
     public List<SlotJackpotTier> jackpotTiers;
 
     // Wild configuration
@@ -366,6 +370,12 @@ public class GameConfig
 
     // uSpin
     public List<USpinSegment> uSpinSegments;
+
+    internal static int PickReelFillerSymbolId(GameConfig config)
+    {
+        var ids = config?.reelFillerSymbolIds;
+        return ids != null && ids.Count > 0 ? ids[UnityEngine.Random.Range(0, ids.Count)] : 0;
+    }
 }
 
 [Serializable]
@@ -520,7 +530,8 @@ public enum GameState
     Spinning,
     Stopping,
     ShowingWin,
-    FreeSpinMode
+    FreeSpinMode,
+    SpinResultError
 }
 
 public enum SpinSpeed
@@ -593,6 +604,10 @@ public static class InitDataConverter
             */
 
             config.symbols.Add(symbolInfo);
+
+            // DD startup and reel scrolling share the regular symbol IDs from init.
+            if (symbolInfo.id >= 0 && symbolInfo.id <= GameConfig.DDLastReelFillerSymbolId)
+                config.reelFillerSymbolIds.Add(symbolInfo.id);
 
             if (symbolInfo.isWild)
             {

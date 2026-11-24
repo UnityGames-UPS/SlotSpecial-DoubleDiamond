@@ -6,6 +6,7 @@ using DG.Tweening;
 
 public class SlotView : MonoBehaviour
 {
+    private const int DDBonusSymbolId = 12;
     private const int DDInfernoSymbolId = 13;
     private const int FirstVisibleReelImage = 2;
 
@@ -22,10 +23,7 @@ public class SlotView : MonoBehaviour
     [SerializeField] private Sprite spriteBar;                 // ID: 6
     [SerializeField] private Sprite spriteLemon;                 // ID: 7
     [SerializeField] private Sprite spriteCheryy;               // ID: 8
-    // Double Diamond server IDs. The seven variants use temporary artwork.
-    [SerializeField] private Sprite goldCoin_2;        // ID 9: Fiery Seven placeholder.
-    [SerializeField] private Sprite starCoin;          // ID 10: Triple Seven placeholder.
-    [SerializeField] private Sprite spriteSingleSeven; // ID 11: Single Seven placeholder.
+    // DD reserves IDs 9–11 for the retired Seven variants.
     [SerializeField] private Sprite spriteBonusDiam;   // ID 12: Bonus Diamond.
     [SerializeField] private Sprite JackpotInferno;    // ID 13: Jackpot Inferno.
 
@@ -235,7 +233,7 @@ public class SlotView : MonoBehaviour
     private void BuildSymbolSpriteArray()
     {
         // Index sprites by the Double Diamond symbol IDs returned by the server.
-        symbolSprites = new Sprite[14];
+        symbolSprites = new Sprite[DDInfernoSymbolId + 1];
         symbolSprites[0] = spriteWildStar;
         symbolSprites[1] = spriteRedJwell;
         symbolSprites[2] = spriteBlueJwell;
@@ -245,16 +243,16 @@ public class SlotView : MonoBehaviour
         symbolSprites[6] = spriteBar;
         symbolSprites[7] = spriteLemon;
         symbolSprites[8] = spriteCheryy;
-        symbolSprites[9] = goldCoin_2;
-        symbolSprites[10] = starCoin;
-        symbolSprites[11] = spriteSingleSeven;
-        symbolSprites[12] = spriteBonusDiam;
+        symbolSprites[DDBonusSymbolId] = spriteBonusDiam;
         symbolSprites[DDInfernoSymbolId] = JackpotInferno;
 
-        // Validate
+        // DD keeps the server's sparse IDs so Bonus and Inferno stay at 12 and 13.
         for (int i = 0; i < symbolSprites.Length; i++)
         {
-            if (symbolSprites[i] == null)
+            if (i > GameConfig.DDLastReelFillerSymbolId && i < DDBonusSymbolId)
+                continue;
+
+            if (!HasSymbolSprite(i))
             {
                 Debug.LogError($"[SlotView] Symbol sprite at index {i} is not assigned in inspector!");
             }
@@ -374,12 +372,12 @@ public class SlotView : MonoBehaviour
 
         for (int i = 0; i < visibleStartIndex; i++)
         {
-            reel.images[i].sprite = GetSymbolSprite(Random.Range(0, 10));
+            reel.images[i].sprite = GetSymbolSprite(GameConfig.PickReelFillerSymbolId(gameManager?.gameConfig));
         }
 
         for (int i = visibleStartIndex + rowCount; i < reel.images.Count; i++)
         {
-            reel.images[i].sprite = GetSymbolSprite(Random.Range(0, 10));
+            reel.images[i].sprite = GetSymbolSprite(GameConfig.PickReelFillerSymbolId(gameManager?.gameConfig));
         }
 
         if (isInitial && reelTransforms[columnIndex] != null)
@@ -392,34 +390,55 @@ public class SlotView : MonoBehaviour
         }
     }
 
-    private Sprite GetSymbolSprite(int symbolId)
+    private bool HasSymbolSprite(int symbolId)
     {
-        if (symbolSprites == null || symbolSprites.Length == 0)
-        {
-            BuildSymbolSpriteArray();
-        }
-
-        if (symbolSprites == null || symbolSprites.Length == 0)
-        {
-            Debug.LogError("[SlotView] symbolSprites array is null or empty after BuildSymbolSpriteArray!");
-            return null;
-        }
-
-        if (symbolId < 0 || symbolId >= symbolSprites.Length)
-        {
-            Debug.LogWarning($"[SlotView] Invalid symbolId {symbolId}, using default sprite 0. Total sprites: {symbolSprites.Length}");
-            return symbolSprites[0];
-        }
-
-        if (symbolSprites[symbolId] == null)
-        {
-            Debug.LogError($"[SlotView] Symbol sprite for ID {symbolId} is null!");
-            return symbolSprites[0];
-        }
-
-        return symbolSprites[symbolId];
+        return symbolSprites != null && symbolId >= 0 && symbolId < symbolSprites.Length &&
+            symbolSprites[symbolId] != null;
     }
 
+    internal bool TryGetUnmappedResultSymbol(SpinResult result, out int symbolId)
+    {
+        // Validate the displayed cells and the symbols used by the individual line popup.
+        foreach (var reel in result.resultMatrix)
+        {
+            foreach (int id in reel)
+            {
+                if (HasSymbolSprite(id))
+                    continue;
+
+                symbolId = id;
+                return true;
+            }
+        }
+
+        if (result.winLines != null)
+        {
+            foreach (var line in result.winLines)
+            {
+                if (HasSymbolSprite(line.symbolId))
+                    continue;
+
+                symbolId = line.symbolId;
+                return true;
+            }
+        }
+
+        symbolId = -1;
+        return false;
+    }
+
+    private Sprite GetSymbolSprite(int symbolId)
+    {
+        if (symbolSprites == null)
+            BuildSymbolSpriteArray();
+
+        if (HasSymbolSprite(symbolId))
+            return symbolSprites[symbolId];
+
+        Debug.LogError($"[SlotView] No sprite assigned for symbol ID {symbolId}.");
+        // Legacy CNY keeps its original fallback. DD validates server results before landing.
+        return gameManager?.lastResult?.isDoubleDiamondResult == false ? symbolSprites[0] : null;
+    }
     #endregion
 
     #region Spin Animation
@@ -448,6 +467,14 @@ public class SlotView : MonoBehaviour
         }
 
         AudioManager.Instance?.StartDDReelSpinning();
+    }
+
+    internal void CancelSpin()
+    {
+        isSpinning = false;
+        KillAllTweens();
+        AudioManager.Instance?.StopDDReelAudio();
+        SetInitialMatrix(currentDisplayMatrix);
     }
 
     private void StartReelCycleWithDelay(int columnIndex, float delay)
@@ -540,7 +567,7 @@ public class SlotView : MonoBehaviour
             reel.images[i].sprite = reel.images[i - 1].sprite;
         }
 
-        reel.images[0].sprite = GetSymbolSprite(Random.Range(0, 10));
+        reel.images[0].sprite = GetSymbolSprite(GameConfig.PickReelFillerSymbolId(gameManager?.gameConfig));
     }
 
     #endregion

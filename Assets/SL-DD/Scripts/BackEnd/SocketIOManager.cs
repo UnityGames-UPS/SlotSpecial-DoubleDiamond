@@ -315,7 +315,7 @@ public class SocketIOManager : MonoBehaviour
       var initData = JsonConvert.DeserializeObject<InitData>(jsonData);
       var gameConfig = InitDataConverter.ConvertToGameConfig(initData);
       var playerData = InitDataConverter.ConvertToPlayerData(initData.player);
-      var initialMatrix = GenerateRandomMatrix(gameConfig.rowCount);
+      var initialMatrix = GenerateRandomMatrix(gameConfig);
 
       isInitialized = true;
 
@@ -688,15 +688,15 @@ public class SocketIOManager : MonoBehaviour
   }
 
   #endregion
-  private List<List<int>> GenerateRandomMatrix(int rowCount)
+  private static List<List<int>> GenerateRandomMatrix(GameConfig config)
   {
     var matrix = new List<List<int>>();
     for (int col = 0; col < 5; col++)
     {
       var column = new List<int>();
-      for (int row = 0; row < rowCount; row++)
+      for (int row = 0; row < config.rowCount; row++)
       {
-        column.Add(UnityEngine.Random.Range(0, 10));
+        column.Add(GameConfig.PickReelFillerSymbolId(config));
       }
       matrix.Add(column);
     }

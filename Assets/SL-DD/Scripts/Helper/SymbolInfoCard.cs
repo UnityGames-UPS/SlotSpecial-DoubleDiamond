@@ -139,7 +139,27 @@ public class SymbolInfoCard : MonoBehaviour
 
         string symbolNameLower = symbolInfo != null ? (symbolInfo.name ?? "").ToLower() : "";
 
-        // Check if special symbol: Wild (ID 10), USpin (ID 11), MoneyBag (ID 12)
+        // DD uses the symbol identities provided by init. CNY retains its legacy card logic below.
+        if (gameManager?.gameConfig?.bonusSymbolId == 12 && symbolInfo != null)
+        {
+            string description = null;
+            if (symbolInfo.isWild)
+                description = "Substitutes for all symbols except Bonus Diamond and Jackpot Inferno.";
+            else if (symbolId == gameManager.gameConfig.bonusSymbolId)
+                description = "3 Bonus symbols award 6 free spins and 2× total bet.\n4 award 10 spins and 5× total bet.\n5 award 20 spins and 10× total bet.";
+            else if (symbolNameLower.Contains("jackpot"))
+                description = "5 or more Jackpot Inferno symbols award the corresponding tier. The tier multiplier is applied to the bet per line.";
+
+            if (description != null)
+            {
+                infoText.alignment = TextAlignmentOptions.Center;
+                infoText.textWrappingMode = TextWrappingModes.Normal;
+                infoText.text = description;
+                return;
+            }
+        }
+
+        // Legacy CNY special symbols.
         bool isWild = (symbolId == 10) || (symbolInfo != null && symbolInfo.isWild) || symbolNameLower.Contains("wild");
         bool isUSpin = (symbolId == 11) || symbolNameLower.Contains("uspin");
         bool isMoneyBag = (symbolId == 12) || symbolNameLower.Contains("moneybag") || symbolNameLower.Contains("money bag");
