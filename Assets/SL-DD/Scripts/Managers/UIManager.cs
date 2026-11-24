@@ -960,26 +960,9 @@ public class UIManager : MonoBehaviour
 
             int scatterCount = 12 - i;
             SlotJackpotTier tier = tiers.Find(item => item != null && item.minScatters == scatterCount);
-            if (tier == null)
-                label.text = string.Empty;
-            else
-                SetJackpotPayoutText(label, tier.baseMultiplier * bet, numberFormat);
+            label.text = tier == null ? string.Empty :
+                FormatWinDigits((tier.baseMultiplier * bet).ToString(numberFormat, System.Globalization.CultureInfo.InvariantCulture));
         }
-    }
-
-    private static void SetJackpotPayoutText(TMP_Text label, double amount, string numberFormat)
-    {
-        string formatted = amount.ToString(numberFormat, System.Globalization.CultureInfo.InvariantCulture);
-        string suffix = FormatWinDigits(formatted.Substring(formatted.IndexOf('.')));
-        float suffixWidth = label.GetPreferredValues(suffix, Mathf.Infinity, Mathf.Infinity).x;
-
-        // Reserve width for the decimal and fraction so every row starts its fraction at the same x.
-        Vector4 margin = label.margin;
-        suffixWidth -= Mathf.Max(0f, margin.x) + Mathf.Max(0f, margin.z);
-        margin.z = label.rectTransform.rect.width * 0.5f - suffixWidth;
-        label.margin = margin;
-        label.horizontalAlignment = HorizontalAlignmentOptions.Right;
-        label.text = FormatWinDigits(formatted);
     }
 
     private void UpdateBetButtonStates()
