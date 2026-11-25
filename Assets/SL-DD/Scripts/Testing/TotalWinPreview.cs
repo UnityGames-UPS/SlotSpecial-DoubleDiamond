@@ -18,9 +18,12 @@ public sealed class TotalWinPreview : MonoBehaviour
     private const float JackpotPreviewFramesPerSecond = 24f;
     private Coroutine jackpotPanelPlayback;
     private Coroutine jackpotRowPlayback;
-    private ImageAnimation activeJackpotRow;
+    private ImageAnimation jackpotPanelPreview;
+    private ImageAnimation jackpotRowPreview;
 
-    public bool IsOpen { get; private set; }
+    public bool IsOpen => uiManager != null && uiManager.IsDDTotalWinPreviewOpen;
+    private bool CanPlayJackpotPreview => Application.isPlaying && isActiveAndEnabled &&
+        (uiManager == null || uiManager.CanPreviewDDPresentation);
 
     private void OnValidate()
     {
@@ -33,80 +36,80 @@ public sealed class TotalWinPreview : MonoBehaviour
             return;
 
         if (!uiManager.TryOpenDDTotalWinPreview(title, amount))
-        {
             Debug.LogWarning("Open the total win preview when the game is idle and the popup is closed.", this);
-            return;
-        }
-
-        IsOpen = true;
     }
 
     public void ClosePreview()
     {
-        if (!IsOpen)
-            return;
-
-        IsOpen = false;
         if (uiManager != null)
             uiManager.CloseDDTotalWinPreview();
     }
 
     public void PlayJackpotPanelAnimation()
     {
-        if (Application.isPlaying && isActiveAndEnabled && jackpotPanelAnimation != null)
-            ReplayJackpotAnimation(jackpotPanelAnimation, ref jackpotPanelPlayback);
+        if (CanPlayJackpotPreview && jackpotPanelAnimation != null)
+            ReplayJackpotAnimation(jackpotPanelAnimation, ref jackpotPanelPreview, ref jackpotPanelPlayback);
     }
 
     public void PlaySelectedJackpotRowAnimation()
     {
         int index = jackpotRow - 1;
-        if (!Application.isPlaying || !isActiveAndEnabled || jackpotRowAnimations == null ||
+        if (!CanPlayJackpotPreview || jackpotRowAnimations == null ||
             index < 0 || index >= jackpotRowAnimations.Length || jackpotRowAnimations[index] == null)
             return;
 
-        StopJackpotPreview(activeJackpotRow, ref jackpotRowPlayback);
-        activeJackpotRow = jackpotRowAnimations[index];
-        ReplayJackpotAnimation(activeJackpotRow, ref jackpotRowPlayback);
+        ReplayJackpotAnimation(jackpotRowAnimations[index], ref jackpotRowPreview, ref jackpotRowPlayback);
     }
 
-    private void ReplayJackpotAnimation(ImageAnimation animation, ref Coroutine playback)
+    private void ReplayJackpotAnimation(ImageAnimation source, ref ImageAnimation preview, ref Coroutine playback)
     {
-        StopJackpotPreview(animation, ref playback);
-        animation.gameObject.SetActive(true);
-        if (animation.TryStartAtFrameRate(JackpotPreviewFramesPerSecond))
-            playback = StartCoroutine(HideAfterJackpotAnimation(animation));
+        StopJackpotPreview(ref preview, ref playback);
+        // The Inspector preview owns a copy so its cleanup cannot hide a gameplay overlay.
+        preview = Instantiate(source, source.transform.parent, false);
+        preview.gameObject.SetActive(true);
+        if (preview.rendererDelegate != null)
+            preview.rendererDelegate.raycastTarget = false;
+
+        if (preview.TryStartAtFrameRate(JackpotPreviewFramesPerSecond, loopOverride: false))
+            playback = StartCoroutine(HideAfterJackpotAnimation(preview));
         else
-            animation.gameObject.SetActive(false);
+            ReleaseJackpotPreview(preview);
     }
 
-    private static IEnumerator HideAfterJackpotAnimation(ImageAnimation animation)
+    private IEnumerator HideAfterJackpotAnimation(ImageAnimation animation)
     {
-        yield return new WaitUntil(() => animation == null ||
+        yield return new WaitUntil(() => !CanPlayJackpotPreview || animation == null ||
             animation.currentAnimationState != ImageAnimation.ImageState.PLAYING);
 
         // Keep the final frame visible for one frame interval before hiding the overlay.
-        yield return new WaitForSeconds(1f / JackpotPreviewFramesPerSecond);
-        if (animation != null)
-            animation.gameObject.SetActive(false);
+        if (CanPlayJackpotPreview)
+            yield return new WaitForSeconds(1f / JackpotPreviewFramesPerSecond);
+        ReleaseJackpotPreview(animation);
     }
 
-    private void StopJackpotPreview(ImageAnimation animation, ref Coroutine playback)
+    private void StopJackpotPreview(ref ImageAnimation preview, ref Coroutine playback)
     {
-        if (playback == null)
+        if (playback != null)
+            StopCoroutine(playback);
+        playback = null;
+        ReleaseJackpotPreview(preview);
+        preview = null;
+    }
+
+    private static void ReleaseJackpotPreview(ImageAnimation preview)
+    {
+        if (preview == null)
             return;
 
-        StopCoroutine(playback);
-        playback = null;
-        if (animation != null)
-            animation.gameObject.SetActive(false);
+        preview.gameObject.SetActive(false);
+        Destroy(preview.gameObject);
     }
 
     private void OnDisable()
     {
         ClosePreview();
-        StopJackpotPreview(jackpotPanelAnimation, ref jackpotPanelPlayback);
-        StopJackpotPreview(activeJackpotRow, ref jackpotRowPlayback);
-        activeJackpotRow = null;
+        StopJackpotPreview(ref jackpotPanelPreview, ref jackpotPanelPlayback);
+        StopJackpotPreview(ref jackpotRowPreview, ref jackpotRowPlayback);
     }
 }
 #endif

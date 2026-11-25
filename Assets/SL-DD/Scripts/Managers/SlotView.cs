@@ -122,6 +122,8 @@ public class SlotView : MonoBehaviour
     private List<Tween> spinTweens = new List<Tween>();
     private List<Tween> winTweens = new List<Tween>();
     private List<int> reelCycleCount = new List<int>();
+    private Coroutine reelStopCoroutine;
+    private readonly List<Coroutine> staggeredReelStops = new List<Coroutine>();
     private Coroutine winAnimationCoroutine;
 
 
@@ -590,7 +592,7 @@ public class SlotView : MonoBehaviour
             return;
         }
 
-        StartCoroutine(StopSpinSequence(resultMatrix, onComplete, isQuickStop: false, isDoubleDiamond: isDoubleDiamond));
+        reelStopCoroutine = StartCoroutine(StopSpinSequence(resultMatrix, onComplete, isQuickStop: false, isDoubleDiamond: isDoubleDiamond));
     }
 
     private IEnumerator StopSpinSequence(List<List<int>> resultMatrix, System.Action onComplete,
@@ -621,7 +623,9 @@ public class SlotView : MonoBehaviour
         for (int col = 0; col < 5; col++)
         {
             float delay = col * stagger;
-            StartCoroutine(StopSingleReel(col, resultMatrix[col], delay, isQuickStop, isDoubleDiamond, onReelSettled));
+            var reelStop = StartCoroutine(StopSingleReel(col, resultMatrix[col], delay, isQuickStop, isDoubleDiamond, onReelSettled));
+            if (reelStop != null)
+                staggeredReelStops.Add(reelStop);
         }
 
         // Staggered starts can reach their tween callbacks later than a duration estimate.
@@ -629,6 +633,8 @@ public class SlotView : MonoBehaviour
 
         AudioManager.Instance?.StopDDReelSpinning();
         isSpinning = false;
+        reelStopCoroutine = null;
+        staggeredReelStops.Clear();
 
         onComplete?.Invoke();
     }
@@ -741,7 +747,7 @@ public class SlotView : MonoBehaviour
             return;
         }
 
-        StartCoroutine(StopSpinSequence(resultMatrix, onComplete, isQuickStop: true, isDoubleDiamond: isDoubleDiamond));
+        reelStopCoroutine = StartCoroutine(StopSpinSequence(resultMatrix, onComplete, isQuickStop: true, isDoubleDiamond: isDoubleDiamond));
     }
 
     #endregion
@@ -1830,6 +1836,17 @@ public class SlotView : MonoBehaviour
 
     private void KillAllTweens()
     {
+        // A staggered stop can still be waiting to create its tween. Stop those coroutines first.
+        if (reelStopCoroutine != null)
+        {
+            StopCoroutine(reelStopCoroutine);
+            reelStopCoroutine = null;
+        }
+
+        foreach (var reelStop in staggeredReelStops)
+            StopCoroutine(reelStop);
+        staggeredReelStops.Clear();
+
         foreach (var tween in spinTweens)
         {
             tween?.Kill();

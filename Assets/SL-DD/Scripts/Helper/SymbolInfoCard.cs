@@ -148,7 +148,7 @@ public class SymbolInfoCard : MonoBehaviour
             else if (symbolId == gameManager.gameConfig.bonusSymbolId)
                 description = "3 Bonus symbols award 6 free spins and 2× total bet.\n4 award 10 spins and 5× total bet.\n5 award 20 spins and 10× total bet.";
             else if (symbolNameLower.Contains("jackpot"))
-                description = "5 or more Jackpot Inferno symbols award the corresponding tier. The tier multiplier is applied to the bet per line.";
+                description = "Landing 5 or more Jackpot Inferno symbols awards the corresponding tier. The jackpot pays the tier multiplier × your total bet.";
 
             if (description != null)
             {

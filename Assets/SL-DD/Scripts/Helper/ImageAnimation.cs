@@ -31,6 +31,7 @@ public class ImageAnimation : MonoBehaviour
     private int indexOfTexture;
     private float idealFrameRate = 0.0416666679f; // ~24 fps
     private float delayBetweenAnimation;
+    private bool? loopOverride;
 
     public float AnimationSpeed = 5f;
     public float delayBetweenLoop;
@@ -90,7 +91,7 @@ public class ImageAnimation : MonoBehaviour
             // A loop callback can stop playback and hide this overlay.
             if (currentAnimationState != ImageState.PLAYING) return;
 
-            if (doLoopAnimation)
+            if (loopOverride ?? doLoopAnimation)
             {
                 Invoke(nameof(AnimationProcess), delayBetweenAnimation + delayBetweenLoop);
             }
@@ -113,12 +114,13 @@ public class ImageAnimation : MonoBehaviour
     }
 
     // Double Diamond uses a fixed frame rate across symbol sequences.
-    internal bool TryStartAtFrameRate(float framesPerSecond)
+    internal bool TryStartAtFrameRate(float framesPerSecond, bool? loopOverride = null)
     {
-        return isActiveAndEnabled && StartAnimationWithInterval(1f / Mathf.Max(1f, framesPerSecond));
+        return isActiveAndEnabled &&
+            StartAnimationWithInterval(1f / Mathf.Max(1f, framesPerSecond), loopOverride);
     }
 
-    private bool StartAnimationWithInterval(float frameInterval)
+    private bool StartAnimationWithInterval(float frameInterval, bool? loopOverride = null)
     {
         if (textureArray == null || textureArray.Count == 0) return false;
 
@@ -129,6 +131,7 @@ public class ImageAnimation : MonoBehaviour
         indexOfTexture = 0;
         currentLoopCount = 0;
         currentAnimationState = ImageState.PLAYING;
+        this.loopOverride = loopOverride;
 
         RevertToInitialState();
 

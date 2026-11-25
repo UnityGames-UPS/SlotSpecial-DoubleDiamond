@@ -229,6 +229,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private RectTransform totalWinPulseRays;
     [SerializeField, Min(0.01f)] private float totalWinRaysMinScaleX = 21f;
     [SerializeField, Min(0.01f)] private float totalWinRaysMaxScaleX = 26f;
+    [SerializeField, Min(0.01f)] private float totalWinPortraitRaysMinScaleX = 38.58f;
+    [SerializeField, Min(0.01f)] private float totalWinPortraitRaysMaxScaleX = 40.58f;
     private Tween ddTotalWinPulse;
     private Coroutine ddTotalWinPulseRestart;
     private Vector3 ddTotalWinImageBaseScale;
@@ -242,6 +244,13 @@ public class UIManager : MonoBehaviour
     [Header("DD Jackpot Payout Table")]
     [Tooltip("Payout labels ordered from 12 Inferno symbols at the top to 5 at the bottom.")]
     [SerializeField] private TMP_Text[] jackpotPayoutTexts = new TMP_Text[8];
+    [SerializeField] private ImageAnimation jackpotPanelAnimation;
+    [Tooltip("Row overlays ordered from 12 Inferno symbols at the top to 5 at the bottom.")]
+    [SerializeField] private ImageAnimation[] jackpotRowAnimations = new ImageAnimation[8];
+    [Tooltip("Seconds the jackpot payout panel and awarded row repeat their animations.")]
+    [SerializeField, Min(0f)] private float jackpotHighlightDuration = 3f;
+    private const float JackpotHighlightFramesPerSecond = 24f;
+    private ImageAnimation activeJackpotRowAnimation;
 
     [Header("Platform Jackpot")]
     [SerializeField] private TMP_Text grandJackpotText;
@@ -272,12 +281,13 @@ public class UIManager : MonoBehaviour
 
     private int initialFreeSpins = 0;
     private bool holdDoubleDiamondFreeSpinBalance;
+    private bool holdDoubleDiamondJackpotBalance;
     // DD adds the triggering paid spin's line wins to the displayed free-spin sequence total.
     private double ddFreeSpinTriggerLineWin;
-    private bool awaitingDoubleDiamondFreeSpinStart;
+    private bool doubleDiamondFreeSpinStartVisible;
     private System.Action ddTotalWinOnTake;
     private bool ddTotalWinTakeReady;
-    private GameObject activeDDTotalWinTitle;
+    private TotalWinTitle? openDDTotalWinTitle;
     private Sequence ddTotalWinPresentation;
 
     // Optimistic balance: the locally-deducted balance shown while the spin is in flight
@@ -348,6 +358,8 @@ public class UIManager : MonoBehaviour
     private void OnDisable()
     {
         OrientationChange.OnOrientationChanged -= HandleOrientationChanged;
+        holdDoubleDiamondJackpotBalance = false;
+        StopDoubleDiamondJackpotOverlays();
         CloseDDTotalWinPopup();
         AudioManager.Instance?.StopDDWinAudio();
     }
@@ -363,7 +375,7 @@ public class UIManager : MonoBehaviour
         {
             // DD lets OCController apply the new scales before restarting the pulse.
             StopDDTotalWinPulse(restoreScale: false);
-            ddTotalWinPulseRestart = StartCoroutine(RestartDDTotalWinPulseAfterOrientationChange());
+            ddTotalWinPulseRestart = StartCoroutine(RestartDDTotalWinPulseAfterOrientationChange(mode));
         }
     }
 
@@ -647,10 +659,14 @@ public class UIManager : MonoBehaviour
 
     internal void OnSpinStarted()
     {
+#if UNITY_EDITOR
+        CloseDDTotalWinPreview();
+#endif
         AudioManager.Instance?.StopDDWinAudio();
 
         if (gameManager.isInFreeSpins)
         {
+            HideDoubleDiamondFreeSpinStart();
             SetSpinStopButtonStates(isSpinningState: true, isInteractable: false);
         }
         else
@@ -697,6 +713,32 @@ public class UIManager : MonoBehaviour
         // DD free spins count up from the previous displayed sequence total.
         double start = isFreeSpin ? currentWinDisplayValue : 0d;
         double target = GetSpinDisplayWin(result);
+        return BeginWinDisplayCountUp(start, target);
+    }
+
+    internal System.Action<float> BeginDoubleDiamondJackpotLineCountUp(SpinResult result)
+    {
+        // The jackpot amount is revealed separately. Keep the previous bonus total as the starting point.
+        double start = result.isFreeSpin ? currentWinDisplayValue : 0d;
+        if (result.linesWinAmount > 0d)
+            return BeginWinDisplayCountUp(start, start + result.linesWinAmount);
+
+        UpdateWinDisplay(start, forceWinVisible: true);
+        return null;
+    }
+
+    internal void HoldDoubleDiamondJackpotBalance() => holdDoubleDiamondJackpotBalance = true;
+
+    internal void RevealDoubleDiamondJackpotWin(SpinResult result)
+    {
+        holdDoubleDiamondJackpotBalance = false;
+        UpdateWinDisplay(GetSpinDisplayWin(result));
+        // A jackpot Take reveals the settled balance even during the free-spin balance hold.
+        SetBalanceDisplay(result.playerData.balance);
+    }
+
+    private System.Action<float> BeginWinDisplayCountUp(double start, double target)
+    {
         UpdateWinDisplay(start, forceWinVisible: true);
 
         AudioManager.Instance?.PlayDDWinCountUp();
@@ -941,15 +983,17 @@ public class UIManager : MonoBehaviour
     }
 
     // DD payout rows are ordered from 12 Infernos down to 5.
+    private const int TopJackpotScatterCount = 12;
+
     private void UpdateJackpotPayoutTable()
     {
         var tiers = gameManager.gameConfig.jackpotTiers;
         if (tiers == null || jackpotPayoutTexts == null)
             return;
 
-        double bet = gameManager.currentBetAmount;
+        double totalBet = gameManager.GetTotalPay();
         bool useThreeDecimals = tiers.Exists(tier => tier != null && tier.minScatters >= 5 && tier.minScatters <= 12 &&
-            System.Math.Round(tier.baseMultiplier * bet, 3) != System.Math.Round(tier.baseMultiplier * bet, 2));
+            System.Math.Round(tier.baseMultiplier * totalBet, 3) != System.Math.Round(tier.baseMultiplier * totalBet, 2));
         string numberFormat = useThreeDecimals ? "0.000" : "0.00";
 
         for (int i = 0; i < jackpotPayoutTexts.Length; i++)
@@ -958,11 +1002,65 @@ public class UIManager : MonoBehaviour
             if (label == null)
                 continue;
 
-            int scatterCount = 12 - i;
+            int scatterCount = TopJackpotScatterCount - i;
             SlotJackpotTier tier = tiers.Find(item => item != null && item.minScatters == scatterCount);
             label.text = tier == null ? string.Empty :
-                FormatWinDigits((tier.baseMultiplier * bet).ToString(numberFormat, System.Globalization.CultureInfo.InvariantCulture));
+                FormatWinDigits((tier.baseMultiplier * totalBet).ToString(numberFormat, System.Globalization.CultureInfo.InvariantCulture));
         }
+    }
+
+    internal IEnumerator PlayDoubleDiamondJackpotOverlays(JackpotBonusData jackpot)
+    {
+        float duration = Mathf.Max(0f, jackpotHighlightDuration);
+        if (duration == 0f || !isActiveAndEnabled)
+            yield break;
+
+        // Use the awarded tier's table row, even if the result has a different scatter count.
+        var tier = gameManager?.gameConfig?.jackpotTiers?.Find(item => item != null && item.tier == jackpot.tier);
+        if (tier?.minScatters is int scatterCount)
+        {
+            int rowIndex = TopJackpotScatterCount - scatterCount;
+            if (jackpotRowAnimations != null && rowIndex >= 0 && rowIndex < jackpotRowAnimations.Length)
+                activeJackpotRowAnimation = jackpotRowAnimations[rowIndex];
+        }
+
+        bool panelStarted = TryPlayJackpotOverlay(jackpotPanelAnimation);
+        bool rowStarted = TryPlayJackpotOverlay(activeJackpotRowAnimation);
+        if (panelStarted || rowStarted)
+            yield return new WaitForSeconds(duration);
+
+        StopDoubleDiamondJackpotOverlays();
+    }
+
+    private static bool TryPlayJackpotOverlay(ImageAnimation animation)
+    {
+        if (animation == null)
+            return false;
+
+        animation.gameObject.SetActive(true);
+        if (animation.TryStartAtFrameRate(JackpotHighlightFramesPerSecond, loopOverride: true))
+            return true;
+
+        animation.gameObject.SetActive(false);
+        return false;
+    }
+
+    private void StopDoubleDiamondJackpotOverlays()
+    {
+        if (jackpotPanelAnimation != null)
+            jackpotPanelAnimation.gameObject.SetActive(false);
+        if (activeJackpotRowAnimation != null)
+            activeJackpotRowAnimation.gameObject.SetActive(false);
+        activeJackpotRowAnimation = null;
+    }
+
+    internal void CancelDoubleDiamondJackpotPresentation()
+    {
+        holdDoubleDiamondJackpotBalance = false;
+        StopDoubleDiamondJackpotOverlays();
+        if (openDDTotalWinTitle == TotalWinTitle.Jackpot)
+            CloseDDTotalWinPopup();
+        AudioManager.Instance?.StopDDWinAudio();
     }
 
     private void UpdateBetButtonStates()
@@ -1379,7 +1477,7 @@ public class UIManager : MonoBehaviour
         UpdateWinDisplay(displayWin);
 
         // Reuse the Start controls already positioned over Spin in both orientations.
-        awaitingDoubleDiamondFreeSpinStart = true;
+        doubleDiamondFreeSpinStartVisible = true;
         SetButtonActive(spinButton, spinButtonPortrait, false);
         SetButtonActive(sharedStartButton, sharedStartButtonPortrait, true);
         SetButtonInteractable(sharedStartButton, sharedStartButtonPortrait, true);
@@ -1422,10 +1520,13 @@ public class UIManager : MonoBehaviour
 
     private void OnSharedStartButtonClicked()
     {
-        if (awaitingDoubleDiamondFreeSpinStart)
+        if (doubleDiamondFreeSpinStartVisible)
         {
-            awaitingDoubleDiamondFreeSpinStart = false;
-            SetButtonActive(sharedStartButton, sharedStartButtonPortrait, false);
+            if (!gameManager.waitingForFreeSpinStart)
+                return;
+
+            // Keep Start visible until the first free spin replaces it with Stop.
+            SetButtonInteractable(sharedStartButton, sharedStartButtonPortrait, false);
             AudioManager.Instance?.PlaySpinStart();
             gameManager.StartFirstFreeSpin();
             return;
@@ -1433,6 +1534,15 @@ public class UIManager : MonoBehaviour
 
         // Legacy CNY U-Spin wheel Start.
         OnWheelSpinClicked();
+    }
+
+    internal void HideDoubleDiamondFreeSpinStart()
+    {
+        if (!doubleDiamondFreeSpinStartVisible)
+            return;
+
+        doubleDiamondFreeSpinStartVisible = false;
+        SetButtonActive(sharedStartButton, sharedStartButtonPortrait, false);
     }
 
     // Legacy CNY starts free spins through the universal popup.
@@ -1478,6 +1588,22 @@ public class UIManager : MonoBehaviour
             onTransitionComplete?.Invoke();
             gameManager?.ResumeAutoPlay();
         });
+    }
+
+    internal void CancelDoubleDiamondFreeSpinCompletion()
+    {
+        if (openDDTotalWinTitle != TotalWinTitle.FreeSpins)
+            return;
+#if UNITY_EDITOR
+        if (isDDTotalWinPreview)
+            return;
+#endif
+
+        // Disconnect closes the popup directly. Its Take callback would resume normal play.
+        CloseDDTotalWinPopup();
+        AudioManager.Instance?.StopDDWinAudio();
+        ddFreeSpinTriggerLineWin = 0d;
+        holdDoubleDiamondFreeSpinBalance = false;
     }
 
     // Legacy CNY uses the universal completion popup and its Take button.
@@ -1554,6 +1680,15 @@ public class UIManager : MonoBehaviour
         Jackpot
     }
 
+    internal bool IsDDTotalWinPopupOpen => totalWinPopup != null && totalWinPopup.activeInHierarchy;
+
+    private GameObject ActiveDDTotalWinTitle => openDDTotalWinTitle switch
+    {
+        TotalWinTitle.Jackpot => jpotTotalWinTitle,
+        TotalWinTitle.FreeSpins => freeSpinTotalWinTitle,
+        _ => null
+    };
+
     internal void ShowDDTotalWin(TotalWinTitle title, double amount, System.Action onTake)
     {
         if (!TryOpenDDTotalWinPopup(title))
@@ -1575,11 +1710,11 @@ public class UIManager : MonoBehaviour
         if (totalWinPopup == null || totalWinPopup.activeSelf)
             return false;
 
-        activeDDTotalWinTitle = title == TotalWinTitle.Jackpot ? jpotTotalWinTitle : freeSpinTotalWinTitle;
+        openDDTotalWinTitle = title;
         if (freeSpinTotalWinTitle != null)
-            freeSpinTotalWinTitle.SetActive(freeSpinTotalWinTitle == activeDDTotalWinTitle);
+            freeSpinTotalWinTitle.SetActive(title == TotalWinTitle.FreeSpins);
         if (jpotTotalWinTitle != null)
-            jpotTotalWinTitle.SetActive(jpotTotalWinTitle == activeDDTotalWinTitle);
+            jpotTotalWinTitle.SetActive(title == TotalWinTitle.Jackpot);
         if (totalWinAmountText != null)
             totalWinAmountText.gameObject.SetActive(false);
 
@@ -1587,11 +1722,12 @@ public class UIManager : MonoBehaviour
         if (!totalWinPopup.activeInHierarchy)
         {
             totalWinPopup.SetActive(false);
-            activeDDTotalWinTitle = null;
+            openDDTotalWinTitle = null;
             return false;
         }
 
-        StartDDTotalWinPulse();
+        var orientation = Object.FindFirstObjectByType<OrientationChange>();
+        StartDDTotalWinPulse(orientation?.CurrentMode ?? OrientationChange.OrientationMode.Landscape);
         totalWinFountain?.StartFountain();
         totalWinRipple?.StartRipple();
         return true;
@@ -1612,7 +1748,8 @@ public class UIManager : MonoBehaviour
         }
 
         var presentation = DOTween.Sequence().SetLink(totalWinPopup, LinkBehaviour.KillOnDisable).Pause();
-        Image titleImage = activeDDTotalWinTitle != null ? activeDDTotalWinTitle.GetComponent<Image>() : null;
+        var titleObject = ActiveDDTotalWinTitle;
+        Image titleImage = titleObject != null ? titleObject.GetComponent<Image>() : null;
         Image frameImage = totalWinFrame != null ? totalWinFrame.GetComponent<Image>() : null;
         float titleAlpha = titleImage != null ? titleImage.color.a : 0f;
         float frameAlpha = frameImage != null ? frameImage.color.a : 0f;
@@ -1701,42 +1838,49 @@ public class UIManager : MonoBehaviour
 
         ddTotalWinTakeReady = false;
         ddTotalWinOnTake = null;
-        activeDDTotalWinTitle = null;
+        openDDTotalWinTitle = null;
+#if UNITY_EDITOR
+        isDDTotalWinPreview = false;
+#endif
         if (totalWinPopup != null)
             totalWinPopup.SetActive(false);
     }
 
 #if UNITY_EDITOR
+    private bool isDDTotalWinPreview;
+
+    internal bool CanPreviewDDPresentation => Application.isPlaying && isActiveAndEnabled &&
+        (gameManager == null || (!gameManager.isInFreeSpins && !gameManager.isAutoPlaying &&
+            (gameManager.currentState == GameState.Idle || gameManager.currentState == GameState.Initializing)));
+
+    internal bool IsDDTotalWinPreviewOpen => isDDTotalWinPreview && IsDDTotalWinPopupOpen;
+
     // DD preview uses the shared artwork and count-up without taking a payout.
     internal bool TryOpenDDTotalWinPreview(TotalWinTitle title, double amount)
     {
-        if (!Application.isPlaying || !isActiveAndEnabled ||
-            (gameManager != null && (gameManager.isInFreeSpins || gameManager.isAutoPlaying ||
-                (gameManager.currentState != GameState.Idle && gameManager.currentState != GameState.Initializing))))
-        {
-            return false;
-        }
-
-        if (!TryOpenDDTotalWinPopup(title))
+        if (!CanPreviewDDPresentation || !TryOpenDDTotalWinPopup(title))
             return false;
 
+        isDDTotalWinPreview = true;
         AnimateDDTotalWinAmount(amount, null);
         return true;
     }
 
     internal void CloseDDTotalWinPreview()
     {
-        CloseDDTotalWinPopup();
+        if (isDDTotalWinPreview)
+            CloseDDTotalWinPopup();
     }
 #endif
 
-    private void StartDDTotalWinPulse()
+    private void StartDDTotalWinPulse(OrientationChange.OrientationMode mode)
     {
         StopDDTotalWinPulse();
-        if (activeDDTotalWinTitle == null || totalWinFrame == null)
+        var titleObject = ActiveDDTotalWinTitle;
+        if (titleObject == null || totalWinFrame == null)
             return;
 
-        Transform image = activeDDTotalWinTitle.transform;
+        Transform image = titleObject.transform;
         Transform frame = totalWinFrame.transform;
 
         // DD uses each orientation's configured scales as its resting size.
@@ -1747,6 +1891,7 @@ public class UIManager : MonoBehaviour
         if (rays != null)
             ddTotalWinRaysBaseScale = rays.localScale;
 
+        bool isMobilePortrait = mode == OrientationChange.OrientationMode.MobilePortrait;
         ddTotalWinPulse = DOVirtual.Float(-1f, 1f, Mathf.Max(0.1f, totalWinPulseDuration), progress =>
         {
             float change = totalWinPulseAmount * progress;
@@ -1756,8 +1901,8 @@ public class UIManager : MonoBehaviour
             if (rays != null && Mathf.Abs(ddTotalWinRaysBaseScale.x) > Mathf.Epsilon)
             {
                 // DD Rays use an absolute X range while preserving the artwork's proportions.
-                float minScaleX = Mathf.Max(0.01f, totalWinRaysMinScaleX);
-                float maxScaleX = Mathf.Max(minScaleX, totalWinRaysMaxScaleX);
+                float minScaleX = Mathf.Max(0.01f, isMobilePortrait ? totalWinPortraitRaysMinScaleX : totalWinRaysMinScaleX);
+                float maxScaleX = Mathf.Max(minScaleX, isMobilePortrait ? totalWinPortraitRaysMaxScaleX : totalWinRaysMaxScaleX);
                 float scaleX = Mathf.Lerp(minScaleX, maxScaleX, (progress + 1f) * 0.5f);
                 rays.localScale = ddTotalWinRaysBaseScale * (scaleX / ddTotalWinRaysBaseScale.x);
             }
@@ -1781,27 +1926,28 @@ public class UIManager : MonoBehaviour
         ddTotalWinPulse.Kill();
         ddTotalWinPulse = null;
 
-        // DD Rays share one layout in both orientations. Restore before any pulse restart.
+        // Orientation changes supply the new resting scales through OCController.
+        if (!restoreScale)
+            return;
+
         if (totalWinPulseRays != null)
             totalWinPulseRays.localScale = ddTotalWinRaysBaseScale;
 
-        if (restoreScale)
-        {
-            if (activeDDTotalWinTitle != null)
-                activeDDTotalWinTitle.transform.localScale = ddTotalWinImageBaseScale;
-            if (totalWinFrame != null)
-                totalWinFrame.transform.localScale = ddTotalWinFrameBaseScale;
-        }
+        var titleObject = ActiveDDTotalWinTitle;
+        if (titleObject != null)
+            titleObject.transform.localScale = ddTotalWinImageBaseScale;
+        if (totalWinFrame != null)
+            totalWinFrame.transform.localScale = ddTotalWinFrameBaseScale;
     }
 
-    private IEnumerator RestartDDTotalWinPulseAfterOrientationChange()
+    private IEnumerator RestartDDTotalWinPulseAfterOrientationChange(OrientationChange.OrientationMode mode)
     {
         // DD waits for all orientation handlers before capturing the new resting scales.
         yield return null;
         ddTotalWinPulseRestart = null;
 
         if (totalWinPopup != null && totalWinPopup.activeInHierarchy)
-            StartDDTotalWinPulse();
+            StartDDTotalWinPulse(mode);
     }
 
     private IEnumerator RefreshDDTotalWinTakeAfterOrientationChange()
@@ -1954,8 +2100,13 @@ public class UIManager : MonoBehaviour
 
     internal void UpdateBalanceDisplay()
     {
-        if (holdDoubleDiamondFreeSpinBalance) return;
-        SetTMPText(balanceText, balanceTextPortrait, "BALANCE : " + FormatAmount(gameManager.playerData.balance));
+        if (holdDoubleDiamondFreeSpinBalance || holdDoubleDiamondJackpotBalance) return;
+        SetBalanceDisplay(gameManager.playerData.balance);
+    }
+
+    private void SetBalanceDisplay(double balance)
+    {
+        SetTMPText(balanceText, balanceTextPortrait, "BALANCE : " + FormatAmount(balance));
     }
 
     private void UpdateWinDisplay(double amount, bool forceWinVisible = false)
@@ -1980,10 +2131,10 @@ public class UIManager : MonoBehaviour
 
     private void AnimateBalanceUpdate(double newBalance, double startBalance = -1f, float durationOverride = -1f)
     {
-        if (holdDoubleDiamondFreeSpinBalance) return;
+        if (holdDoubleDiamondFreeSpinBalance || holdDoubleDiamondJackpotBalance) return;
         if (balanceTween != null) balanceTween.Kill();
         hasOptimisticBalance = false;
-        SetTMPText(balanceText, balanceTextPortrait, "BALANCE : " + FormatAmount(newBalance));
+        SetBalanceDisplay(newBalance);
     }
 
     private void AnimateWinUpdate(double targetWin, float duration = 0.8f)
@@ -2534,8 +2685,10 @@ public class UIManager : MonoBehaviour
 
     private void OnWinTakeButtonClicked()
     {
-        if (ddTotalWinTakeReady)
+        if (IsDDTotalWinPopupOpen)
         {
+            if (!ddTotalWinTakeReady) return;
+
             AudioManager.Instance?.PlayTakeButton();
             TakeDDTotalWin();
             return;

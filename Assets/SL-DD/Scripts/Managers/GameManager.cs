@@ -50,6 +50,9 @@ public class GameManager : MonoBehaviour
     internal bool initializationFailed;
 
     private Coroutine spinCoroutine;
+    private Coroutine firstFreeSpinCoroutine;
+    private Coroutine jackpotPresentationCoroutine;
+    private SpinResult jackpotPresentationResult;
     private bool stopRequested;
     private bool waitingForSpecialWin;
 
@@ -257,27 +260,36 @@ public class GameManager : MonoBehaviour
         }
 
         currentState = GameState.Stopping;
+        var stoppedResult = lastResult;
+        System.Action onReelsStopped = () => OnReelsStoppedComplete(stoppedResult);
 
-        if (slotView != null && lastResult.resultMatrix != null)
+        if (slotView != null && stoppedResult.resultMatrix != null)
         {
             if (currentSpinSpeed == SpinSpeed.QuickSpin || stopRequested)
             {
-                slotView.QuickStop(lastResult.resultMatrix, OnReelsStoppedComplete);
+                slotView.QuickStop(stoppedResult.resultMatrix, onReelsStopped);
             }
             else
             {
-                slotView.StopSpin(lastResult.resultMatrix, OnReelsStoppedComplete);
+                slotView.StopSpin(stoppedResult.resultMatrix, onReelsStopped);
             }
         }
         else
         {
             AudioManager.Instance?.StopDDReelSpinning();
-            OnReelsStoppedComplete();
+            onReelsStopped();
         }
     }
 
-    private void OnReelsStoppedComplete()
+    private void OnReelsStoppedComplete(SpinResult stoppedResult)
     {
+        // SlotView stops reels asynchronously. A late callback must still belong to the active spin.
+        if (stoppedResult == null || lastResult != stoppedResult || currentState != GameState.Stopping ||
+            socketManager == null || !socketManager.isConnected)
+        {
+            return;
+        }
+
         // Double Diamond keeps the outlines for the trigger popup only when opening a free-spin round.
         if (lastResult?.isDoubleDiamondResult == true &&
             (lastResult.freeSpinData?.isTriggered != true || isInFreeSpins))
@@ -287,6 +299,16 @@ public class GameManager : MonoBehaviour
 
         if (lastResult != null)
         {
+            if (lastResult.jackpotBonusData?.isTriggered == true)
+            {
+                if (jackpotPresentationResult != lastResult)
+                {
+                    jackpotPresentationResult = lastResult;
+                    jackpotPresentationCoroutine = StartCoroutine(PlayDoubleDiamondJackpot(lastResult));
+                }
+                return;
+            }
+
             // Keep the post-bet balance visible before any trigger-result UI is refreshed.
             if (lastResult.isDoubleDiamondResult && !lastResult.isFreeSpin &&
                 lastResult.freeSpinData?.isTriggered == true)
@@ -363,6 +385,88 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Jackpot Inferno plays the table highlight alongside the grouped win, then waits for Take.
+    private IEnumerator PlayDoubleDiamondJackpot(SpinResult result)
+    {
+        uiManager.DisableControlsDuringWinAnimation();
+        uiManager.HoldDoubleDiamondJackpotBalance();
+        var updateLineWin = uiManager.BeginDoubleDiamondJackpotLineCountUp(result);
+        bool groupedWinFinished = false;
+        if (slotView != null && slotView.isActiveAndEnabled && result.winLines?.Count > 0)
+        {
+            slotView.ShowWinLineAnimation(
+                result.winLines,
+                onComplete: () => groupedWinFinished = true,
+                replayLines: false,
+                countUpDuration: uiManager.WinDisplayCountUpDuration,
+                updateWinCountUp: updateLineWin);
+        }
+        else
+        {
+            updateLineWin?.Invoke(1f);
+            groupedWinFinished = true;
+        }
+
+        yield return uiManager.PlayDoubleDiamondJackpotOverlays(result.jackpotBonusData);
+        while (!groupedWinFinished && slotView != null && slotView.isActiveAndEnabled)
+            yield return null;
+
+        // The line view may have been disabled before invoking its completion callback.
+        if (!groupedWinFinished)
+            updateLineWin?.Invoke(1f);
+
+        // The shared popup has one Take callback. Wait for any earlier presentation to close.
+        while (uiManager.IsDDTotalWinPopupOpen)
+            yield return null;
+
+        bool taken = false;
+        if (lastResult == result && uiManager.isActiveAndEnabled)
+        {
+            uiManager.ShowDDTotalWin(UIManager.TotalWinTitle.Jackpot, result.jackpotBonusData.totalWon,
+                () => taken = true);
+            while (!taken && uiManager.IsDDTotalWinPopupOpen)
+                yield return null;
+        }
+
+        if (!taken || lastResult != result)
+        {
+            jackpotPresentationCoroutine = null;
+            ClearDoubleDiamondJackpotPresentation();
+            currentState = GameState.Idle;
+            yield break;
+        }
+
+        // The spin result already contains the settled balance and the jackpot in its win totals.
+        playerData = result.playerData;
+        uiManager.RevealDoubleDiamondJackpotWin(result);
+
+        // Keep the handoff in this coroutine so a disconnect can cancel it before the round advances.
+        yield return ProcessSpecialFeaturesAfterWin();
+        if (jackpotPresentationResult == result)
+        {
+            jackpotPresentationCoroutine = null;
+            jackpotPresentationResult = null;
+        }
+    }
+
+    private void CancelDoubleDiamondJackpotPresentation()
+    {
+        if (jackpotPresentationCoroutine == null)
+            return;
+
+        StopCoroutine(jackpotPresentationCoroutine);
+        jackpotPresentationCoroutine = null;
+        ClearDoubleDiamondJackpotPresentation();
+    }
+
+    private void ClearDoubleDiamondJackpotPresentation()
+    {
+        uiManager?.CancelDoubleDiamondJackpotPresentation();
+        if (lastResult == jackpotPresentationResult)
+            lastResult = null;
+        jackpotPresentationResult = null;
+    }
+
     private IEnumerator TriggerWinPopupWithDelay(float delay, SpinResult result)
     {
         double totalPay = GetTotalPay();
@@ -437,19 +541,15 @@ public class GameManager : MonoBehaviour
             yield break;
         }
 
-        ResumeAfterSpecialFeature();
+        yield return ResumeAfterSpecialFeature();
     }
 
-    private void ResumeAfterSpecialFeature()
+    private IEnumerator ResumeAfterSpecialFeature()
     {
         if (isAutoPlaying || isInFreeSpins)
-        {
-            StartCoroutine(DelayBeforeNextRound());
-        }
+            yield return DelayBeforeNextRound();
         else
-        {
             ProcessSpinResult();
-        }
     }
 
     private IEnumerator PlayDoubleDiamondWinWithoutLines(SpinResult result, float countUpDuration,
@@ -523,7 +623,7 @@ public class GameManager : MonoBehaviour
         {
             AudioManager.Instance?.Stop3UspinWinLineLoop();
             lastResult.uSpinData.triggered = false;
-            ResumeAfterSpecialFeature();
+            StartCoroutine(ResumeAfterSpecialFeature());
         });
     }
 
@@ -541,22 +641,24 @@ public class GameManager : MonoBehaviour
         uiManager.TriggerMoneyBagBonus(lastResult.moneyBagData, () =>
         {
             lastResult.moneyBagData.triggered = false;
-            ResumeAfterSpecialFeature();
+            StartCoroutine(ResumeAfterSpecialFeature());
         });
     }
 
     private IEnumerator DelayBeforeNextRound()
     {
+        var result = lastResult;
         float delayTime = currentSpinSpeed == SpinSpeed.QuickSpin ? 0.3f : 0.5f;
         yield return new WaitForSeconds(delayTime);
 
-        // Wait for special win popup using the flag and active state
-        while (waitingForSpecialWin || uiManager.IsSpecialWinActive)
+        // A delayed continuation belongs to the result that scheduled it.
+        while (lastResult == result && (waitingForSpecialWin || uiManager.IsSpecialWinActive))
         {
             yield return null;
         }
 
-        ProcessSpinResult();
+        if (result != null && lastResult == result)
+            ProcessSpinResult();
     }
 
     private float GetSpinDuration()
@@ -647,7 +749,11 @@ public class GameManager : MonoBehaviour
     private void ProcessSpinResult(int bonusDiamondCount = 0)
     {
         playerData = lastResult.playerData;
+        bool startsFreeSpins = lastResult.freeSpinData?.isTriggered == true && !isInFreeSpins;
 
+        // Hold the balance for the bonus once its trigger presentation is ready to hand off.
+        if (startsFreeSpins && lastResult.isDoubleDiamondResult)
+            uiManager.HoldDoubleDiamondFreeSpinBalance();
         uiManager.OnSpinCompleted(lastResult);
 
         // Extract server-authoritative values before nullifying lastResult
@@ -666,7 +772,7 @@ public class GameManager : MonoBehaviour
 
 
         // Check if free spins were just triggered (initial trigger from base game)
-        if (lastResult.freeSpinData != null && lastResult.freeSpinData.isTriggered && !isInFreeSpins)
+        if (startsFreeSpins)
         {
             var trigger = lastResult;
             lastResult = null;
@@ -843,15 +949,19 @@ public class GameManager : MonoBehaviour
 
     internal void StartFirstFreeSpin()
     {
+        if (firstFreeSpinCoroutine != null)
+            return;
+
         waitingForFreeSpinStart = false;
 
-        StartCoroutine(DelayBeforeFirstFreeSpin());
+        firstFreeSpinCoroutine = StartCoroutine(DelayBeforeFirstFreeSpin());
     }
 
 
     private IEnumerator DelayBeforeFirstFreeSpin()
     {
         yield return new WaitForSeconds(0.5f);
+        firstFreeSpinCoroutine = null;
         RequestSpin();
     }
 
@@ -894,12 +1004,30 @@ public class GameManager : MonoBehaviour
 
     internal void OnDisconnected()
     {
-        AudioManager.Instance?.StopDDReelAudio();
+        // Invalidate the Double Diamond result before stopping reel work or closing feature popups.
+        currentState = GameState.Idle;
+        if (lastResult?.isDoubleDiamondResult == true)
+            lastResult = null;
+
+        CancelDoubleDiamondJackpotPresentation();
         if (spinCoroutine != null)
         {
             StopCoroutine(spinCoroutine);
             spinCoroutine = null;
         }
+
+        // Cancel a Start click that is still waiting to request the first free spin.
+        if (firstFreeSpinCoroutine != null)
+        {
+            StopCoroutine(firstFreeSpinCoroutine);
+            firstFreeSpinCoroutine = null;
+        }
+        uiManager?.HideDoubleDiamondFreeSpinStart();
+
+        if (slotView != null)
+            slotView.CancelSpin();
+        else
+            AudioManager.Instance?.StopDDReelAudio();
 
         wasAutoPlayingBeforeFreeSpins = false;
         if (isAutoPlaying)
@@ -907,9 +1035,19 @@ public class GameManager : MonoBehaviour
             StopAutoPlay();
         }
 
-        currentState = GameState.Idle;
+        uiManager?.CancelDoubleDiamondFreeSpinCompletion();
+
         // Note: The disconnection popup is shown by SocketIOManager.OnSocketDisconnected()
         // to avoid duplicates. GameManager only cleans up state here.
+    }
+
+    private void OnDisable()
+    {
+        if (jackpotPresentationCoroutine == null)
+            return;
+
+        CancelDoubleDiamondJackpotPresentation();
+        slotView?.CancelSpin();
     }
 
     internal void ExitGame()

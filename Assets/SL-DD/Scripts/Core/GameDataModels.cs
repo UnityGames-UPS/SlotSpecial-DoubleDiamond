@@ -190,6 +190,7 @@ public class ServerPayload
     public List<ServerLineWin> lineWins;
     public bool isFreeSpin;
     public ServerFreeSpinsResult freeSpins;
+    public ServerJackpotBonusResult jackpotBonus;
 
     // Legacy CNY result fields. The current converter still reads these.
     public List<List<string>> reels;
@@ -231,6 +232,18 @@ public class ServerFreeSpinsResult
     public int spinsAdded;
     public double scatterWin;
     public int remaining;
+    public double totalWon;
+}
+
+[Serializable]
+public class ServerJackpotBonusResult
+{
+    public bool triggered;
+    public int scatterCount;
+    public int tier;
+    public string tierName;
+    public double multiplier;
+    public double tierPayout;
     public double totalWon;
 }
 
@@ -423,6 +436,8 @@ public class SpinResult
     // Double Diamond result fields.
     public bool isDoubleDiamondResult;
     public bool isFreeSpin; // True for a spin played during the free-spin round.
+    public double linesWinAmount;
+    public JackpotBonusData jackpotBonusData;
 
     // Legacy CNY feature fields and payout helpers.
     public ScatterData scatterData;
@@ -466,6 +481,19 @@ public class FreeSpinData
 
     // Legacy CNY purchase flag.
     public bool isBought;
+}
+
+// Double Diamond Jackpot Inferno award for the current spin.
+[Serializable]
+public class JackpotBonusData
+{
+    public bool isTriggered;
+    public int scatterCount;
+    public int tier;
+    public string tierName;
+    public double multiplier;
+    public double tierPayout;
+    public double totalWon;
 }
 
 // Legacy CNY feature models.
@@ -665,7 +693,8 @@ public static class InitDataConverter
     internal static SpinResult ConvertServerResponseToSpinResult(ServerSpinResponse serverResponse, double currentBalance, double betAmount, GameConfig gameConfig)
     {
         var payload = serverResponse.payload;
-        bool isDoubleDiamondResult = payload.lineWins != null || payload.freeSpins != null;
+        bool isDoubleDiamondResult = payload.lineWins != null || payload.freeSpins != null ||
+            payload.jackpotBonus != null;
         double winAmount = isDoubleDiamondResult || payload.winAmount > 0 ? payload.winAmount : payload.totalWin;
         double totalPay = (gameConfig != null && gameConfig.totalBetMultiplier > 0) ? betAmount * gameConfig.totalBetMultiplier : betAmount * 25;
         double newBalance = serverResponse.player?.balance ?? CalculateNewBalance(currentBalance, totalPay, winAmount);
@@ -686,8 +715,25 @@ public static class InitDataConverter
                 currentBetIndex = 0
             },
             isDoubleDiamondResult = isDoubleDiamondResult,
-            isFreeSpin = payload.isFreeSpin
+            isFreeSpin = payload.isFreeSpin,
+            linesWinAmount = payload.linesWinAmount
         };
+
+        // Double Diamond reports the jackpot award separately from the running free-spin total.
+        if (payload.jackpotBonus != null)
+        {
+            var jackpot = payload.jackpotBonus;
+            result.jackpotBonusData = new JackpotBonusData
+            {
+                isTriggered = jackpot.triggered,
+                scatterCount = jackpot.scatterCount,
+                tier = jackpot.tier,
+                tierName = jackpot.tierName,
+                multiplier = jackpot.multiplier,
+                tierPayout = jackpot.tierPayout,
+                totalWon = jackpot.totalWon
+            };
+        }
 
         // Double Diamond sends remaining spins and the running round total directly.
         if (payload.freeSpins != null)
