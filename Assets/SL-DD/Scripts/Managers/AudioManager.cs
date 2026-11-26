@@ -39,16 +39,11 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip clipGameMainBg;
     [SerializeField] private AudioClip clipBetPlusMinus;
     [SerializeField] private AudioClip clipMaxBetReached;
-    [SerializeField] private AudioClip clip3UspinWinLineLoop;
-    [SerializeField] private AudioClip clipWinObjectBg;
     [SerializeField, Tooltip("Manual Spin button and DD free-spin Start.")] private AudioClip clipPrimaryActionButton;
     [SerializeField] private AudioClip clipGeneralButtonClick;
     [SerializeField] private AudioClip clipPopupOpenClose;
     [SerializeField, Tooltip("Plays once when the autoplay panel opens or closes.")] private AudioClip clipAutoplayPanelOpen;
-    [SerializeField] private AudioClip clipFeatureOpenLoop;
     [SerializeField] private AudioClip clipFreeSpinBg;
-    [SerializeField] private AudioClip clipWheelSegmentTick;
-    [SerializeField] private AudioClip clipWinLinePhase1Start;
     [SerializeField] private AudioClip clipReelStop;
 
     [Header("DD Win SFX")]
@@ -195,40 +190,6 @@ public class AudioManager : MonoBehaviour
         PlayUISound(clipMaxBetReached);
     }
 
-    // 4. 3 USpin Win Line Loop
-    internal void Play3UspinWinLineLoop()
-    {
-        if (!_sfxEnabled || clip3UspinWinLineLoop == null) return;
-        PlayLoop(uiSource, clip3UspinWinLineLoop);
-    }
-
-    internal void Stop3UspinWinLineLoop()
-    {
-        if (uiSource != null && uiSource.clip == clip3UspinWinLineLoop)
-        {
-            StopSource(uiSource);
-        }
-    }
-
-    // 5. Win Object BG (Play at Open)
-    internal void PlayWinObjectBg()
-    {
-        if (!_sfxEnabled || clipWinObjectBg == null) return;
-        PlayLoop(uiSource, clipWinObjectBg);
-    }
-
-    internal void StopWinObjectBg()
-    {
-        if (uiSource != null && uiSource.clip == clipWinObjectBg)
-        {
-            StopSource(uiSource);
-        }
-        if (reserveSource != null && reserveSource.clip == clipWinObjectBg)
-        {
-            StopSource(reserveSource);
-        }
-    }
-
     // 6. DD manual Spin and free-spin Start share the spin button cue.
     internal void PlaySpinStart()
     {
@@ -238,7 +199,6 @@ public class AudioManager : MonoBehaviour
     internal void PlaySpinStop()     => PlayButton();
     internal void PlayTakeButton()   => PlayButton();
     internal void PlayAutoplayStop() => PlayButton();
-    internal void PlayWheelStart()   => PlayButton();
 
     // 7. General Button Click
     internal void PlayButton()
@@ -263,47 +223,9 @@ public class AudioManager : MonoBehaviour
         PlayUISound(clipAutoplayPanelOpen != null ? clipAutoplayPanelOpen : clipPopupOpenClose);
     }
 
-    // 10. Bonus Wheel & MoneyBag Feature Open Sound (loop until feature enabled)
-    internal void PlayFeatureOpenLoop()
+    internal void PlayFreeSpinBg()
     {
-        if (clipFeatureOpenLoop == null) return;
-        PlayLoop(bgMusicSource, clipFeatureOpenLoop);
-    }
-
-    internal void StopFeatureOpenLoop()
-    {
-        if (bgMusicSource != null && bgMusicSource.clip == clipFeatureOpenLoop)
-        {
-            StopBgMusic();
-            PlayBgMusic(); // Resume main BG
-        }
-    }
-
-    // 11. FreeSpin BG (loop while free spin)
-    internal void PlayFreeSpinBg(bool isDoubleDiamond)
-    {
-        var clip = isDoubleDiamond && clipDDFreeSpinBg != null ? clipDDFreeSpinBg : clipFreeSpinBg;
-        PlayLoop(bgMusicSource, clip);
-    }
-
-    // 12. Bonus Wheel Spin Segment Tick
-    internal void PlayWheelSegmentTick()
-    {
-        if (!_sfxEnabled || clipWheelSegmentTick == null) return;
-        if (wheelSegmentSource != null)
-        {
-            wheelSegmentSource.PlayOneShot(clipWheelSegmentTick);
-        }
-        else
-        {
-            PlayUISound(clipWheelSegmentTick);
-        }
-    }
-
-    // 13. Win Line Phase 1 Start
-    internal void PlayWinLinePhase1Start()
-    {
-        PlayUISound(clipWinLinePhase1Start);
+        PlayLoop(bgMusicSource, clipDDFreeSpinBg != null ? clipDDFreeSpinBg : clipFreeSpinBg);
     }
 
     // 14. Slot Reel Column Stop Sound

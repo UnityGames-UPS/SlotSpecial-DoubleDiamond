@@ -139,7 +139,7 @@ public class SymbolInfoCard : MonoBehaviour
 
         string symbolNameLower = symbolInfo != null ? (symbolInfo.name ?? "").ToLower() : "";
 
-        // DD uses the symbol identities provided by init. CNY retains its legacy card logic below.
+        // Double Diamond uses the symbol identities provided by init.
         if (gameManager?.gameConfig?.bonusSymbolId == 12 && symbolInfo != null)
         {
             string description = null;
@@ -159,46 +159,29 @@ public class SymbolInfoCard : MonoBehaviour
             }
         }
 
-        // Legacy CNY special symbols.
-        bool isWild = (symbolId == 10) || (symbolInfo != null && symbolInfo.isWild) || symbolNameLower.Contains("wild");
-        bool isUSpin = (symbolId == 11) || symbolNameLower.Contains("uspin");
-        bool isMoneyBag = (symbolId == 12) || symbolNameLower.Contains("moneybag") || symbolNameLower.Contains("money bag");
-
-        if (isWild || isUSpin || isMoneyBag)
+        // Older symbol configurations can omit the Wild flag.
+        bool isWild = symbolId == 10 || symbolInfo?.isWild == true || symbolNameLower.Contains("wild");
+        if (isWild)
         {
-            // SPECIAL SYMBOL: Text alignment CENTER
             infoText.alignment = TextAlignmentOptions.Center;
-            infoText.enableWordWrapping = true;
-if (isUSpin)
-{
-    infoText.text = "3 U-Spin symbols trigger the Wheel Bonus feature.";
-}
-else if (isMoneyBag)
-{
-    infoText.text = "3 Money Bag symbols trigger the Money Bag Collect feature.";
-}
-else if (isWild)
-{
-    infoText.text = "Substitutes for all symbols except U-Spin and Money Bag.";
-}
+            infoText.textWrappingMode = TextWrappingModes.Normal;
+            infoText.text = "Substitutes for regular symbols.";
+            return;
         }
-        else
+
+        infoText.alignment = TextAlignmentOptions.Flush;
+        infoText.enableWordWrapping = false;
+
+        var lines = new List<string>();
+        if (gameManager != null)
         {
-            // NORMAL SYMBOL: Text alignment FLUSH
-            infoText.alignment = TextAlignmentOptions.Flush;
-            infoText.enableWordWrapping = false;
-
-            var lines = new List<string>();
-            if (gameManager != null)
+            foreach (var (matchCount, payout) in gameManager.GetSymbolPayoutRows(symbolInfo))
             {
-                foreach (var (matchCount, payout) in gameManager.GetSymbolPayoutRows(symbolInfo))
-                {
-                    lines.Add($"<color=#FFC700>X{matchCount}</color>   {payout:0.###}");
-                }
+                lines.Add($"<color=#FFC700>X{matchCount}</color>   {payout:0.###}");
             }
-
-            infoText.text = string.Join("\n", lines);
         }
+
+        infoText.text = string.Join("\n", lines);
     }
 
     public void HideCard()

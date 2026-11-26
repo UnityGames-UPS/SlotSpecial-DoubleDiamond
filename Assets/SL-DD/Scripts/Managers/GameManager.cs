@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] internal UIManager uiManager;
     [SerializeField] private PopupManager popupManager;
     [SerializeField] private SlotView slotView;
-    [SerializeField] internal WheelSpinController wheelController;
 
     [Header("Spin Settings")]
     [SerializeField] private float normalSpinDuration = 3.5f;
@@ -18,10 +17,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float quickSpinCycleDuration = 0.8f;
     [Tooltip("Seconds the reels keep spinning after pressing Stop. Set to 0 to skip this pause.")]
     [SerializeField, Min(0f)] private float manualStopDelay = 0.5f;
-
-    [Header("Win Settings")]
-    [SerializeField] private double bigWinMultiplierThreshold = 500.0;
-    public double BigWinMultiplierThreshold => bigWinMultiplierThreshold;
 
     internal GameConfig gameConfig;
     internal PlayerData playerData;
@@ -42,8 +37,6 @@ public class GameManager : MonoBehaviour
 
     internal bool isInFreeSpins;
     internal int freeSpinsRemaining;
-    internal int freeSpinsUsed;
-    private int doubleDiamondFreeSpinsAwarded;
     internal bool waitingForFreeSpinStart;
 
     internal bool isInitialized;
@@ -54,7 +47,6 @@ public class GameManager : MonoBehaviour
     private Coroutine jackpotPresentationCoroutine;
     private SpinResult jackpotPresentationResult;
     private bool stopRequested;
-    private bool waitingForSpecialWin;
 
     #region Initialization
 
@@ -82,11 +74,6 @@ public class GameManager : MonoBehaviour
             }
 
             slotView.SetupSymbolButtons();
-        }
-
-        if (wheelController != null && gameConfig.uSpinSegments != null)
-        {
-            wheelController.OverrideSegmentsWithData(gameConfig.uSpinSegments);
         }
 
         isInitialized = true;
@@ -291,44 +278,32 @@ public class GameManager : MonoBehaviour
         }
 
         // Double Diamond keeps the outlines for the trigger popup only when opening a free-spin round.
-        if (lastResult?.isDoubleDiamondResult == true &&
-            (lastResult.freeSpinData?.isTriggered != true || isInFreeSpins))
+        if (lastResult.freeSpinData?.isTriggered != true || isInFreeSpins)
         {
             slotView?.FadeBonusReelOutlinesAfterFirstLoop();
         }
 
-        if (lastResult != null)
+        if (lastResult.jackpotBonusData?.isTriggered == true)
         {
-            if (lastResult.jackpotBonusData?.isTriggered == true)
+            if (jackpotPresentationResult != lastResult)
             {
-                if (jackpotPresentationResult != lastResult)
-                {
-                    jackpotPresentationResult = lastResult;
-                    jackpotPresentationCoroutine = StartCoroutine(PlayDoubleDiamondJackpot(lastResult));
-                }
-                return;
+                jackpotPresentationResult = lastResult;
+                jackpotPresentationCoroutine = StartCoroutine(PlayDoubleDiamondJackpot(lastResult));
             }
-
-            // Keep the post-bet balance visible before any trigger-result UI is refreshed.
-            if (lastResult.isDoubleDiamondResult && !lastResult.isFreeSpin &&
-                lastResult.freeSpinData?.isTriggered == true)
-            {
-                uiManager.HoldDoubleDiamondFreeSpinBalance();
-            }
-
-            double reelStopBalance = lastResult.playerData?.balance ?? 0d;
-            // Legacy CNY defers crediting U-Spin and Money Bag payouts until their features finish.
-            if (!lastResult.isDoubleDiamondResult && lastResult.playerData != null)
-                reelStopBalance -= lastResult.GetTotalFeatureDeferredWins();
-
-            playerData = new PlayerData
-            {
-                balance = reelStopBalance,
-                currentBetIndex = lastResult.playerData != null ? lastResult.playerData.currentBetIndex : currentBetIndex
-            };
+            return;
         }
 
-        if (lastResult?.isDoubleDiamondResult == true && lastResult.winAmount > 0)
+        // Keep the post-bet balance visible before any trigger-result UI is refreshed.
+        if (!lastResult.isFreeSpin && lastResult.freeSpinData?.isTriggered == true)
+            uiManager.HoldDoubleDiamondFreeSpinBalance();
+
+        playerData = new PlayerData
+        {
+            balance = lastResult.playerData?.balance ?? 0d,
+            currentBetIndex = lastResult.playerData?.currentBetIndex ?? currentBetIndex
+        };
+
+        if (lastResult.winAmount > 0)
         {
             var result = lastResult;
             uiManager.DisableControlsDuringWinAnimation();
@@ -354,35 +329,9 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        if (lastResult != null && lastResult.winAmount > 0 && lastResult.winLines != null && lastResult.winLines.Count > 0)
-        {
-            // Legacy CNY threshold presentation.
-            double totalPay = GetTotalPay();
-            double multiplier = totalPay > 0 ? (lastResult.winAmount / totalPay) : 0;
-
-            if (multiplier >= bigWinMultiplierThreshold)
-            {
-                uiManager.DisableControlsDuringWinAnimation();
-                currentState = GameState.Idle;
-                slotView.ShowWinLineAnimation(lastResult.winLines, OnWinAnimationComplete);
-                StartCoroutine(TriggerWinPopupWithDelay(1.5f, lastResult));
-            }
-            else
-            {
-                // For normal wins, trigger UI update immediately and enable controls
-                uiManager.OnSpinStopping(lastResult);
-                uiManager.EnableControlsAfterWinAnimation();
-                uiManager.OnSpinCompleted(lastResult);
-                currentState = GameState.Idle;
-                slotView.ShowWinLineAnimation(lastResult.winLines, OnWinAnimationComplete);
-            }
-        }
-        else
-        {
-            uiManager.OnSpinStopping(lastResult);
-            currentState = GameState.Idle;
-            OnWinAnimationComplete();
-        }
+        uiManager.OnSpinStopping(lastResult);
+        currentState = GameState.Idle;
+        StartCoroutine(ProcessSpecialFeaturesAfterWin());
     }
 
     // Jackpot Inferno plays the table highlight alongside the grouped win, then waits for Take.
@@ -467,85 +416,14 @@ public class GameManager : MonoBehaviour
         jackpotPresentationResult = null;
     }
 
-    private IEnumerator TriggerWinPopupWithDelay(float delay, SpinResult result)
-    {
-        double totalPay = GetTotalPay();
-        double multiplier = totalPay > 0 ? (result.winAmount / totalPay) : 0;
-        if (multiplier < bigWinMultiplierThreshold)
-        {
-            waitingForSpecialWin = false;
-            yield break;
-        }
-
-        waitingForSpecialWin = true;
-
-        yield return new WaitForSeconds(delay);
-
-        if (lastResult == result && multiplier >= bigWinMultiplierThreshold)
-        {
-            uiManager.TriggerBigWinPopup(result, () =>
-            {
-                waitingForSpecialWin = false;
-            });
-        }
-        else
-        {
-            waitingForSpecialWin = false;
-        }
-    }
-
-    private void OnWinAnimationComplete()
-    {
-        if (lastResult != null)
-        {
-            double totalPay = GetTotalPay();
-            double multiplier = totalPay > 0 ? (lastResult.winAmount / totalPay) : 0;
-
-            // Only update UI here if it wasn't already updated in OnReelsStoppedComplete (multiplier < bigWinMultiplierThreshold)
-            if (multiplier >= bigWinMultiplierThreshold)
-            {
-                uiManager.OnSpinStopping(lastResult);
-            }
-        }
-
-        StartCoroutine(ProcessSpecialFeaturesAfterWin());
-    }
-
     private IEnumerator ProcessSpecialFeaturesAfterWin()
     {
-        // Wait for special win popup to finish before starting special features
-        while (waitingForSpecialWin || uiManager.IsSpecialWinActive)
+        if (lastResult?.freeSpinData?.isTriggered == true && !isInFreeSpins)
         {
-            yield return null;
-        }
-
-        if (lastResult != null && lastResult.uSpinData != null && lastResult.uSpinData.triggered)
-        {
-            yield return StartCoroutine(DelayUSpinTriggerResult());
+            yield return PlayDoubleDiamondFreeSpinTrigger(lastResult);
             yield break;
         }
 
-        if (lastResult != null && lastResult.moneyBagData != null && lastResult.moneyBagData.triggered)
-        {
-            yield return StartCoroutine(DelayMoneyBagTriggerResult());
-            yield break;
-        }
-
-        if (lastResult != null && lastResult.freeSpinData != null && lastResult.freeSpinData.isTriggered && !isInFreeSpins)
-        {
-            if (lastResult.isDoubleDiamondResult)
-                yield return PlayDoubleDiamondFreeSpinTrigger(lastResult);
-            else
-                yield return StartCoroutine(DelayScatterTriggerResult()); // Legacy CNY.
-
-            yield break;
-        }
-
-        yield return ResumeAfterSpecialFeature();
-    }
-
-    private IEnumerator ResumeAfterSpecialFeature()
-    {
         if (isAutoPlaying || isInFreeSpins)
             yield return DelayBeforeNextRound();
         else
@@ -585,66 +463,6 @@ public class GameManager : MonoBehaviour
             ProcessSpinResult(bonusPositions.Count);
     }
 
-    // Legacy CNY scatter animation and sound.
-    private IEnumerator DelayScatterTriggerResult()
-    {
-        // Play special feature trigger sound AFTER all reels have stopped
-        AudioManager.Instance?.Play3UspinWinLineLoop();
-
-        // Start scatter animations together AFTER all reels have stopped
-        // Using 4 loops to match the 6-second delay (4 * 1.5s = 6s)
-        slotView.AnimateAllScatters(4);
-
-        // Wait for scatter hit animations to play
-        yield return new WaitForSeconds(3.5f);
-        ProcessSpinResult();
-    }
-
-    private IEnumerator DelayUSpinTriggerResult()
-    {
-        AudioManager.Instance?.Play3UspinWinLineLoop();
-
-        bool animFinished = false;
-        if (slotView != null)
-        {
-            slotView.AnimateUSpinWin(() =>
-            {
-                animFinished = true;
-            });
-        }
-        else
-        {
-            animFinished = true;
-        }
-
-        yield return new WaitUntil(() => animFinished);
-
-        uiManager.TriggerUSpinBonus(lastResult.uSpinData, () =>
-        {
-            AudioManager.Instance?.Stop3UspinWinLineLoop();
-            lastResult.uSpinData.triggered = false;
-            StartCoroutine(ResumeAfterSpecialFeature());
-        });
-    }
-
-    private IEnumerator DelayMoneyBagTriggerResult()
-    {
-        AudioManager.Instance?.Play3UspinWinLineLoop();
-
-        if (slotView != null)
-        {
-            slotView.AnimateMoneyBagWin();
-        }
-
-        yield return new WaitForSeconds(3.5f);
-
-        uiManager.TriggerMoneyBagBonus(lastResult.moneyBagData, () =>
-        {
-            lastResult.moneyBagData.triggered = false;
-            StartCoroutine(ResumeAfterSpecialFeature());
-        });
-    }
-
     private IEnumerator DelayBeforeNextRound()
     {
         var result = lastResult;
@@ -652,11 +470,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(delayTime);
 
         // A delayed continuation belongs to the result that scheduled it.
-        while (lastResult == result && (waitingForSpecialWin || uiManager.IsSpecialWinActive))
-        {
-            yield return null;
-        }
-
         if (result != null && lastResult == result)
             ProcessSpinResult();
     }
@@ -674,55 +487,23 @@ public class GameManager : MonoBehaviour
 
     internal void OnSpinResultReceived(SpinResult result)
     {
-        if (result.isDoubleDiamondResult)
-        {
-            // Only the first result for the active spin can alter its presentation.
-            if (currentState != GameState.Spinning || lastResult != null)
-                return;
+        // Only the first result for the active spin can alter its presentation.
+        if (currentState != GameState.Spinning || lastResult != null)
+            return;
 
-            if (slotView != null && slotView.TryGetUnmappedResultSymbol(result, out int symbolId))
-            {
-                HandleUnmappedSpinSymbol(symbolId);
-                return;
-            }
+        if (slotView != null && slotView.TryGetUnmappedResultSymbol(result, out int symbolId))
+        {
+            HandleUnmappedSpinSymbol(symbolId);
+            return;
         }
 
         lastResult = result;
 
-        // Double Diamond shows the remaining count reported by the server.
-        if (isInFreeSpins && result.isDoubleDiamondResult && result.isFreeSpin &&
-            result.serverSpinsRemaining >= 0)
+        // The server reports the remaining free spins after each result.
+        if (isInFreeSpins && result.isFreeSpin && result.serverSpinsRemaining >= 0)
         {
-            doubleDiamondFreeSpinsAwarded += result.freeSpinData?.spinsAwarded ?? 0;
             freeSpinsRemaining = result.serverSpinsRemaining;
-            freeSpinsUsed = doubleDiamondFreeSpinsAwarded - freeSpinsRemaining;
             uiManager.UpdateDoubleDiamondFreeSpinCount(freeSpinsRemaining);
-        }
-        // Legacy CNY receives played and awarded counts directly.
-        else if (isInFreeSpins && !result.isDoubleDiamondResult &&
-                 result.serverSpinsRemaining >= 0)
-        {
-            freeSpinsRemaining = result.serverSpinsRemaining;
-            freeSpinsUsed = result.serverSpinsUsed;
-            int displayTotalSpins = result.serverTotalSpins;
-
-            if (result.uSpinData != null && result.uSpinData.triggered && result.uSpinData.freeGamesAwarded > 0)
-            {
-                // Defer adding the newly won free spins to total count until wheel spin completes and user presses Take!
-                displayTotalSpins -= result.uSpinData.freeGamesAwarded;
-                freeSpinsRemaining -= result.uSpinData.freeGamesAwarded;
-            }
-
-            uiManager.UpdateFreeSpinCount(freeSpinsUsed, displayTotalSpins);
-        }
-
-        if (result.winLines != null)
-        {
-            for (int i = 0; i < result.winLines.Count; i++)
-            {
-                var line = result.winLines[i];
-
-            }
         }
     }
 
@@ -752,16 +533,14 @@ public class GameManager : MonoBehaviour
         bool startsFreeSpins = lastResult.freeSpinData?.isTriggered == true && !isInFreeSpins;
 
         // Hold the balance for the bonus once its trigger presentation is ready to hand off.
-        if (startsFreeSpins && lastResult.isDoubleDiamondResult)
+        if (startsFreeSpins)
             uiManager.HoldDoubleDiamondFreeSpinBalance();
         uiManager.OnSpinCompleted(lastResult);
 
         // Extract server-authoritative values before nullifying lastResult
         int serverSpinsRemaining = lastResult.serverSpinsRemaining;
-        int serverSpinsUsed = lastResult.serverSpinsUsed;
         double serverTotalRoundWin = lastResult.serverTotalRoundWin;
         bool isRoundOver = lastResult.isRoundOver;
-        bool isDoubleDiamondResult = lastResult.isDoubleDiamondResult;
 
         // Note: freeSpinsRemaining already updated in OnSpinResultReceived
         // Keeping this for safety in case OnSpinResultReceived wasn't called
@@ -821,7 +600,7 @@ public class GameManager : MonoBehaviour
 
             if (isRoundOver || freeSpinsRemaining <= 0)
             {
-                EndFreeSpins(serverTotalRoundWin, serverSpinsUsed, isDoubleDiamondResult);
+                EndFreeSpins(serverTotalRoundWin);
             }
             else
             {
@@ -918,11 +697,9 @@ public class GameManager : MonoBehaviour
     {
         int spins = trigger.freeSpinData.spinsAwarded;
         isInFreeSpins = true;
-        freeSpinsRemaining = trigger.isDoubleDiamondResult ? trigger.freeSpinData.remainingSpins : spins;
-        freeSpinsUsed = 0;
-        doubleDiamondFreeSpinsAwarded = trigger.isDoubleDiamondResult ? spins : 0;
+        freeSpinsRemaining = trigger.freeSpinData.remainingSpins;
         waitingForFreeSpinStart = true;
-        AudioManager.Instance?.PlayFreeSpinBg(trigger.isDoubleDiamondResult);
+        AudioManager.Instance?.PlayFreeSpinBg();
 
         int prevTotal = autoPlayTotalRounds;
         int prevRemaining = autoPlayRemainingRounds;
@@ -936,15 +713,10 @@ public class GameManager : MonoBehaviour
         }
 
         currentState = GameState.Idle;
-        if (trigger.isDoubleDiamondResult)
-        {
-            // DD carries the paid trigger's line wins through its UI totals.
-            double triggerLineWin = trigger.winLines?.Sum(line => line.winAmount) ?? 0d;
-            uiManager.OnDoubleDiamondFreeSpinsStarted(
-                spins, freeSpinsRemaining, bonusDiamondCount, trigger.serverTotalRoundWin, triggerLineWin);
-        }
-        else
-            uiManager.OnFreeSpinsStarted(spins); // Legacy CNY award popup.
+        // Carry the paid trigger's line wins through the free-spin UI totals.
+        double triggerLineWin = trigger.winLines?.Sum(line => line.winAmount) ?? 0d;
+        uiManager.OnDoubleDiamondFreeSpinsStarted(
+            spins, freeSpinsRemaining, bonusDiamondCount, trigger.serverTotalRoundWin, triggerLineWin);
     }
 
     internal void StartFirstFreeSpin()
@@ -969,33 +741,18 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
 
-        // Wait for special win popup if it's still active or pending
-        while (waitingForSpecialWin || uiManager.IsSpecialWinActive)
-        {
-            yield return null;
-        }
-
         RequestSpin();
     }
 
-    private void EndFreeSpins(double totalRoundWin, int totalSpinsUsed, bool isDoubleDiamondResult)
+    private void EndFreeSpins(double totalRoundWin)
     {
         isInFreeSpins = false;
         freeSpinsRemaining = 0;
-        doubleDiamondFreeSpinsAwarded = 0;
         AudioManager.Instance?.PlayMainBg();
 
-        if (isDoubleDiamondResult)
-        {
-            // Double Diamond holds the next spin until the total-win popup and return transition finish.
-            currentState = GameState.Stopping;
-            uiManager.OnDoubleDiamondFreeSpinsEnded(totalRoundWin, () => currentState = GameState.Idle);
-            return;
-        }
-
-        // Legacy CNY completes free spins through the universal popup.
-        uiManager.OnFreeSpinsEnded(totalRoundWin, totalSpinsUsed);
-        currentState = GameState.Idle;
+        // Hold the next spin until the total-win popup is collected.
+        currentState = GameState.Stopping;
+        uiManager.OnDoubleDiamondFreeSpinsEnded(totalRoundWin, () => currentState = GameState.Idle);
     }
 
     #endregion
@@ -1004,10 +761,9 @@ public class GameManager : MonoBehaviour
 
     internal void OnDisconnected()
     {
-        // Invalidate the Double Diamond result before stopping reel work or closing feature popups.
+        // Invalidate the result before stopping reel work or closing feature popups.
         currentState = GameState.Idle;
-        if (lastResult?.isDoubleDiamondResult == true)
-            lastResult = null;
+        lastResult = null;
 
         CancelDoubleDiamondJackpotPresentation();
         if (spinCoroutine != null)
@@ -1095,28 +851,6 @@ public class GameManager : MonoBehaviour
     internal bool IsSpinning()
     {
         return currentState == GameState.Spinning || currentState == GameState.Stopping;
-    }
-
-    /// <summary>
-    /// Returns true if at least one scatter symbol appears anywhere in the result matrix.
-    /// Uses the server-configured scatterSymbolId (default 12) as the reference ID.
-    /// </summary>
-    private bool ResultMatrixHasScatter(List<List<int>> matrix)
-    {
-        if (matrix == null) return false;
-
-        int scatterId = gameConfig != null ? gameConfig.scatterSymbolId : 12;
-
-        foreach (var col in matrix)
-        {
-            if (col == null) continue;
-            foreach (int sym in col)
-            {
-                if (sym == scatterId) return true;
-            }
-        }
-
-        return false;
     }
 
     #endregion
