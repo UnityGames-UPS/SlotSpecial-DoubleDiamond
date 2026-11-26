@@ -6,36 +6,6 @@ using UnityEngine.Serialization;
 
 public class OCController : MonoBehaviour
 {
-    [System.Serializable]
-    private struct SharedLayoutTransform
-    {
-        public RectTransform target;
-        public Vector2 landscapePosition;
-        public Vector3 landscapeScale;
-        public Vector2 portraitPosition;
-        public Vector3 portraitScale;
-        public bool preserveVerticalPosition;
-        // Double Diamond can resize individual HUD elements when their portrait dimensions differ.
-        public bool applySize;
-        public Vector2 landscapeSize;
-        public Vector2 portraitSize;
-
-        public void Apply(bool isMobilePortrait)
-        {
-            if (target == null)
-                return;
-
-            var position = isMobilePortrait ? portraitPosition : landscapePosition;
-            if (preserveVerticalPosition)
-                position.y = target.anchoredPosition.y;
-
-            target.anchoredPosition = position;
-            target.localScale = isMobilePortrait ? portraitScale : landscapeScale;
-            if (applySize)
-                target.sizeDelta = isMobilePortrait ? portraitSize : landscapeSize;
-        }
-    }
-
     [Header("References")]
     [SerializeField] private OrientationChange orientationChange;
     [SerializeField] private CanvasScaler canvasScaler;
@@ -72,7 +42,13 @@ public class OCController : MonoBehaviour
     [SerializeField] private Vector3 portraitSlotScale = new Vector3(0.73f, 0.73f, 0.73f);
     [SerializeField] private Vector3 landscapeSlotPosition = Vector3.zero;
     [SerializeField] private Vector3 portraitSlotPosition = new Vector3(0f, -150f, 0f);
-    [SerializeField] private SharedLayoutTransform[] sharedSlotLayout = System.Array.Empty<SharedLayoutTransform>();
+
+    [Header("Bonus Spin Popup Settings")]
+    [SerializeField] private RectTransform bonusSpinPopup;
+    [SerializeField] private Vector2 landscapePopupPosition;
+    [SerializeField] private Vector3 landscapePopupScale = Vector3.one;
+    [SerializeField] private Vector2 portraitPopupPosition;
+    [SerializeField] private Vector3 portraitPopupScale = Vector3.one;
 
     [Header("Double Diamond Dynamic Images")]
     // The former CNY landscape banner reference now serves DD in both orientations.
@@ -210,12 +186,15 @@ public class OCController : MonoBehaviour
             }
         }
 
-        // 5. Update Slot Object Scale and Position
-        foreach (var layout in sharedSlotLayout)
+        // The free-spin trigger popup uses its own anchors outside the slot hierarchy.
+        if (bonusSpinPopup != null)
         {
-            layout.Apply(isMobilePortrait);
+            bonusSpinPopup.anchoredPosition = isMobilePortrait ? portraitPopupPosition : landscapePopupPosition;
+            bonusSpinPopup.localScale = isMobilePortrait ? portraitPopupScale : landscapePopupScale;
         }
         UpdateDynamicImagesVisibility();
+
+        // 5. Update Slot Object Scale and Position
 
         if (slotObject != null)
         {
