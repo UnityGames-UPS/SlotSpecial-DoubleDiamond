@@ -1319,12 +1319,14 @@ public class UIManager : MonoBehaviour
     {
         if (gameRulesPanel == null) return;
         gameRulesPanel.SetActive(true);
+        RefreshDDTotalWinTakeButtons();
     }
 
     private void CloseGameRulesPanel()
     {
         if (gameRulesPanel == null) return;
         gameRulesPanel.SetActive(false);
+        RefreshDDTotalWinTakeButtons();
     }
 
     #endregion
@@ -1516,6 +1518,9 @@ public class UIManager : MonoBehaviour
 
     internal bool IsDDTotalWinPopupOpen => totalWinPopup != null && totalWinPopup.activeInHierarchy;
 
+    private bool CanTakeDDTotalWin => ddTotalWinTakeReady && IsDDTotalWinPopupOpen &&
+        (gameRulesPanel == null || !gameRulesPanel.activeInHierarchy);
+
     private GameObject ActiveDDTotalWinTitle => openDDTotalWinTitle switch
     {
         TotalWinTitle.Jackpot => jpotTotalWinTitle,
@@ -1639,15 +1644,22 @@ public class UIManager : MonoBehaviour
     private void ShowDDTotalWinTake()
     {
         ddTotalWinTakeReady = true;
-        SetButtonActive(sharedWinTakeButton, sharedWinTakeButtonPortrait, true);
-        SetDDTotalWinTakeAboveModal(sharedWinTakeButton, true);
-        SetDDTotalWinTakeAboveModal(sharedWinTakeButtonPortrait, true);
-        SetButtonInteractable(sharedWinTakeButton, sharedWinTakeButtonPortrait, true);
+        RefreshDDTotalWinTakeButtons();
+    }
+
+    private void RefreshDDTotalWinTakeButtons()
+    {
+        // The Info Page can cover a pending win. Keep Take ready until the player returns.
+        bool canTake = CanTakeDDTotalWin;
+        SetButtonInteractable(sharedWinTakeButton, sharedWinTakeButtonPortrait, canTake);
+        SetButtonActive(sharedWinTakeButton, sharedWinTakeButtonPortrait, canTake);
+        SetDDTotalWinTakeAboveModal(sharedWinTakeButton, canTake);
+        SetDDTotalWinTakeAboveModal(sharedWinTakeButtonPortrait, canTake);
     }
 
     private void OnTotalWinTakeButtonClicked()
     {
-        if (!IsDDTotalWinPopupOpen || !ddTotalWinTakeReady)
+        if (!CanTakeDDTotalWin)
             return;
 
         AudioManager.Instance?.PlayTakeButton();
@@ -1666,14 +1678,8 @@ public class UIManager : MonoBehaviour
         totalWinFountain?.StopFountain();
         totalWinRipple?.StopRipple();
 
-        if (ddTotalWinTakeReady)
-        {
-            SetDDTotalWinTakeAboveModal(sharedWinTakeButton, false);
-            SetDDTotalWinTakeAboveModal(sharedWinTakeButtonPortrait, false);
-            SetButtonActive(sharedWinTakeButton, sharedWinTakeButtonPortrait, false);
-        }
-
         ddTotalWinTakeReady = false;
+        RefreshDDTotalWinTakeButtons();
         ddTotalWinOnTake = null;
         openDDTotalWinTitle = null;
 #if UNITY_EDITOR
@@ -1791,40 +1797,37 @@ public class UIManager : MonoBehaviour
     {
         // Wait for the orientation controller to activate the new bottom bar.
         yield return null;
-        if (!ddTotalWinTakeReady) yield break;
-
-        SetDDTotalWinTakeAboveModal(sharedWinTakeButton, true);
-        SetDDTotalWinTakeAboveModal(sharedWinTakeButtonPortrait, true);
+        RefreshDDTotalWinTakeButtons();
     }
 
     private static void SetDDTotalWinTakeAboveModal(Button button, bool aboveModal)
     {
         if (button == null) return;
         button.TryGetComponent(out Canvas buttonCanvas);
-        if (!aboveModal)
+        button.TryGetComponent(out GraphicRaycaster raycaster);
+        if (!aboveModal || !button.gameObject.activeInHierarchy)
         {
             if (buttonCanvas != null)
             {
                 buttonCanvas.overrideSorting = false;
                 buttonCanvas.enabled = false;
-                button.GetComponent<GraphicRaycaster>().enabled = false;
             }
+            if (raycaster != null)
+                raycaster.enabled = false;
             return;
         }
 
-        if (!button.gameObject.activeInHierarchy) return;
         var parentCanvas = button.transform.parent.GetComponentInParent<Canvas>();
         if (parentCanvas == null) return;
 
         // The existing Take buttons are under the bottom bars. Give them priority over the modal backdrop.
         if (buttonCanvas == null)
-        {
             buttonCanvas = button.gameObject.AddComponent<Canvas>();
-            button.gameObject.AddComponent<GraphicRaycaster>();
-        }
+        if (raycaster == null)
+            raycaster = button.gameObject.AddComponent<GraphicRaycaster>();
 
         buttonCanvas.enabled = true;
-        button.GetComponent<GraphicRaycaster>().enabled = true;
+        raycaster.enabled = true;
         buttonCanvas.overrideSorting = true;
         buttonCanvas.worldCamera = parentCanvas.worldCamera;
         buttonCanvas.sortingLayerID = parentCanvas.sortingLayerID;
